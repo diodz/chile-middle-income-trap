@@ -38,6 +38,6 @@ set(fig, 'LineWidth', 2);
 set(gca,'fontsize',15);
 placebos(1).LineWidth = 3;
 print(figure_filename, '-dpng');
-movefile([figure_filename, '.png'], 'Figures');
+movefile([figure_filename, '.png'], '../figures');
 
 close;

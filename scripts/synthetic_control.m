@@ -91,7 +91,7 @@ legend(treatmentCountryName, 'Synthetic control', 'Location', 'northwest');
 set(fig, 'LineWidth', 2);
 set(gca,'fontsize',15)
 print(figure_filename, '-dpng');
-movefile([figure_filename, '.png'], 'Figures')
+movefile([figure_filename, '.png'], '../figures')
 close;
     
 %% More results: Gaps in outcome variable and RMSPE before and after 
