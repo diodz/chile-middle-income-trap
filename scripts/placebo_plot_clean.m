@@ -30,14 +30,13 @@ fig = plot(get(gca,'xlim'), [0 0], 'Color', [0,0,0]);
 
 %title([treatmentCountryName, ' placebo test ', num2str(treatmentYear)]);
 xlabel('Year');
-ylabel('gdppc');
+ylabel('Real GDP per capita [2011 US$]');
 set(l, 'LineStyle', '--');
 
-legend(treatmentCountryName, 'Placebos', 'Location', 'northeast');
-set(fig, 'LineWidth', 2);
-set(gca,'fontsize',15);
-placebos(1).LineWidth = 3;
+legend(treatmentCountryName, 'Placebos', 'Location', 'northwest');
+set(fig, 'LineWidth', 1);
+set(gca,'fontsize',12);
+placebos(1).LineWidth = 2;
 print(figure_filename, '-dpng');
 movefile([figure_filename, '.png'], '../figures');
-
 close;

@@ -75,7 +75,7 @@ synthControl = Y2*W(1:(nControls+1));
 
 fig = plot(year, Y1, 'Color', [0, 0, 0]);
 hold on
-plot(year, synthControl, '--',  'LineWidth', 3, 'Color', [1, 0, 0])
+plot(year, synthControl, '--',  'LineWidth', 1, 'Color', [1, 0, 0])
 l = line([treatmentYear treatmentYear], get(gca, 'YLim'), 'Color',...
     [0, 0, 0]);
 set(l, 'LineStyle', '--');
@@ -84,12 +84,12 @@ set(l, 'LineStyle', '--');
 
 %title([treatmentCountryName, ' Synthetic Control ', num2str(treatmentYear)]);
 xlabel('Year');
-ylabel('gdppc');
+ylabel('Real GDP per capita [2011 US$]');
 axis([initialYear 1960 -Inf +Inf]);
 
 legend(treatmentCountryName, 'Synthetic control', 'Location', 'northwest');
-set(fig, 'LineWidth', 2);
-set(gca,'fontsize',15)
+set(fig, 'LineWidth', 1);
+set(gca,'fontsize',12)
 print(figure_filename, '-dpng');
 movefile([figure_filename, '.png'], '../figures')
 close;
