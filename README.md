@@ -15,3 +15,11 @@ Comparisons of relative income and structural break analysis is done in R in the
 The file **prepare_data_for_matlab.R** processes Maddisson (2018) data by selecting the countries used to apply the synthetic control method in MATLAB, it also extracts the corresponding period used, from 1900 to 1960. The .csv files created by this script are **gdppc.csv** and **countries.csv**.
 
 In MATLAB, see and run file **main_synthetic_controls.m** to produce figures 3, 4 and 5.
+
+## Data
+
+All data used comes from Maddison (2018). This file is **mpd2018.xlsx** and it's stored in the data folder. It can also be downloaded from the original website: https://www.rug.nl/ggdc/historicaldevelopment/maddison/data/mpd2018.xlsx. 
+
+Any use of this data should use the following reference: 
+
+Maddison Project Database, version 2018. Bolt, Jutta, Robert Inklaar, Herman de Jong and Jan Luiten van Zanden (2018), “Rebasing ‘Maddison’: new income comparisons and the shape of long-run economic development”, Maddison Project Working paper 10
