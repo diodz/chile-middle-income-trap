@@ -1,13 +1,14 @@
-# chile-middle-income-trap
+# Another case of the middle-income trap. Chile, 1900-1939
+ 
  Source code for article to be published in Revista de Historia Económica: 
- 
- **Another case of the middle-income trap. Chile, 1900-1939**
- 
+  
  Correct citation to be updated when published.
  
  For the moment cite as: 
  
 **Authors: Cristián Larroulet, Juan Pablo Couyoumdjian, Diego A. Díaz**
+
+## Instructions
 
 See first **main_markdown.Rmd** or **main_markdown.pdf** to produce figures 1 to 3 and instructions for figures 4 and 5.
 
