@@ -99,3 +99,24 @@ include_graphics(c('../figures/Figure 4_1.png','../figures/Figure 4_2.png'))
 include_graphics(c('../figures/Figure 5_1.png','../figures/Figure 5_2.png'))
 
 ``` 
+
+\newpage
+
+## Tables 2a & 2b
+
+We first part of this code estimates a Bai Perron test to the relative income series of Chile and the United States, as shown in Table 2a. The second part uses the relative income series between Chile and the average of the Nordic-3 countries.
+
+```{r table_2a, warning=FALSE}
+
+usa_rel <- get_relative_usa(1820)
+bai_perron(usa_rel, 'chile_relative', 1820)
+
+```
+
+```{r table_2b, warning=FALSE}
+
+nordic3 <- get_Nordic3_relative()
+bai_perron(nordic3, 'chile_relative', 1880)
+
+```
+
