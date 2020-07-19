@@ -1,12 +1,12 @@
 library(readxl)
 library(dplyr)
 
-#By Diego A. Diaz (https://github.com/diodz/chile-middle-income-trap)
 #Please see published version of the article for correct citation. If not
 #available, cite as:
 #Couyoumdjian, JP., Larroulet, C., Diaz, D.A. (2020) Another case of the
 #middle-income trap: Chile, 1900-1939. Revista de Historia Economica.
-
+#Code by Diego A. Diaz (https://github.com/diodz/chile-middle-income-trap)
+#Address questions to diegodiaz@uchicago.edu
 #The purpose of this section is to produce two files from the Maddison 2018
 #database to perform synthetic controls in MATLAB
 
@@ -25,7 +25,6 @@ prepare_data <- function(){
     df <- mpd2018[chile_and_controls][mpd2018$year >= 1900 & mpd2018$year <= 1960,]
     df <- mutate_all(df, function(x) as.numeric(as.character(x)))
 }
-
 
 #We need separate files for the dataframe and countries names
 df <- prepare_data()

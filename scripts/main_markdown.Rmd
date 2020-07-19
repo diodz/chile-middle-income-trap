@@ -1,5 +1,5 @@
 ---
-title: "Another case of the middle-income trap: Chile, 1900-1939 - Source code"
+title: "Another case of the middle-income trap: Chile, 1900-1939: Source code"
 author: "Cristián Larroulet, Juan Pablo Couyoumdjian, Diego A. Díaz"
 output: pdf_document
 header-includes:
@@ -71,26 +71,30 @@ include_graphics(c('../figures/Figure 2_3a.png','../figures/Figure 2_3b.png'))
 
 ## Figure 3
 
-Figures 3, 4 and 5 are results of the synthetic control method, which is implemented in Matlab. To produce these figures execute the script **main_synthetic_controls.m**. We nonetheless attach the images here for consistency.
+Figures 3, 4 and 5 are results of the synthetic control method, which is implemented in Matlab. To produce these figures execute the script **main_synthetic_controls.m**. Nonetheless, we attach the images here for consistency.
 
-```{r figure_3, out.width='49%', out.height='20%',fig.cap='Figure 2: The top left figure shows Chile’s GDP per capita relative to the USA, the middle left shows Chile relative to the simple average of Western Offshoots and Western Europe-12, and the bottom left one shows Chile’s relative to the Nordic-3 countries. The figures on the right show the results of the F statistic to test for a structural break in level as in Zeileis et al. (2012) for each series, assuming relative income is constant. The highest value marks the most likely year for structural break on the series. In this case, 1948 in the bottom case (Nordic-3), while 1940 in the other two. The period considered in the analysis changes as some European countries’ data starts later in the database.', fig.show='hold', fig.align='center'}
+```{r figure_3, out.width='49%', out.height='20%',fig.cap='Figure 3: Ratio of the post-treatment RMSPE to the pre-treatment RMSPE between Chile and its synthetic counterfactual estimated changing the start of treatment from 1925 to 1950. An interval of 5 years from and after the treatment is considered when calculating the error term.', fig.show='hold', fig.align='center'}
 
 include_graphics('../figures/Figure 3.png')
 
 
 ``` 
 
+\newpage
+
 ## Figure 4
 
-```{r figure_4, out.width='49%', out.height='20%',fig.cap='Figure 2: The top left figure shows Chile’s GDP per capita relative to the USA, the middle left shows Chile relative to the simple average of Western Offshoots and Western Europe-12, and the bottom left one shows Chile’s relative to the Nordic-3 countries. The figures on the right show the results of the F statistic to test for a structural break in level as in Zeileis et al. (2012) for each series, assuming relative income is constant. The highest value marks the most likely year for structural break on the series. In this case, 1948 in the bottom case (Nordic-3), while 1940 in the other two. The period considered in the analysis changes as some European countries’ data starts later in the database.', fig.show='hold', fig.align='center'}
+```{r figure_4, out.width='49%', out.height='20%', fig.cap='Figure 4: The synthetic control for Chile with the treatment set on 1939 is shown on the left side. The solid line shows Chile’s GDP per-capita from Maddison (2018). The dashed line shows the synthetic control constructed from the control group. A placebo test is shown on the right side, where the black line represents Chile’s GDP per capita gap with its synthetic control, and the lighter lines show the gap for the other countries in the sample with each country\'s own synthetic control. Only countries with a pre-treatment RMSPE of less than 1.5 times that of Chile are shown.', fig.show='hold', fig.align='center'}
 
 include_graphics(c('../figures/Figure 4_1.png','../figures/Figure 4_2.png'))
 
 ``` 
 
+\newpage
+
 ## Figure 5
 
-```{r figure_5, out.width='49%', out.height='20%',fig.cap='Figure 2: The top left figure shows Chile’s GDP per capita relative to the USA, the middle left shows Chile relative to the simple average of Western Offshoots and Western Europe-12, and the bottom left one shows Chile’s relative to the Nordic-3 countries. The figures on the right show the results of the F statistic to test for a structural break in level as in Zeileis et al. (2012) for each series, assuming relative income is constant. The highest value marks the most likely year for structural break on the series. In this case, 1948 in the bottom case (Nordic-3), while 1940 in the other two. The period considered in the analysis changes as some European countries’ data starts later in the database.', fig.show='hold', fig.align='center'}
+```{r figure_5, out.width='49%', out.height='20%',fig.cap='Figure 5: The synthetic control for Chile with the treatment set on 1939 is shown on the left side, with the highest weighted country left-out of the sample as a robustness test. In our case, this country is Portugal. The solid line shows Chile’s GDP per-capita from Maddison (2018). The dashed line shows the synthetic control constructed from the control group. A placebo test is shown on the right side, where the black line represents Chile’s GDP per capita gap with its synthetic control, and the lighter lines show the gap for the other countries in the sample with each country\'s own synthetic control. Only countries with a pre-treatment RMSPE of less than 1.5 times that of Chile are shown.', fig.show='hold', fig.align='center'}
 
 include_graphics(c('../figures/Figure 5_1.png','../figures/Figure 5_2.png'))
 
