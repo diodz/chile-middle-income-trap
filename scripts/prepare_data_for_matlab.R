@@ -29,5 +29,5 @@ prepare_data <- function(){
 
 #We need separate files for the dataframe and countries names
 df <- prepare_data()
-write.csv(df, "../data/gdppc.csv", row.names=FALSE)
-write.csv(colnames(df)[2:11], "../data/countries.csv", row.names=FALSE)
+write.csv(df, '../data/gdppc.csv', row.names=FALSE)
+write.csv(colnames(df)[2:11], '../data/countries.csv', row.names=FALSE)

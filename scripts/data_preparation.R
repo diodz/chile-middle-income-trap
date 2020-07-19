@@ -119,7 +119,7 @@ ggplot_relative_income <- function(){
 
     #Finally we can plot the relative income of Chile versus the average of Europe
     #12 and Western Offshoots and the USA
-    g <- ggplot(grouped, aes(year)) + geom_line(aes(y = chile_relative, colour =
+    ggplot(grouped, aes(year)) + geom_line(aes(y = chile_relative, colour =
                                                    'chile_relative'), size=1.2)+
         geom_line(aes(y = chile_usa_relative, colour = 'chile_usa_relative'),
                     size=1.2) +
@@ -135,8 +135,7 @@ ggplot_relative_income <- function(){
         xlab('Year') + ylab('Relative income')
 
     #We save the plot in the figures folder
-    ggsave(g, width = 8, height = 5, dpi = 300, filename =
+    ggsave(width = 8, height = 5, dpi = 300, filename =
                '../figures/Figure 1.png')
-    return(g)
 }
 

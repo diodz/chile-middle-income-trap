@@ -42,10 +42,10 @@ bai_perron <- function(df, column_name, start_year){
 
 usa_rel <- get_relative_usa(1820)
 #Figure 2_1
-plot_time_series(usa_rel, 'chile_relative', 1820, 'Figure 2_1')
+plot_time_series(usa_rel, 'chile_relative', 1820, 'Figure 2_1a')
 
 #Figure 2_2
-plot_Fstat_test(usa_rel, 'chile_relative', 1820, 'Figure 2_2')
+plot_Fstat_test(usa_rel, 'chile_relative', 1820, 'Figure 2_1b')
 
 #Bai Perron Table
 bai_perron(usa_rel, 'chile_relative', 1820)
@@ -58,10 +58,10 @@ bai_perron(usa_rel, 'chile_relative', 1820)
 wo_e12 <- average_wo_e12()
 
 #Figure 2_3
-plot_time_series(wo_e12, 'chile_relative', 1880, 'Figure 2_3')
+plot_time_series(wo_e12, 'chile_relative', 1880, 'Figure 2_2a')
 
 #Figure 2_4
-plot_Fstat_test(wo_e12, 'chile_relative', 1880, 'Figure 2_4')
+plot_Fstat_test(wo_e12, 'chile_relative', 1880, 'Figure 2_2b')
 
 #--------------------------------------------------------------
 
@@ -81,7 +81,8 @@ get_Nordic3_relative <- function(){
         as.numeric(as.character(x)))
     nordic3_pop <- population[c('year', 'Chile', nordic3)][population$year
                                                            >= 1870,]
-    nordic3_pop <- mutate_all(nordic3_pop, function(x) as.numeric(as.character(x)))
+    nordic3_pop <- mutate_all(nordic3_pop, function(x) as.numeric(
+        as.character(x)))
     nordic3_grouped <- relative_income(nordic3_income, nordic3_pop)
     return(nordic3_grouped)
 }
@@ -91,10 +92,10 @@ get_Nordic3_relative <- function(){
 nordic3 <- get_Nordic3_relative()
 
 #Figure 2_5
-plot_time_series(nordic3, 'chile_relative', 1880, 'Figure 2_5')
+plot_time_series(nordic3, 'chile_relative', 1880, 'Figure 2_3a')
 
 #Figure 2_6
-plot_Fstat_test(nordic3, 'chile_relative', 1880, 'Figure 2_6')
+plot_Fstat_test(nordic3, 'chile_relative', 1880, 'Figure 2_3b')
 
 #Bai Perron Table
 bai_perron(nordic3, 'chile_relative', 1880)
