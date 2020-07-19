@@ -1,52 +1,14 @@
 library(readxl)
 library(dplyr)
+library(ggplot2)
 
 #The purpose of this section is to compare Chile's relative income with the
 #the average of the Western Europe countries and Western Offshoots and also
-#with the USA
+#with the USA. Produces Figure 1.
 
-cgdppc <- read_excel("../data/mpd2018.xlsx", sheet = "cgdppc")
-
-#We delete the row of country codes
-cgdppc <- cgdppc[-c(1),]
-
-#Renaming first column
-cgdppc <- rename(cgdppc, c("year"="cgdppc"))
-
-#We extract the western offshoots countries for comparison
-western_offshoots <- c('Australia', 'New Zealand', 'Canada', 'United States')
-cgdppc$year <- as.numeric(cgdppc$year)
-wo_income <- cgdppc[c('year', 'Chile', western_offshoots)][cgdppc$year
-                                                            >= 1870,]
-wo_income <- mutate_all(wo_income, function(x) as.numeric(as.character(x)))
-
-#Read population data
-population <- read_excel("../data/mpd2018.xlsx", sheet = "pop")
-population <- population[-c(1),]
-population <- rename(population, c("year"="pop"))
-population$year <- as.numeric(population$year)
-wo_pop <- population[c('year', 'Chile', western_offshoots)][population$year
-                                                         >= 1870,]
-wo_pop <- mutate_all(wo_pop, function(x) as.numeric(as.character(x)))
-
-#We extract the Europe 12s countries for comparison with Chile
-europe12 <- c('Austria', 'Belgium', 'Denmark', 'Finland', 'France', 'Germany',
-              'Italy', 'Netherlands', 'Norway', 'Sweden',
-              'Switzerland', 'United Kingdom')
-e12_income <- cgdppc[c('year', 'Chile', europe12)]
-e12_income <- mutate_all(e12_income, function(x) as.numeric(as.character(x)))
-e12_income <- e12_income[e12_income$year >= 1870,]
-
-e12_pop <- population[c('year', 'Chile', europe12)]
-e12_pop <- mutate_all(e12_pop, function(x) as.numeric(as.character(x)))
-e12_pop <- e12_pop[e12_pop$year >= 1870,]
-
-#We remove loaded data from workspace
-rm(cgdppc, population)
-
-#We write a function to get the relative income of a group of countries to
-#compare with Chile
 relative_income <- function(df_income, df_pop){
+    #This function gets the relative income of a group of countries
+    #in a given dataframe to compare with Chile
     df_relative <- df_income
     countries <- colnames(df_income)[3:length(colnames(df_income))]
     df_relative$total_gdp <- 0
@@ -62,39 +24,97 @@ relative_income <- function(df_income, df_pop){
     return(df_relative)
 }
 
-#Getting average gdppc for Europe 12
-e12_grouped <- relative_income(e12_income, e12_pop)
-wo_grouped <- relative_income(wo_income, wo_pop)
+load_maddison_gdppc <- function(){
+    #Loads Maddison's 2018 cgdppc data for all countries and does some basic
+    #data cleaning.
+    df <- read_excel("../data/mpd2018.xlsx", sheet = "cgdppc")
+    df <- df[-c(1),]
+    df <- rename(df, c("year"="cgdppc"))
+    return(df)
+}
 
-#We remove previous data from workspace
-rm(e12_income, e12_pop, wo_income, wo_pop)
+load_maddison_pop <- function(){
+    #Loads Maddison's 2018 population data for all countries and does some
+    #basic data cleaning.
+    pop <- read_excel("../data/mpd2018.xlsx", sheet = "pop")
+    pop <- pop[-c(1),]
+    pop <- rename(pop, c("year"="pop"))
+    pop$year <- as.numeric(pop$year)
+    return(pop)
+}
 
-#Merging dataframes to plot in the same figure
-e12_grouped <- rename(e12_grouped, c("e12_relative"="chile_relative"))
-wo_grouped <- rename(wo_grouped, c("wo_relative"="chile_relative"))
-e12_grouped <- rename(e12_grouped, c("e12"="group_gdppc"))
-wo_grouped <- rename(wo_grouped, c("wo"="group_gdppc"))
-grouped <- merge(e12_grouped, wo_grouped[-c(2)], by='year')
-
-library(ggplot2)
-ggplot(grouped, aes(year)) + geom_line(aes(y = wo_relative, colour =
-       'wo_relative')) + geom_line(aes(y = e12_relative, colour =
-                                           'e12_relative'))
-
-relative_usa <- function(year){
+get_relative_usa <- function(year){
+    #Gets the relative gdp per capita between Chile and the United States
     cgdppc <- read_excel("../data/mpd2018.xlsx", sheet = "cgdppc")
     cgdppc <- cgdppc[-c(1),]
     cgdppc <- rename(cgdppc, c("year"="cgdppc"))
     cgdppc$year <- as.numeric(cgdppc$year)
     small <- cgdppc[c('year', 'Chile', 'United States')][cgdppc$year
-                                                               >= year,]
+                                                         >= year,]
     small <- mutate_all(small, function(x) as.numeric(as.character(x)))
     small$chile_relative <- small[['Chile']] / small[['United States']]
     return(small[c('year', 'chile_relative')])
 }
 
+get_western_offshoots <- function(){
+    #This functino obtains the relative income of chile and the western
+    #offshoots countries
+    cgdppc <- load_maddison_gdppc()
+    population <- load_maddison_pop()
+
+    #We extract the western offshoots countries
+    western_offshoots <- c('Australia', 'New Zealand', 'Canada',
+                           'United States')
+    cgdppc$year <- as.numeric(cgdppc$year)
+    wo_income <- cgdppc[c('year', 'Chile', western_offshoots)][cgdppc$year
+                                                               >= 1870,]
+    wo_income <- mutate_all(wo_income, function(x) as.numeric(as.character(x)))
+
+    wo_pop <- population[c('year', 'Chile', western_offshoots)][population$year
+                                                                >= 1870,]
+    wo_pop <- mutate_all(wo_pop, function(x) as.numeric(as.character(x)))
+    return(relative_income(wo_income, wo_pop))
+}
+
+get_e12 <- function(){
+    #This functino obtains the relative income of chile and the western
+    #offshoots countries
+    cgdppc <- load_maddison_gdppc()
+    population <- load_maddison_pop()
+
+    #We extract the western offshoots countries
+    europe12 <- c('Austria', 'Belgium', 'Denmark', 'Finland', 'France',
+                  'Germany', 'Italy', 'Netherlands', 'Norway', 'Sweden',
+                  'Switzerland', 'United Kingdom')
+    e12_income <- cgdppc[c('year', 'Chile', europe12)]
+    e12_income <- mutate_all(e12_income, function(x) as.numeric(as.character(x)))
+    e12_income <- e12_income[e12_income$year >= 1870,]
+
+    e12_pop <- population[c('year', 'Chile', europe12)]
+    e12_pop <- mutate_all(e12_pop, function(x) as.numeric(as.character(x)))
+    e12_pop <- e12_pop[e12_pop$year >= 1870,]
+    return(relative_income(e12_income, e12_pop))
+}
+
+
+#Getting average gdppc for Europe 12
+e12 <- get_e12()
+wo <- get_western_offshoots()
+
+#Merging dataframes to plot in the same figure
+e12 <- rename(e12, c("e12_relative"="chile_relative"))
+wo <- rename(wo, c("wo_relative"="chile_relative"))
+e12 <- rename(e12, c("e12"="group_gdppc"))
+wo <- rename(wo, c("wo"="group_gdppc"))
+grouped <- merge(e12_grouped, wo_grouped[-c(2)], by='year')
+
+ggplot(grouped, aes(year)) + geom_line(aes(y = wo_relative, colour =
+       'wo_relative')) + geom_line(aes(y = e12_relative, colour =
+                                           'e12_relative'))
+
+
 #Putting aggregated relative series in the same dataframe for easier plotting
-usa_rel <- relative_usa(1870)
+usa_rel <- get_relative_usa(1870)
 grouped$usa_relative <- usa_rel$chile_relative
 grouped$e12_wo_relative <- grouped$Chile /
     ((grouped$e12 + grouped$wo)/2)
@@ -102,7 +122,6 @@ rm(usa_rel)
 
 #Finally we can plot the relative income of Chile versus the average of Europe
 #12 and Western Offshoots and the USA
-library(ggplot2)
 ggplot(grouped, aes(year)) + geom_line(aes(y = e12_wo_relative, colour =
         'e12_wo_relative'), size=1.2) + geom_line(aes(y = usa_relative, colour =
         'usa_relative'), size=1.2) +
