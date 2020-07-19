@@ -2,13 +2,13 @@
 
 **Authors: Cristián Larroulet, Juan Pablo Couyoumdjian, Diego A. Díaz**
  
- Source code for article to be published in Revista de Historia Económica: 
+ Source code for article to be published in Revista de Historia Económica.
   
  Correct citation to be updated when published. 
 
 ## Instructions
 
-See first **main_markdown.Rmd** or **main_markdown.pdf** to produce figures 1 to 3 and instructions for figures 4 and 5.
+See and run file **main_markdown.Rmd** to produce figures 1 to 3 and instructions for figures 4 and 5. This code produces the pdf **main_markdown.pdf**, which calls the functions required to produce the figures in the paper.
 
 Comparisons of relative income and structural break analysis is done in R in the files **data_preparation.R** and **structural_break_tests.R**. This code contains functions to produce the results from figures 1 and 2 by loading an unmodified version of Maddison (2018) data.
 
