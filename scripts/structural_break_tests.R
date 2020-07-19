@@ -2,6 +2,7 @@ library(readxl)
 library(dplyr)
 library(strucchange)
 library(ggplot2)
+options(warn=-1)
 source('data_preparation.R')
 
 #We create helper functions to easily plot our results
@@ -9,8 +10,9 @@ plot_time_series <- function(df, column_name, start_year, figure_filename){
     file_path <- paste('../figures/', figure_filename, '.png', sep='')
     time_series <- ts(df[df$year >= start_year,][[column_name]],
                       start=c(start_year), end=c(2016), frequency=1)
-    png(file_path, width = 450, height = 350)
-    plot(time_series, lwd = 2, xlab = 'Year', ylab = 'Relative GDPPC')
+    png(file_path, width = 650, height = 450)
+    plot(time_series, lwd = 2, xlab = 'Year', ylab = 'Relative GDPPC',
+         pch=19)
     dev.off()
 }
 
@@ -19,8 +21,8 @@ plot_Fstat_test <- function(df, column_name, start_year, figure_filename){
     time_series <- ts(df[df$year >= start_year,][[column_name]],
                       start=c(start_year), end=c(2016), frequency=1)
     fs.chile <- Fstats(time_series ~ 1)
-    png(file_path, width = 450, height = 350)
-    plot(fs.chile, xlab = 'Year', lwd = 3)
+    png(file_path, width = 650, height = 450)
+    plot(fs.chile, xlab = 'Year', lwd = 3, pch=19)
     breakpoints(fs.chile)
     lines(breakpoints(fs.chile))
     dev.off()
