@@ -1,4 +1,4 @@
-# Another case of the middle-income trap. Chile, 1900-1939
+# Another case of the middle-income trap: Chile, 1900-1939
 
 **Authors: Cristián Larroulet, Juan Pablo Couyoumdjian, Diego A. Díaz**
  
