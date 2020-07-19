@@ -1,30 +1,65 @@
 ---
-title: "Chile and the Middle-Income Trap - Supplemental Material"
-author: "Diego Diaz"
-date: "17-07-2020"
+title: "Another case of the middle-income trap: Chile, 1900-1939 - Replication code"
+author: "Couyoumdjian, JP - Larroulet, C - Diaz, DA"
 output: pdf_document
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+## Figure 1
+
+Figure 1 shows the relative income of Chile over the United States and the average between the average of the Europe 12 countries and the average of the Western Offshoots countries.
+
+The following code creates Figure 1 presented in the article. 
+All figures are saved in the Figures folder.
+
+```{r cache=FALSE, warning=FALSE, comment=FALSE, message=FALSE}
+source('data_preparation.R')
+source('structural_break_tests.R')
+
+ggplot_relative_income()
 ```
 
-## R Markdown
+## Figure 2
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+Figure 2 shows structural break tests of the relative income series of Chile and three countries or groups of countries. These figures are shown separately in this section, starting with the the relative income of Chile over the United States, following with the relative income of Chile and the average between the average of the Europe 12 countries and the average of the Western Offshoots countries, and finally against the Nordic 3 countries, the average of Sweden, Norway and Finland.
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+```{r cache=FALSE, warning=FALSE, comment=FALSE, message=FALSE}
 
-```{r cars}
-summary(cars)
+usa_rel <- get_relative_usa(1820)
+#Figure 2_1
+plot_time_series(usa_rel, 'chile_relative', 1820, 'Figure 2_1')
+#Figure 2_2
+plot_Fstat_test(usa_rel, 'chile_relative', 1820, 'Figure 2_2')
+
+wo_e12 <- average_wo_e12()
+#Figure 2_3
+plot_time_series(wo_e12, 'chile_relative', 1880, 'Figure 2_3')
+#Figure 2_4
+plot_Fstat_test(wo_e12, 'chile_relative', 1880, 'Figure 2_4')
+
+nordic3 <- get_Nordic3_relative()
+#Figure 2_5
+plot_time_series(nordic3, 'chile_relative', 1880, 'Figure 2_5')
+#Figure 2_6
+plot_Fstat_test(nordic3, 'chile_relative', 1880, 'Figure 2_6')
+
 ```
 
-## Including Plots
 
-You can also embed plots, for example:
 
-```{r pressure, echo=FALSE}
-plot(pressure)
-```
+```{r echo=FALSE,out.width='49%', out.height='20%',fig.cap='Structural break test - Chile / United States',fig.show='hold', fig.align='center'}
+knitr::include_graphics(c('../figures/Figure 2_1.png','../figures/Figure 2_2.png'))
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+``` 
+```{r echo=FALSE,out.width='49%', out.height='20%',fig.cap='Structural break test - Chile / Western Offshoots + Europe 12',fig.show='hold',fig.align='center'}
+knitr::include_graphics(c('../figures/Figure 2_3.png','../figures/Figure 2_4.png'))
+
+``` 
+```{r echo=FALSE,out.width='49%', out.height='20%',fig.cap='Structural break test - Chile / Nordic 3 countries',fig.show='hold',fig.align='center'}
+knitr::include_graphics(c('../figures/Figure 2_5.png','../figures/Figure 2_6.png'))
+
+``` 
+
+## Figure 3-4-5
+
+These figures are produced with the synthetic control method which is implemented in Matlab, please execute the script **main_synthetic_controls.m** to replicate.
+
