@@ -23,7 +23,7 @@ ggplot_relative_income()
 
 ```
 
-```{r figure_1, echo=FALSE,out.width='49%', out.height='20%',fig.cap='Figure 1: Source: Maddison (2018). Note: The horizontal lines represent the middle-income band. The line above shows the relative income between Chile and the average between Western Offshoots and Western Europe, while the line below shows Chile’s relative income to the US. Western offshoots is the average income of the US, Canada, Australia and New Zealand together, while Western Europe is the average income of the group of countries comprised of: Austria, Belgium, Denmark, Finland, France, Germany, Center-North Italy, Netherlands, Norway, Sweden, Switzerland, and Great Britain.', fig.show='hold', fig.align='center'}
+```{r figure_1, echo=FALSE,out.width='49%', out.height='20%',fig.cap='Figure 1: Source: Maddison (2018). Note: The horizontal lines represent the middle-income band. The line above shows the relative income between Chile and the average between Western Offshoots and Western Europe, while the line below shows Chile’s relative income to the US. Western offshoots is the average income of the US, Canada, Australia and New Zealand together, while Western Europe is the average income of the group of countries comprised of: Austria, Belgium, Denmark, Finland, France, Germany, Italy, Netherlands, Norway, Sweden, Switzerland, and the United Kingdom.', fig.show='hold', fig.align='center'}
 
 library(knitr)
 opts_chunk$set(echo = TRUE)
