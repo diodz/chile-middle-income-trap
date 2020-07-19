@@ -1,8 +1,9 @@
 library(readxl)
 library(dplyr)
 
-#The purpose of this section is to produce two files from the Maddison 2018
-#database to perform synthetic controls in MATLAB
+#The purpose of this section is to compare Chile's relative income with the
+#the average of the Western Europe countries and Western Offshoots and also
+#with the USA
 
 cgdppc <- read_excel("../data/mpd2018.xlsx", sheet = "cgdppc")
 
@@ -80,20 +81,20 @@ ggplot(grouped, aes(year)) + geom_line(aes(y = wo_relative, colour =
        'wo_relative')) + geom_line(aes(y = e12_relative, colour =
                                            'e12_relative'))
 
-relative_usa <- function(){
+relative_usa <- function(year){
     cgdppc <- read_excel("../data/mpd2018.xlsx", sheet = "cgdppc")
     cgdppc <- cgdppc[-c(1),]
     cgdppc <- rename(cgdppc, c("year"="cgdppc"))
     cgdppc$year <- as.numeric(cgdppc$year)
     small <- cgdppc[c('year', 'Chile', 'United States')][cgdppc$year
-                                                               >= 1870,]
+                                                               >= year,]
     small <- mutate_all(small, function(x) as.numeric(as.character(x)))
     small$chile_relative <- small[['Chile']] / small[['United States']]
     return(small[c('year', 'chile_relative')])
 }
 
 #Putting aggregated relative series in the same dataframe for easier plotting
-usa_rel <- relative_usa()
+usa_rel <- relative_usa(1870)
 grouped$usa_relative <- usa_rel$chile_relative
 grouped$e12_wo_relative <- grouped$Chile /
     ((grouped$e12 + grouped$wo)/2)
@@ -118,3 +119,6 @@ ggplot(grouped, aes(year)) + geom_line(aes(y = e12_wo_relative, colour =
 
 #We save the plot in the figures folder
 ggsave(width = 8, height = 5, dpi = 300, filename = '../figures/Figure 1.png')
+
+#We remove variables from environment we don't need
+rm(e12_grouped, wo_grouped, europe12, western_offshoots)
