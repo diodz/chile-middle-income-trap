@@ -1,5 +1,6 @@
 ---
-title: "Another case of the middle-income trap: Chile, 1900-1939: Source code"
+title: "Another case of the middle-income trap: Chile, 1900-1939"
+subtitle: "Source code available in github at: https://github.com/diodz/chile-middle-income-trap"
 author: "Cristián Larroulet, Juan Pablo Couyoumdjian, Diego A. Díaz"
 output: pdf_document
 header-includes:
@@ -9,10 +10,8 @@ header-includes:
 
 ## Figure 1
 
-Figure 1 shows the income of Chile relative to the United States and relative to the average between the average of the Europe 12 countries and the average of the Western Offshoots countries.
+This is a markdown file that produces the figures of the article, the following produces figure 1, which shows the income of Chile relative to the United States and relative to the average between the average of the Europe 12 countries and the average of the Western Offshoots countries.
 
-The following code produces Figure 1.
-All figures are saved in the Figures folder in this repository.
 
 ```{r setup, cache=FALSE, warning=FALSE, comment=FALSE, message=FALSE}
 
