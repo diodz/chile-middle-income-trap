@@ -8,7 +8,7 @@
 
 ## Instructions
 
-See and run file **main_markdown.Rmd** to produce figures 1 to 3 and instructions for figures 4 and 5. This code produces the pdf **main_markdown.pdf**, which calls the functions required to produce the figures in the paper.
+See and run file **main_markdown.Rmd** to produce figures 1 to 3 and instructions for figures 4 and 5. This code produces the pdf **main_markdown.pdf** and calls the functions required to produce the figures in the paper.
 
 Comparisons of relative income and structural break analysis is done in R in the files **data_preparation.R** and **structural_break_tests.R**. This code contains functions to produce the results from figures 1 and 2 by loading an unmodified version of Maddison (2018) data.
 
