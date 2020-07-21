@@ -1,8 +1,10 @@
 # Another case of the middle-income trap: Chile, 1900-1939
 
+## Forthcoming: Revista de Historia Económica
+
 **Authors: Cristián Larroulet, Juan Pablo Couyoumdjian, Diego A. Díaz**
  
- Source code for article to be published in Revista de Historia Económica.
+ Source code for article.
   
  Correct citation to be updated when published. 
 
