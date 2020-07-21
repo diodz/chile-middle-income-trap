@@ -20,7 +20,7 @@ In MATLAB, run file **main_synthetic_controls.m** to produce figures 3, 4 and 5.
 
 ## Data
 
-All data used comes from Maddison (2018) and it's stored in **data/mpd2018.xlsx**. It can also be downloaded from the original website: https://www.rug.nl/ggdc/historicaldevelopment/maddison/data/mpd2018.xlsx. 
+All data used comes from Maddison (2018) and it's stored in **data/mpd2018.xlsx**. It can also be downloaded directly from their [website](https://www.rug.nl/ggdc/historicaldevelopment/maddison/data/mpd2018.xlsx).
 
 Any use of this data should use the following reference: 
 
