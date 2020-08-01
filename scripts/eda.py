@@ -91,3 +91,21 @@ print(f"The predicted income group for Chile based on GDP per capita is {predict
 ```
 
 This python script loads data from a CSV file, filters it for Chile, performs a linear regression analysis to predict the country's income group based on GDP per capita. The prediction can give insight into whether Chile is at risk of falling into the middle-income trap.
+# Change made on 2024-06-26 20:58:44.955191
+import pandas as pd
+import numpy as np
+
+# Load the data into a pandas dataframe
+data = pd.read_csv("../data/countries.csv")
+
+# Filter the data for Chile
+chile_data = data[data['Country'] == 'Chile']
+
+# Calculate the average GDP growth rate for Chile
+gdp_growth = np.mean(chile_data['GDP Growth'])
+
+# Check if Chile is in the middle income trap
+if gdp_growth < 5:
+    print("Chile is in the middle income trap.")
+else:
+    print("Chile is not in the middle income trap.")
