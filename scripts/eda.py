@@ -211,3 +211,21 @@ else:
     print("Chile is not currently at risk of falling into the middle income trap.")
 
 # Further analysis and conclusions can be added as needed for the economics journal article.
+# Change made on 2024-06-26 20:59:09.946678
+import pandas as pd
+import numpy as np
+
+# Load the data
+data = pd.read_csv('data/countries.csv')
+
+# Filter data for Chile
+chile_data = data[data['Country'] == 'Chile']
+
+# Calculate the average income for Chile
+average_income_chile = np.mean(chile_data['Income'])
+
+# Determine if Chile is in the middle income trap
+if average_income_chile > 10000 and average_income_chile < 20000:
+    print("Chile is in the middle income trap")
+else:
+    print("Chile is not in the middle income trap")
