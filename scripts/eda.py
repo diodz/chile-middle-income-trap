@@ -255,3 +255,23 @@ future_years = np.array(range(2022, 2030)).reshape(-1, 1)
 future_growth = model.predict(future_years)
 
 print(future_growth)
+# Change made on 2024-06-26 20:59:18.475012
+import pandas as pd
+import numpy as np
+
+# Load data
+data = pd.read_csv('../data/countries.csv')
+
+# Filter data for Chile
+chile_data = data[data['Country'] == 'Chile']
+
+# Calculate average GDP growth rate for Chile
+avg_gdp_growth = chile_data['GDP_growth'].mean()
+
+# Determine if Chile is in the middle income trap
+if avg_gdp_growth < 4:
+    print("Chile might be facing the middle income trap.")
+else:
+    print("Chile does not appear to be in the middle income trap.")
+
+# Perform additional analysis as needed for the research article
