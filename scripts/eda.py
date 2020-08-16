@@ -379,3 +379,21 @@ intercept = model.intercept_
 
 print("Chile's GDP per capita is in the middle income trap:", is_middle_income_trap)
 print("Income Group = {} * GDP per capita + {}".format(slope, intercept))
+# Change made on 2024-06-26 20:59:41.850161
+import pandas as pd
+import numpy as np
+
+# Read the data from the countries.csv file
+data = pd.read_csv('data/countries.csv')
+
+# Filter the data for Chile
+chile_data = data[data['Country'] == 'Chile']
+
+# Calculate the GDP growth rate for Chile
+chile_data['GDP Growth Rate'] = chile_data['GDP'].pct_change()
+
+# Check if Chile is in the middle income trap
+if chile_data['GDP Growth Rate'].mean() < 5:
+    print('Chile is in the middle income trap')
+else:
+    print('Chile is not in the middle income trap')
