@@ -397,3 +397,29 @@ if chile_data['GDP Growth Rate'].mean() < 5:
     print('Chile is in the middle income trap')
 else:
     print('Chile is not in the middle income trap')
+# Change made on 2024-06-26 20:59:47.255156
+```python
+import pandas as pd
+import numpy as np
+from sklearn.linear_model import LinearRegression
+
+# Load the data from the countries.csv file
+data = pd.read_csv('data/countries.csv')
+
+# Filter out data for Chile
+chile_data = data[data['Country'] == 'Chile']
+
+# Perform linear regression to analyze the relationship between GDP per capita and years since achieving middle income status
+X = chile_data['Years since middle income']
+y = chile_data['GDP per capita']
+
+model = LinearRegression()
+model.fit(X.values.reshape(-1, 1), y)
+
+# Print out the regression results
+print("Regression Coefficients:")
+print("Slope:", model.coef_[0])
+print("Intercept:", model.intercept_)
+print("\nR^2 score:", model.score(X.values.reshape(-1, 1), y))
+```
+This code snippet loads data from a CSV file, filters out data for Chile, and performs a linear regression analysis to investigate the relationship between GDP per capita and years since achieving middle income status in Chile. The results of the regression analysis are printed out for further review and interpretation.
