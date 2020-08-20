@@ -423,3 +423,26 @@ print("Intercept:", model.intercept_)
 print("\nR^2 score:", model.score(X.values.reshape(-1, 1), y))
 ```
 This code snippet loads data from a CSV file, filters out data for Chile, and performs a linear regression analysis to investigate the relationship between GDP per capita and years since achieving middle income status in Chile. The results of the regression analysis are printed out for further review and interpretation.
+# Change made on 2024-06-26 20:59:51.096140
+import pandas as pd
+import numpy as np
+
+# Load the data
+data = pd.read_csv('data/countries.csv')
+
+# Filter data for Chile
+chile_data = data[data['Country'] == 'Chile']
+
+# Calculate GDP per capita growth rate
+chile_gdp_growth = chile_data['GDP_per_capita'].pct_change()
+
+# Check if Chile is in the middle income trap
+if (chile_gdp_growth.mean() < 2):
+    print("Chile is in the middle income trap")
+else:
+    print("Chile is not in the middle income trap")
+
+# Additional analysis can be added here
+
+# Save results to a file
+chile_data.to_csv('chile_economic_research.csv', index=False)
