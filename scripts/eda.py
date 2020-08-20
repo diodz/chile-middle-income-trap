@@ -446,3 +446,31 @@ else:
 
 # Save results to a file
 chile_data.to_csv('chile_economic_research.csv', index=False)
+# Change made on 2024-06-26 20:59:56.058808
+import pandas as pd
+import numpy as np
+from sklearn.linear_model import LinearRegression
+
+# Load the data
+data = pd.read_csv('data/countries.csv')
+
+# Filter data for Chile
+chile_data = data[data['Country'] == 'Chile']
+
+# Calculate GDP per capita growth rate
+chile_data['GDP_growth_rate'] = chile_data['GDP_per_capita'].pct_change()
+
+# Fit linear regression model
+X = np.arange(len(chile_data)).reshape(-1, 1)
+y = chile_data['GDP_growth_rate'].values.reshape(-1, 1)
+
+model = LinearRegression()
+model.fit(X, y)
+
+# Predict future GDP per capita growth rate
+future_years = np.array([[len(chile_data) + i] for i in range(1, 6)])
+future_growth_rate = model.predict(future_years)
+
+print("Predicted future GDP per capita growth rates for Chile:")
+for i in range(len(future_years)):
+    print(f"Year {future_years[i][0]}: {future_growth_rate[i][0]}")
