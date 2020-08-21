@@ -474,3 +474,20 @@ future_growth_rate = model.predict(future_years)
 print("Predicted future GDP per capita growth rates for Chile:")
 for i in range(len(future_years)):
     print(f"Year {future_years[i][0]}: {future_growth_rate[i][0]}")
+# Change made on 2024-06-26 21:00:00.422565
+import pandas as pd
+
+# Load the data
+data = pd.read_csv("../data/countries.csv")
+
+# Filter data for Chile
+chile_data = data[data['Country'] == 'Chile']
+
+# Calculate the GDP per capita growth for Chile
+chile_data['GDP_per_capita_growth'] = chile_data['GDP_per_capita'].pct_change()
+
+# Check if Chile is stuck in the middle income trap
+if chile_data['GDP_per_capita_growth'].mean() < 0.05:
+    print("Chile may be stuck in the middle income trap")
+else:
+    print("Chile is not stuck in the middle income trap")
