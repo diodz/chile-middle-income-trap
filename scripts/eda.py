@@ -522,3 +522,33 @@ predicted_gdp = model.predict(future_years)
 print("Predicted GDP per capita for Chile in 2025: ", predicted_gdp[0])
 print("Predicted GDP per capita for Chile in 2030: ", predicted_gdp[1])
 print("Predicted GDP per capita for Chile in 2035: ", predicted_gdp[2])
+# Change made on 2024-06-26 21:00:12.521490
+```python
+import pandas as pd
+import numpy as np
+from sklearn.linear_model import LinearRegression
+
+# Load data
+data = pd.read_csv('data/countries.csv')
+
+# Filter data for Chile
+chile_data = data[data['country'] == 'Chile']
+
+# Split data into independent and dependent variables
+X = chile_data['gdp_per_capita'].values.reshape(-1, 1)
+y = chile_data['income_growth'].values
+
+# Fit linear regression model
+regression_model = LinearRegression()
+regression_model.fit(X, y)
+
+# Predict income growth for Chile based on GDP per capita
+predicted_income_growth = regression_model.predict(X)
+
+# Output results
+print("Predicted income growth for Chile:")
+print(predicted_income_growth)
+
+# Additional research and analysis can be done here
+```
+This Python script loads the data from a CSV file, filters it for Chile, then fits a linear regression model to predict income growth based on GDP per capita. This research can be further analyzed and used for an article in an economics journal.
