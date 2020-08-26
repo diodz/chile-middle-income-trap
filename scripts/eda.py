@@ -552,3 +552,39 @@ print(predicted_income_growth)
 # Additional research and analysis can be done here
 ```
 This Python script loads the data from a CSV file, filters it for Chile, then fits a linear regression model to predict income growth based on GDP per capita. This research can be further analyzed and used for an article in an economics journal.
+# Change made on 2024-06-26 21:00:19.978963
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+from sklearn.linear_model import LinearRegression
+
+# Load the data
+data = pd.read_csv("data/countries.csv")
+
+# Filter data for Chile
+chile_data = data[data['Country'] == 'Chile']
+
+# Calculate the GDP per capita growth rate for Chile
+chile_data['GDP Growth Rate'] = chile_data['GDP per Capita'].pct_change() * 100
+
+# Plot the GDP per capita growth rate for Chile
+plt.figure(figsize=(10, 6))
+plt.plot(chile_data['Year'], chile_data['GDP Growth Rate'], marker='o')
+plt.title('GDP per Capita Growth Rate for Chile')
+plt.xlabel('Year')
+plt.ylabel('GDP Growth Rate (%)')
+plt.grid(True)
+plt.show()
+
+# Fit a linear regression model to predict the GDP per capita growth rate for Chile
+X = chile_data['Year'].values.reshape(-1, 1)
+y = chile_data['GDP Growth Rate'].values.reshape(-1, 1)
+
+model = LinearRegression()
+model.fit(X, y)
+
+# Predict the GDP per capita growth rate for the next year
+next_year = chile_data['Year'].max() + 1
+predicted_growth_rate = model.predict([[next_year]])[0][0]
+
+print(f'The predicted GDP per capita growth rate for Chile in {next_year} is {predicted_growth_rate:.2f}%')
