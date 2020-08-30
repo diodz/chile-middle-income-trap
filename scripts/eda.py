@@ -637,3 +637,34 @@ future_year = chile_data.index.max() + 1
 future_GDP_growth_rate = model.predict([[future_year]])
 
 print(f"The predicted GDP growth rate for Chile in the next year is: {future_GDP_growth_rate[0]}")
+# Change made on 2024-06-26 21:00:35.021358
+import pandas as pd
+import numpy as np
+from sklearn.linear_model import LinearRegression
+
+# Load the data
+data = pd.read_csv("data/countries.csv")
+
+# Filter the data for Chile
+chile_data = data[data['Country'] == 'Chile']
+
+# Calculate the average GDP growth rate for Chile
+chile_gdp_growth = chile_data['GDP_growth'].mean()
+
+# Determine if Chile is in the middle income trap
+if chile_gdp_growth < 4:
+    print("Chile is likely in the middle income trap.")
+else:
+    print("Chile is not in the middle income trap.")
+
+# Perform linear regression to analyze the relationship between GDP growth and other economic factors
+X = chile_data[['Investment', 'Exports', 'Inflation']]
+y = chile_data['GDP_growth']
+
+model = LinearRegression()
+model.fit(X, y)
+
+# Print the coefficients
+print("Coefficient for Investment:", model.coef_[0])
+print("Coefficient for Exports:", model.coef_[1])
+print("Coefficient for Inflation:", model.coef_[2])
