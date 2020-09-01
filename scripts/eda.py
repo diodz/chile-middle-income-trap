@@ -668,3 +668,30 @@ model.fit(X, y)
 print("Coefficient for Investment:", model.coef_[0])
 print("Coefficient for Exports:", model.coef_[1])
 print("Coefficient for Inflation:", model.coef_[2])
+# Change made on 2024-06-26 21:00:40.466897
+import pandas as pd
+import numpy as np
+from sklearn.linear_model import LinearRegression
+
+# Load the dataset
+data = pd.read_csv('../data/countries.csv')
+
+# Filter data for Chile
+chile_data = data[data['Country'] == 'Chile']
+
+# Perform regression analysis to determine if Chile is in the middle income trap
+X = chile_data['GDP_per_capita'].values.reshape(-1, 1)
+y = chile_data['Growth_rate'].values
+
+model = LinearRegression()
+model.fit(X, y)
+
+predicted_growth_rate = model.predict(X)
+
+if predicted_growth_rate < 5:
+    print("Chile may be in the middle income trap")
+else:
+    print("Chile may not be in the middle income trap")
+
+# Additional economic research and analysis can be performed here to further investigate Chile's economic status
+# This code can be included in an economics journal article to provide insights on Chile's economic situation.
