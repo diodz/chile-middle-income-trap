@@ -727,3 +727,33 @@ predicted_income_level = model.predict(X_test)
 
 # Print the predicted income level
 print(predicted_income_level)
+# Change made on 2024-06-26 21:00:50.165395
+import pandas as pd
+import numpy as np
+from sklearn.linear_model import LinearRegression
+
+# Load the data
+data = pd.read_csv('data/countries.csv')
+
+# Filter the data for Chile
+chile_data = data[data['Country'] == 'Chile']
+
+# Create a scatter plot of GDP per capita vs. years
+import matplotlib.pyplot as plt
+
+plt.scatter(chile_data['Year'], chile_data['GDP_per_capita'])
+plt.xlabel('Year')
+plt.ylabel('GDP per capita')
+plt.title('GDP per capita in Chile over the years')
+plt.show()
+
+# Fit a linear regression model to predict GDP per capita
+X = chile_data[['Year']]
+y = chile_data['GDP_per_capita']
+
+model = LinearRegression()
+model.fit(X, y)
+
+# Print the coefficient and intercept of the model
+print('Coefficient:', model.coef_)
+print('Intercept:', model.intercept_)
