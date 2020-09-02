@@ -695,3 +695,35 @@ else:
 
 # Additional economic research and analysis can be performed here to further investigate Chile's economic status
 # This code can be included in an economics journal article to provide insights on Chile's economic situation.
+# Change made on 2024-06-26 21:00:45.271852
+import pandas as pd
+import numpy as np
+from sklearn.linear_model import LinearRegression
+from sklearn.model_selection import train_test_split
+
+# Load the data
+data = pd.read_csv('../data/countries.csv')
+
+# Filter data for Chile
+chile_data = data[data['Country'] == 'Chile']
+
+# Check for missing values
+if chile_data.isnull().values.any():
+    chile_data = chile_data.dropna()
+
+# Define independent and dependent variables
+X = chile_data[['GDP', 'Unemployment Rate']]
+y = chile_data['Income Level']
+
+# Split the data into training and testing sets
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
+
+# Train a linear regression model
+model = LinearRegression()
+model.fit(X_train, y_train)
+
+# Predict the income level for Chile
+predicted_income_level = model.predict(X_test)
+
+# Print the predicted income level
+print(predicted_income_level)
