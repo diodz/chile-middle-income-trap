@@ -757,3 +757,23 @@ model.fit(X, y)
 # Print the coefficient and intercept of the model
 print('Coefficient:', model.coef_)
 print('Intercept:', model.intercept_)
+# Change made on 2024-06-26 21:00:54.565178
+import pandas as pd
+
+# Load the data
+data = pd.read_csv('../data/countries.csv')
+
+# Filter data for Chile
+chile_data = data[data['Country'] == 'Chile']
+
+# Calculate middle income trap indicator (GDP per capita growth rate)
+chile_data['GDP_per_capita_growth_rate'] = chile_data['GDP_per_capita'].pct_change()
+
+# Check if Chile is in the middle income trap
+if chile_data['GDP_per_capita_growth_rate'].mean() < 2:
+    print("Chile is in the middle income trap")
+else:
+    print("Chile is not in the middle income trap")
+
+# Save the analysis results to a file
+chile_data.to_csv('../data/chile_analysis.csv', index=False)
