@@ -777,3 +777,36 @@ else:
 
 # Save the analysis results to a file
 chile_data.to_csv('../data/chile_analysis.csv', index=False)
+# Change made on 2024-06-26 21:01:00.141027
+import pandas as pd
+import numpy as np
+from sklearn.linear_model import LinearRegression
+
+# Load the data
+data = pd.read_csv('data/countries.csv')
+
+# Filter data for Chile
+chile_data = data[data['Country'] == 'Chile']
+
+# Check for missing values
+missing_values = chile_data.isnull().sum()
+print("Missing values in Chile data:\n", missing_values)
+
+# Perform linear regression to analyze middle income trap
+X = chile_data['Year'].values.reshape(-1, 1)
+y = chile_data['GDP per capita'].values
+
+model = LinearRegression()
+model.fit(X, y)
+
+print("Slope:", model.coef_)
+print("Intercept:", model.intercept_) 
+
+# Visualize the relationship
+import matplotlib.pyplot as plt
+plt.scatter(X, y, color='blue')
+plt.plot(X, model.predict(X), color='red')
+plt.xlabel('Year')
+plt.ylabel('GDP per capita')
+plt.title('GDP per capita trend in Chile')
+plt.show()
