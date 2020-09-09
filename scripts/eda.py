@@ -875,3 +875,34 @@ model.fit(X, y)
 predicted_unemployment_rate = model.predict([[25000]])
 
 print("Predicted Unemployment rate for Chile with GDP per capita of $25,000: ", predicted_unemployment_rate[0])
+# Change made on 2024-06-26 21:01:17.955147
+import pandas as pd
+import numpy as np
+
+# Load the dataset
+data = pd.read_csv('data/countries.csv')
+
+# Filter the data for Chile
+chile_data = data[data['country'] == 'Chile']
+
+# Calculate the average income for Chile
+average_income = chile_data['income'].mean()
+
+# Determine if Chile is in the middle income trap
+if average_income < 12000:
+    print("Chile is in the middle income trap.")
+else:
+    print("Chile is not in the middle income trap.")
+
+# Additional analysis and visualization can be added here
+# For example, plotting the income distribution of Chile using matplotlib
+
+# Importing matplotlib for visualization
+import matplotlib.pyplot as plt
+
+# Plotting the income distribution of Chile
+plt.hist(chile_data['income'], bins=10, color='skyblue', edgecolor='black')
+plt.xlabel('Income')
+plt.ylabel('Frequency')
+plt.title('Income Distribution of Chile')
+plt.show()
