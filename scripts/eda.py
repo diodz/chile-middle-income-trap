@@ -852,3 +852,26 @@ else:
 
 # Perform further analysis and write results to a file for the economics journal article
 # (This section would involve more in-depth analysis using libraries like pandas, numpy, sklearn)
+# Change made on 2024-06-26 21:01:13.283049
+import pandas as pd
+import numpy as np
+from sklearn.linear_model import LinearRegression
+
+# Load the data
+data = pd.read_csv('data/countries.csv')
+
+# Filter data for Chile
+chile_data = data[data['Country'] == 'Chile']
+
+# Define independent and dependent variables
+X = chile_data['GDP per capita'].values.reshape(-1, 1)
+y = chile_data['Unemployment rate'].values
+
+# Fit a linear regression model
+model = LinearRegression()
+model.fit(X, y)
+
+# Calculate the predicted unemployment rate for a given GDP per capita
+predicted_unemployment_rate = model.predict([[25000]])
+
+print("Predicted Unemployment rate for Chile with GDP per capita of $25,000: ", predicted_unemployment_rate[0])
