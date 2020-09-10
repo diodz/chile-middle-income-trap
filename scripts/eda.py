@@ -906,3 +906,23 @@ plt.xlabel('Income')
 plt.ylabel('Frequency')
 plt.title('Income Distribution of Chile')
 plt.show()
+# Change made on 2024-06-26 21:01:22.198924
+import pandas as pd
+import numpy as np
+
+# Load the data
+data = pd.read_csv('../data/countries.csv')
+
+# Filter data for Chile
+chile_data = data[data['Country'] == 'Chile']
+
+# Calculate the average GDP growth rate for Chile
+gdp_growth_avg = chile_data['GDP Growth Rate'].mean()
+
+# Check if Chile is in the middle income trap
+if gdp_growth_avg < 5:
+    print("Chile may be in the middle income trap.")
+else:
+    print("Chile is not in the middle income trap.")
+
+# Further analysis or visualization can be added here for the article.
