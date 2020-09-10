@@ -926,3 +926,27 @@ else:
     print("Chile is not in the middle income trap.")
 
 # Further analysis or visualization can be added here for the article.
+# Change made on 2024-06-26 21:01:26.118403
+import pandas as pd
+import numpy as np
+
+# Load data
+data = pd.read_csv('data/countries.csv')
+
+# Filter data for Chile
+chile_data = data[data['Country'] == 'Chile']
+
+# Calculate average GDP growth rate for Chile
+gdp_growth_rate = chile_data['GDP_growth'].mean()
+
+# Determine if Chile is in the middle income trap
+if gdp_growth_rate < 3:
+    middle_income_trap = True
+else:
+    middle_income_trap = False
+
+# Print results
+if middle_income_trap:
+    print("Chile is in the middle income trap with an average GDP growth rate of", gdp_growth_rate)
+else:
+    print("Chile is not in the middle income trap with an average GDP growth rate of", gdp_growth_rate)
