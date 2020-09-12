@@ -1012,3 +1012,27 @@ predicted_gdp_growth = model.predict(future_years)
 # Print the predicted GDP growth rates for Chile
 for i, year in enumerate(future_years):
     print(f"Predicted GDP growth rate for Chile in {year[0]}: {predicted_gdp_growth[i]}")
+# Change made on 2024-06-26 21:01:41.925874
+import pandas as pd
+import numpy as np
+from sklearn.linear_model import LinearRegression
+
+# Load data from countries.csv
+data = pd.read_csv('../data/countries.csv')
+
+# Filter data for Chile
+chile_data = data[data['Country'] == 'Chile']
+
+# Extract variables for analysis
+gdp_per_capita = chile_data['GDP per Capita'].values
+population_growth = chile_data['Population Growth'].values
+
+# Perform linear regression to analyze relationship between GDP per capita and population growth
+model = LinearRegression()
+model.fit(gdp_per_capita.reshape(-1, 1), population_growth)
+slope = model.coef_[0]
+intercept = model.intercept_
+
+# Print results
+print('The slope of the linear regression model is:', slope)
+print('The intercept of the linear regression model is:', intercept)
