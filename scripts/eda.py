@@ -1036,3 +1036,31 @@ intercept = model.intercept_
 # Print results
 print('The slope of the linear regression model is:', slope)
 print('The intercept of the linear regression model is:', intercept)
+# Change made on 2024-06-26 21:01:46.274600
+import pandas as pd
+import numpy as np
+from sklearn.linear_model import LinearRegression
+
+# Load data
+data = pd.read_csv('data/countries.csv')
+
+# Filter data for Chile
+chile_data = data[data['Country'] == 'Chile']
+
+# Calculate average GDP growth rate for Chile
+chile_gdp_growth = np.mean(chile_data['GDP Growth'])
+
+# Fit a linear regression model to predict GDP growth based on other economic factors
+X = chile_data[['GDP per Capita', 'Inflation Rate', 'Unemployment Rate']]
+y = chile_data['GDP Growth']
+
+model = LinearRegression()
+model.fit(X, y)
+
+# Print results
+print(f"Average GDP growth rate for Chile: {chile_gdp_growth}")
+print("Linear regression model coefficients:")
+for i, col in enumerate(X.columns):
+    print(f"{col}: {model.coef_[i]}")
+
+# Additional analysis and findings can be added here for the article in the economics journal.
