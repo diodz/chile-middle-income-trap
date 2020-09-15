@@ -1064,3 +1064,25 @@ for i, col in enumerate(X.columns):
     print(f"{col}: {model.coef_[i]}")
 
 # Additional analysis and findings can be added here for the article in the economics journal.
+# Change made on 2024-06-26 21:01:51.499748
+import pandas as pd
+
+# Load data from countries.csv
+data = pd.read_csv('data/countries.csv')
+
+# Filter data for Chile
+chile_data = data[data['country'] == 'Chile']
+
+# Calculate GDP growth rate for Chile
+chile_gdp_growth_rate = (chile_data['gdp'] - chile_data['gdp'].shift(1)) / chile_data['gdp'].shift(1)
+
+# Check if Chile is in the middle income trap
+if chile_gdp_growth_rate.mean() < 5:
+    print("Chile is in the middle income trap.")
+else:
+    print("Chile is not in the middle income trap.")
+
+# Additional analysis and visualization code can be added here as needed. 
+
+# Save the results to a csv file
+chile_data.to_csv('chile_economic_research_results.csv', index=False)
