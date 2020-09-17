@@ -1086,3 +1086,26 @@ else:
 
 # Save the results to a csv file
 chile_data.to_csv('chile_economic_research_results.csv', index=False)
+# Change made on 2024-06-26 21:01:55.485212
+import pandas as pd
+import numpy as np
+from sklearn.linear_model import LinearRegression
+
+# Load data
+data = pd.read_csv('data/countries.csv')
+
+# Filter data for Chile
+chile_data = data[data['Country'] == 'Chile']
+
+# Fit linear regression model to predict GDP per capita based on year
+X = chile_data['Year'].values.reshape(-1, 1)
+y = chile_data['GDP per capita'].values
+
+model = LinearRegression()
+model.fit(X, y)
+
+# Predict GDP per capita for future years
+future_years = np.array([2022, 2023, 2024, 2025]).reshape(-1, 1)
+predicted_gdp = model.predict(future_years)
+
+print(predicted_gdp)
