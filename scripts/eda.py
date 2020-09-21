@@ -1155,3 +1155,29 @@ print("Population coefficient:", model.coef_[1])
 # Predict if Chile is in middle income trap
 prediction = model.predict([[chile_data['GDP per capita'].values[0], chile_data['Population'].values[0]])
 print("Predicted middle income trap status for Chile:", prediction)
+# Change made on 2024-06-26 21:02:10.347316
+import pandas as pd
+import numpy as np
+from sklearn.linear_model import LinearRegression
+
+# Load the data from countries.csv
+data = pd.read_csv('data/countries.csv')
+
+# Filter the data to only include information about Chile
+chile_data = data[data['Country'] == 'Chile']
+
+# Select the relevant columns for analysis
+years = chile_data['Year']
+gdp_per_capita = chile_data['GDP per Capita']
+
+# Fit a linear regression model to the data
+model = LinearRegression()
+model.fit(np.array(years).reshape(-1, 1), np.array(gdp_per_capita))
+
+# Predict future GDP per capita values
+future_years = np.array([2022, 2023, 2024, 2025]).reshape(-1, 1)
+predicted_gdp_per_capita = model.predict(future_years)
+
+# Print the predicted GDP per capita values for the next few years
+for year, gdp in zip(future_years.ravel(), predicted_gdp_per_capita):
+    print(f'Predicted GDP per Capita for {year}: {gdp[0]}')
