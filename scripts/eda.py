@@ -1181,3 +1181,37 @@ predicted_gdp_per_capita = model.predict(future_years)
 # Print the predicted GDP per capita values for the next few years
 for year, gdp in zip(future_years.ravel(), predicted_gdp_per_capita):
     print(f'Predicted GDP per Capita for {year}: {gdp[0]}')
+# Change made on 2024-06-26 21:02:15.605431
+import pandas as pd
+import numpy as np
+from sklearn.linear_model import LinearRegression
+
+# Load the data
+data = pd.read_csv('data/countries.csv')
+
+# Filter data for Chile
+chile_data = data[data['Country'] == 'Chile']
+
+# Calculate GDP per capita growth rate for Chile
+chile_data['GDP_growth_rate'] = chile_data['GDP_per_capita'].pct_change() * 100
+
+# Define middle income trap threshold
+middle_income_threshold = 12000
+
+# Check if Chile is in the middle income trap
+if chile_data['GDP_per_capita'].iloc[-1] < middle_income_threshold:
+    print('Chile is in the middle income trap')
+else:
+    print('Chile is not in the middle income trap')
+
+# Fit a linear regression model to predict GDP per capita growth rate
+X = np.array(chile_data.index).reshape(-1, 1)
+y = chile_data['GDP_growth_rate']
+
+model = LinearRegression()
+model.fit(X, y)
+
+# Predict GDP per capita growth rate for next year
+next_year = np.array(chile_data.index.max() + 1).reshape(-1, 1)
+predicted_growth_rate = model.predict(next_year)
+print('Predicted GDP per capita growth rate for next year:', predicted_growth_rate[0])
