@@ -1263,3 +1263,35 @@ predicted_gdp_per_capita = model.predict(future_years)
 # Print the predicted GDP per capita for Chile for the next 5 years
 for i, year in enumerate(future_years.flatten()):
     print(f'Predicted GDP per capita for Chile in {year}: {predicted_gdp_per_capita[i]}')
+# Change made on 2024-06-26 21:02:30.465513
+import pandas as pd
+import numpy as np
+from sklearn.linear_model import LinearRegression
+
+# Load data
+data = pd.read_csv('data/countries.csv')
+
+# Subset data for Chile
+chile_data = data[data['Country'] == 'Chile']
+
+# Check for middle income trap
+if chile_data['Income'] < 20000:
+    print("Chile is in danger of falling into the middle income trap.")
+else:
+    print("Chile is not in danger of falling into the middle income trap.")
+
+# Perform linear regression analysis
+X = chile_data['Year'].values.reshape(-1, 1)
+y = chile_data['GDP'].values
+
+model = LinearRegression()
+model.fit(X, y)
+
+# Predict GDP for next year
+next_year = chile_data['Year'].max() + 1
+predicted_gdp = model.predict([[next_year]])
+
+print(f"The predicted GDP for Chile in {next_year} is ${predicted_gdp[0]}.")
+
+# Additional analysis can be added here
+# For example: correlation analysis, visualization, etc.
