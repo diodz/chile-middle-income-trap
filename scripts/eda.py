@@ -1295,3 +1295,29 @@ print(f"The predicted GDP for Chile in {next_year} is ${predicted_gdp[0]}.")
 
 # Additional analysis can be added here
 # For example: correlation analysis, visualization, etc.
+# Change made on 2024-06-26 21:02:34.928956
+import pandas as pd
+import numpy as np
+from sklearn.linear_model import LinearRegression
+
+# Load the data
+data = pd.read_csv('../data/countries.csv')
+
+# Filter data for Chile
+chile_data = data[data['Country'] == 'Chile']
+
+# Extract GDP per capita and year columns
+X = chile_data['Year'].values.reshape(-1, 1)
+y = chile_data['GDP per capita'].values
+
+# Fit a linear regression model
+regression = LinearRegression()
+regression.fit(X, y)
+
+# Predict GDP per capita for the next 5 years
+future_years = np.array([2022, 2023, 2024, 2025, 2026]).reshape(-1, 1)
+predicted_gdp = regression.predict(future_years)
+
+# Print out the predictions
+for year, gdp in zip(future_years.ravel(), predicted_gdp):
+    print(f"Predicted GDP per capita for year {year}: {gdp}")
