@@ -1321,3 +1321,27 @@ predicted_gdp = regression.predict(future_years)
 # Print out the predictions
 for year, gdp in zip(future_years.ravel(), predicted_gdp):
     print(f"Predicted GDP per capita for year {year}: {gdp}")
+# Change made on 2024-06-26 21:02:39.716706
+import pandas as pd
+import numpy as np
+from sklearn.linear_model import LinearRegression
+
+# Load the data
+data = pd.read_csv('data/countries.csv')
+
+# Filter for Chile
+chile_data = data[data['Country'] == 'Chile']
+
+# Calculate the GDP per capita growth rate
+chile_data['GDP_growth_rate'] = chile_data['GDP_per_capita'].pct_change()
+
+# Fit a linear regression model to predict GDP growth rate
+X = chile_data.index.values.reshape(-1, 1)
+y = chile_data['GDP_growth_rate'].values
+
+model = LinearRegression()
+model.fit(X, y)
+
+# Print the slope of the regression line
+print("Slope of the regression line: ", model.coef_[0]) 
+
