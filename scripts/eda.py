@@ -1345,3 +1345,29 @@ model.fit(X, y)
 # Print the slope of the regression line
 print("Slope of the regression line: ", model.coef_[0]) 
 
+# Change made on 2024-06-26 21:02:45.948898
+import pandas as pd
+
+# Read the data from the countries.csv file
+data = pd.read_csv('data/countries.csv')
+
+# Filter the data for Chile
+chile_data = data[data['Country'] == 'Chile']
+
+# Calculate the GDP per capita growth rate for Chile
+chile_data['GDP_Per_Capita_Growth_Rate'] = chile_data['GDP_Per_Capita'].pct_change()
+
+# Check if Chile is experiencing the middle income trap
+if chile_data['GDP_Per_Capita_Growth_Rate'].mean() < 2:
+    print("Chile is at risk of falling into the middle income trap.")
+else:
+    print("Chile is not at risk of falling into the middle income trap.")
+
+# Write the findings to a file
+with open('chile_economic_research.txt', 'w') as file:
+    file.write("Chile Economic Research Findings:\n\n")
+    file.write("GDP per capita growth rate: {:.2f}%\n".format(chile_data['GDP_Per_Capita_Growth_Rate'].mean() * 100))
+    if chile_data['GDP_Per_Capita_Growth_Rate'].mean() < 2:
+        file.write("Chile is at risk of falling into the middle income trap.")
+    else:
+        file.write("Chile is not at risk of falling into the middle income trap.")
