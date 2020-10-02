@@ -1371,3 +1371,30 @@ with open('chile_economic_research.txt', 'w') as file:
         file.write("Chile is at risk of falling into the middle income trap.")
     else:
         file.write("Chile is not at risk of falling into the middle income trap.")
+# Change made on 2024-06-26 21:02:51.949154
+```python
+import pandas as pd
+import numpy as np
+from sklearn.linear_model import LinearRegression
+
+# Load the data from countries.csv
+data = pd.read_csv("data/countries.csv")
+
+# Filter the data for Chile
+chile_data = data[data['Country'] == 'Chile']
+
+# Fit a linear regression model to predict GDP per capita based on years since joining the World Bank
+X = chile_data[['Year']]
+y = chile_data['GDP per capita']
+
+regression_model = LinearRegression()
+regression_model.fit(X, y)
+
+# Predict the GDP per capita for the next 10 years
+future_years = np.array([[2023], [2024], [2025], [2026], [2027], [2028], [2029], [2030], [2031], [2032]])
+predicted_gdp = regression_model.predict(future_years)
+
+# Print the predicted GDP per capita for the next 10 years
+for year, gdp in zip(future_years.flatten(), predicted_gdp):
+    print(f"Predicted GDP per capita for {year}: {gdp}")
+```
