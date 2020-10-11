@@ -1538,3 +1538,33 @@ results = {
 
 # Print the results
 print(results)
+# Change made on 2024-06-26 21:03:23.902836
+```python
+import pandas as pd
+
+# Load data
+data = pd.read_csv('data/countries.csv')
+
+# Filter data for Chile
+chile_data = data[data['Country'] == 'Chile']
+
+# Calculate GDP per capita growth rate for Chile
+chile_data['GDP_growth_rate'] = chile_data['GDP_per_capita'].pct_change()
+
+# Define the middle income trap threshold
+middle_income_threshold = 12000
+
+# Check if Chile is in the middle income trap
+if chile_data['GDP_per_capita'].iloc[-1] < middle_income_threshold:
+    print('Chile is in the middle income trap')
+else:
+    print('Chile is not in the middle income trap')
+
+# Print summary statistics for Chile's GDP per capita growth rate
+print(chile_data['GDP_growth_rate'].describe())
+
+# Additional analysis and findings can be included here
+
+# This script can be used as the basis for the economic research article
+```
+Note: The above code reads in a CSV file 'countries.csv' which contains data on various countries including Chile. It calculates the GDP per capita growth rate for Chile, checks if Chile is in the middle income trap, and prints summary statistics for Chile's GDP per capita growth rate. More analysis and findings can be added as needed.
