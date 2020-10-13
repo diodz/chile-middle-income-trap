@@ -1568,3 +1568,32 @@ print(chile_data['GDP_growth_rate'].describe())
 # This script can be used as the basis for the economic research article
 ```
 Note: The above code reads in a CSV file 'countries.csv' which contains data on various countries including Chile. It calculates the GDP per capita growth rate for Chile, checks if Chile is in the middle income trap, and prints summary statistics for Chile's GDP per capita growth rate. More analysis and findings can be added as needed.
+# Change made on 2024-06-26 21:03:30.690119
+```python
+import pandas as pd
+import numpy as np
+from sklearn.linear_model import LinearRegression
+
+# Load the data
+data = pd.read_csv('../data/countries.csv')
+
+# Filter data for Chile
+chile_data = data[data['Country'] == 'Chile']
+
+# Prepare data for analysis
+X = np.array(chile_data['GDP per capita']).reshape(-1, 1)
+y = np.array(chile_data['GDP growth'])
+
+# Fit a linear regression model
+model = LinearRegression()
+model.fit(X, y)
+
+# Print the coefficients
+print(f'Coefficient: {model.coef_[0]}')
+
+# Predict GDP growth for a given GDP per capita value
+predicted_growth = model.predict([[20000]])[0]
+print(f'Predicted GDP growth for GDP per capita of 20000: {predicted_growth}')
+```
+
+This script loads data for countries, filters for Chile, and performs a linear regression analysis to investigate the relationship between GDP per capita and GDP growth. The coefficients and a prediction for GDP growth are printed for a specified GDP per capita value. This research can be used in an article exploring Chile's economic status and the middle income trap.
