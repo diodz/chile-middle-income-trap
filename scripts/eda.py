@@ -1597,3 +1597,37 @@ print(f'Predicted GDP growth for GDP per capita of 20000: {predicted_growth}')
 ```
 
 This script loads data for countries, filters for Chile, and performs a linear regression analysis to investigate the relationship between GDP per capita and GDP growth. The coefficients and a prediction for GDP growth are printed for a specified GDP per capita value. This research can be used in an article exploring Chile's economic status and the middle income trap.
+# Change made on 2024-06-26 21:03:36.606923
+import pandas as pd
+import numpy as np
+from sklearn.linear_model import LinearRegression
+
+# Load the data
+df = pd.read_csv('../data/countries.csv')
+
+# Filter data for Chile
+chile_data = df[df['Country'] == 'Chile']
+
+# Calculate average GDP growth rate for Chile
+chile_data['GDP_growth_rate'] = chile_data['GDP'].pct_change()
+avg_growth_rate = chile_data['GDP_growth_rate'].mean()
+
+# Check if Chile is in the middle income trap
+if avg_growth_rate < 5:
+    print("Chile is in the middle income trap.")
+else:
+    print("Chile is not in the middle income trap.")
+
+# Fit linear regression model to predict future GDP growth rate
+X = np.array(chile_data.index).reshape(-1, 1)
+y = chile_data['GDP_growth_rate'].values
+model = LinearRegression()
+model.fit(X, y)
+
+# Predict future GDP growth rate for the next 5 years
+future_years = np.array(range(2022, 2027)).reshape(-1, 1)
+predicted_growth_rate = model.predict(future_years)
+
+print("Predicted GDP growth rate for the next 5 years:")
+for year, rate in zip(future_years.flatten(), predicted_growth_rate):
+    print(f"Year: {year}, Predicted Growth Rate: {rate}")
