@@ -1631,3 +1631,37 @@ predicted_growth_rate = model.predict(future_years)
 print("Predicted GDP growth rate for the next 5 years:")
 for year, rate in zip(future_years.flatten(), predicted_growth_rate):
     print(f"Year: {year}, Predicted Growth Rate: {rate}")
+# Change made on 2024-06-26 21:03:42.742791
+```python
+import pandas as pd
+import numpy as np
+from sklearn.linear_model import LinearRegression
+
+# Load the data
+data = pd.read_csv('data/countries.csv')
+
+# Filter data for Chile
+chile_data = data[data['Country'] == 'Chile']
+
+# Fit a linear regression model to analyze economic growth
+X = chile_data['Year'].values.reshape(-1,1)
+y = chile_data['GDP'].values
+
+model = LinearRegression()
+model.fit(X, y)
+
+# Predict the GDP for the next 10 years
+future_years = np.array(range(2022, 2032)).reshape(-1,1)
+predicted_gdp = model.predict(future_years)
+
+# Print the predicted GDP for the next 10 years
+for year, gdp in zip(future_years.flatten(), predicted_gdp):
+    print(f'Predicted GDP for {year}: {gdp}')
+
+# Determine if Chile is at risk of falling into the middle income trap
+if predicted_gdp[-1] < chile_data['GDP'].iloc[-1]:
+    print("Chile is at risk of falling into the middle income trap.")
+else:
+    print("Chile is not at risk of falling into the middle income trap.")
+```
+Note: The code assumes that the 'countries.csv' file contains columns for 'Country', 'Year', and 'GDP'. Be sure to adjust the code accordingly if the data is structured differently.
