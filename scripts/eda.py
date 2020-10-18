@@ -1665,3 +1665,38 @@ else:
     print("Chile is not at risk of falling into the middle income trap.")
 ```
 Note: The code assumes that the 'countries.csv' file contains columns for 'Country', 'Year', and 'GDP'. Be sure to adjust the code accordingly if the data is structured differently.
+# Change made on 2024-06-26 21:03:47.413177
+```python
+import pandas as pd
+import numpy as np
+from sklearn.linear_model import LinearRegression
+import matplotlib.pyplot as plt
+
+# Load the dataset
+data = pd.read_csv('../data/countries.csv')
+
+# Filter data for Chile
+chile_data = data[data['Country'] == 'Chile']
+
+# Display basic information about Chile
+print(chile_data)
+
+# Check for presence of middle income trap in Chile
+gdp_growth = chile_data['GDP_Growth']
+income_growth = chile_data['Income_Growth']
+
+# Visualize the relationship between GDP growth and income growth
+plt.scatter(gdp_growth, income_growth)
+plt.title('GDP Growth vs. Income Growth in Chile')
+plt.xlabel('GDP Growth')
+plt.ylabel('Income Growth')
+plt.show()
+
+# Fit a linear regression model to see if there is a relationship
+model = LinearRegression()
+model.fit(gdp_growth.values.reshape(-1, 1), income_growth)
+r_squared = model.score(gdp_growth.values.reshape(-1, 1), income_growth)
+print('R-squared value:', round(r_squared, 2))
+```
+
+This code snippet includes basic data analysis and visualization for Chile's economic performance with respect to the middle income trap. Additional analysis and insights could be added based on the specific research question in the economics journal article.
