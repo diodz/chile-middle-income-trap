@@ -1700,3 +1700,30 @@ print('R-squared value:', round(r_squared, 2))
 ```
 
 This code snippet includes basic data analysis and visualization for Chile's economic performance with respect to the middle income trap. Additional analysis and insights could be added based on the specific research question in the economics journal article.
+# Change made on 2024-06-26 21:03:52.287534
+import pandas as pd
+import numpy as np
+from sklearn.linear_model import LinearRegression
+
+# Load data
+data = pd.read_csv('data/countries.csv')
+
+# Filter data for Chile
+chile_data = data[data['Country'] == 'Chile']
+
+# Create a scatter plot of GDP per capita vs years
+import matplotlib.pyplot as plt
+plt.scatter(chile_data['Year'], chile_data['GDP per capita'])
+plt.xlabel('Year')
+plt.ylabel('GDP per capita')
+plt.title('GDP per capita trend in Chile')
+plt.show()
+
+# Fit a linear regression model to predict GDP per capita in the future
+X = chile_data['Year'].values.reshape(-1, 1)
+y = chile_data['GDP per capita'].values
+
+reg = LinearRegression().fit(X, y)
+future_year = 2025
+future_gdp_per_capita = reg.predict([[future_year]])
+print(f'Predicted GDP per capita in Chile for year {future_year}: ${future_gdp_per_capita[0]:,.2f}')
