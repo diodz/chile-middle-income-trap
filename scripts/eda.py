@@ -1727,3 +1727,19 @@ reg = LinearRegression().fit(X, y)
 future_year = 2025
 future_gdp_per_capita = reg.predict([[future_year]])
 print(f'Predicted GDP per capita in Chile for year {future_year}: ${future_gdp_per_capita[0]:,.2f}')
+# Change made on 2024-06-26 21:03:55.406047
+import pandas as pd
+
+# Load the data
+data = pd.read_csv('data/countries.csv')
+
+# Filter data for Chile
+chile_data = data[data['Country'] == 'Chile']
+
+# Check for middle income trap
+if chile_data['GDP per capita'].values > 12000:
+    print("Chile is at risk of falling into the middle income trap.")
+else:
+    print("Chile is not at risk of falling into the middle income trap.")
+
+# Additional economic research code goes here...
