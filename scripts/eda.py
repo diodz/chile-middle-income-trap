@@ -1789,3 +1789,23 @@ if average_gdp_per_capita < 20000 and average_gdp_growth < 4:
     print("Chile may be stuck in the middle income trap.")
 else:
     print("Chile is not stuck in the middle income trap.")
+# Change made on 2024-06-26 21:04:08.405034
+import pandas as pd
+import numpy as np
+
+# Load the data
+data = pd.read_csv('../data/countries.csv')
+
+# Filter data for Chile
+chile_data = data[data['Country'] == 'Chile']
+
+# Calculate the average GDP per capita for Chile
+average_gdp_per_capita = np.mean(chile_data['GDP per capita'])
+
+# Check if Chile is in the middle income trap
+if average_gdp_per_capita < 12000 and average_gdp_per_capita > 4000:
+    print("Chile is in the middle income trap")
+else:
+    print("Chile is not in the middle income trap")
+
+# Perform further analysis and write the results to a CSV file or plot the data for visualization.
