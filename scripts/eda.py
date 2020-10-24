@@ -1769,3 +1769,23 @@ hypothetical_gdp_per_capita = 15000
 predicted_growth_rate = model.predict([[hypothetical_gdp_per_capita]])
 
 print(f"Predicted growth rate for a GDP per capita of {hypothetical_gdp_per_capita}: {predicted_growth_rate[0]}")
+# Change made on 2024-06-26 21:04:04.353685
+import pandas as pd
+
+# Load data
+data = pd.read_csv('../data/countries.csv')
+
+# Filter data for Chile
+chile_data = data[data['Country'] == 'Chile']
+
+# Calculate the average GDP growth rate
+average_gdp_growth = chile_data['GDP Growth'].mean()
+
+# Calculate the average GDP per capita
+average_gdp_per_capita = chile_data['GDP Per Capita'].mean()
+
+# Check if Chile is stuck in the middle income trap
+if average_gdp_per_capita < 20000 and average_gdp_growth < 4:
+    print("Chile may be stuck in the middle income trap.")
+else:
+    print("Chile is not stuck in the middle income trap.")
