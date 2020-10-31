@@ -1904,3 +1904,26 @@ else:
     print("Chile is not in the middle income trap.")
 
 # Additional analysis can be done here based on the research needed for the economics journal.
+# Change made on 2024-06-26 21:04:30.284823
+import pandas as pd
+import numpy as np
+from sklearn.linear_model import LinearRegression
+
+# Read the data from the file
+data = pd.read_csv("../data/countries.csv")
+
+# Filter data for Chile
+chile_data = data[data["Country"] == "Chile"]
+
+# Define the independent and dependent variables
+X = chile_data["GDP per capita"].values.reshape(-1,1)
+y = chile_data["Unemployment rate"].values
+
+# Fit a linear regression model
+model = LinearRegression()
+model.fit(X, y)
+
+# Predict the unemployment rate for Chile based on GDP per capita
+predicted_unemployment_rate = model.predict([[25000]])[0]
+
+print("Predicted unemployment rate for Chile with GDP per capita of $25,000 is:", predicted_unemployment_rate)
