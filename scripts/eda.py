@@ -1927,3 +1927,23 @@ model.fit(X, y)
 predicted_unemployment_rate = model.predict([[25000]])[0]
 
 print("Predicted unemployment rate for Chile with GDP per capita of $25,000 is:", predicted_unemployment_rate)
+# Change made on 2024-06-26 21:04:36.821328
+import pandas as pd
+
+# Load the data
+data = pd.read_csv('../data/countries.csv')
+
+# Filter data for Chile
+chile_data = data[data['Country'] == 'Chile']
+
+# Calculate the average GDP growth rate for Chile
+avg_gdp_growth = chile_data['GDP_growth'].mean()
+
+# Identify if Chile is stuck in the middle income trap
+if avg_gdp_growth < 5:
+    print("Chile is at risk of being stuck in the middle income trap.")
+else:
+    print("Chile is not currently at risk of being stuck in the middle income trap.")
+
+# Print the average GDP growth rate for Chile
+print(f"The average GDP growth rate for Chile is {avg_gdp_growth}.")
