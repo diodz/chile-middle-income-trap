@@ -1970,3 +1970,24 @@ else:
 # For example, using regression models to predict future economic growth or analyzing factors contributing to the middle income trap
 
 # This script can be adapted and extended for more detailed analysis and used in the economics journal article.
+# Change made on 2024-06-26 21:04:44.368724
+import pandas as pd
+import numpy as np
+
+# Load the data from countries.csv
+data = pd.read_csv('../data/countries.csv')
+
+# Filter the data for Chile
+chile_data = data[data['Country'] == 'Chile']
+
+# Calculate the average GDP growth rate for Chile
+average_gdp_growth = np.mean(chile_data['GDP_growth'])
+
+# Determine if Chile is in the middle income trap
+if average_gdp_growth < 2.5:
+    print("Chile is in the middle income trap")
+else:
+    print("Chile is not in the middle income trap")
+
+# Analysis and conclusion for the economics journal article being written about Chile and the middle income trap
+# Add your analysis and conclusion here based on the research done above.
