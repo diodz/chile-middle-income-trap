@@ -1991,3 +1991,30 @@ else:
 
 # Analysis and conclusion for the economics journal article being written about Chile and the middle income trap
 # Add your analysis and conclusion here based on the research done above.
+# Change made on 2024-06-26 21:04:48.179762
+import pandas as pd
+import numpy as np
+from sklearn.linear_model import LinearRegression
+
+# Load data
+data = pd.read_csv('data/countries.csv')
+
+# Filter data for Chile
+chile_data = data[data['Country'] == 'Chile']
+
+# Print relevant information
+print('Chile GDP data:')
+print(chile_data)
+
+# Create a linear regression model
+X = chile_data['Year'].values.reshape(-1, 1)
+y = chile_data['GDP'].values
+
+model = LinearRegression()
+model.fit(X, y)
+
+# Predict GDP for the next year
+next_year = chile_data['Year'].max() + 1
+predicted_GDP = model.predict([[next_year]])
+
+print(f'Predicted GDP for Chile in {next_year}: {predicted_GDP[0]}')
