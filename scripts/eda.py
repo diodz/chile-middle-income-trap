@@ -2042,3 +2042,48 @@ predicted_income_growth = model.predict(chile_data['GDP per capita'].values)
 
 # Print the results
 print("Predicted income growth for Chile:", predicted_income_growth)
+# Change made on 2024-06-26 21:04:59.206335
+import pandas as pd
+import numpy as np
+from sklearn.linear_model import LinearRegression
+
+# Load the data
+data = pd.read_csv('../data/countries.csv')
+
+# Filter data for Chile
+chile_data = data[data['Country'] == 'Chile']
+
+# Subset the necessary columns for economic research
+chile_economic_data = chile_data[['GDP_per_capita', 'Inflation_rate', 'Unemployment_rate', 'Fiscal_balance']]
+
+# Check for missing values
+print(chile_economic_data.isnull().sum())
+
+# Data preprocessing - fill missing values
+chile_economic_data.fillna(method='ffill', inplace=True)
+
+# Check for missing values after filling
+print(chile_economic_data.isnull().sum())
+
+# Explore the data using descriptive statistics
+print(chile_economic_data.describe())
+
+# Simple linear regression to investigate the relationship between GDP per capita and Inflation rate
+X = chile_economic_data[['Inflation_rate']]
+y = chile_economic_data['GDP_per_capita']
+
+model = LinearRegression()
+model.fit(X, y)
+
+print('Coefficient:', model.coef_)
+print('Intercept:', model.intercept_)
+
+# Visualize the relationship
+import matplotlib.pyplot as plt
+
+plt.scatter(X, y, color='blue')
+plt.plot(X, model.predict(X), color='red')
+plt.xlabel('Inflation rate')
+plt.ylabel('GDP per capita')
+plt.title('Relationship between Inflation rate and GDP per capita in Chile')
+plt.show()
