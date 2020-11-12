@@ -2087,3 +2087,31 @@ plt.xlabel('Inflation rate')
 plt.ylabel('GDP per capita')
 plt.title('Relationship between Inflation rate and GDP per capita in Chile')
 plt.show()
+# Change made on 2024-06-26 21:05:04.173885
+import pandas as pd
+
+# Load the data
+data = pd.read_csv('data/countries.csv')
+
+# Filter the data for Chile
+chile_data = data[data['Country'] == 'Chile']
+
+# Calculate the average GDP growth rate for Chile
+avg_growth_rate = chile_data['GDP_growth'].mean()
+
+# Calculate the median income for Chile
+median_income = chile_data['Income'].median()
+
+# Determine if Chile is in the middle income trap
+if median_income < 12000:
+    middle_income_trap = True
+else:
+    middle_income_trap = False
+
+# Print the results
+print(f"Average GDP growth rate for Chile: {avg_growth_rate}")
+print(f"Median income for Chile: {median_income}")
+if middle_income_trap:
+    print("Chile is in the middle income trap")
+else:
+    print("Chile is not in the middle income trap")
