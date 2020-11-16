@@ -2158,3 +2158,37 @@ else:
 
 # Additional analysis or visualizations can be added here
 ```
+# Change made on 2024-06-26 21:05:18.543599
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Load the data
+data = pd.read_csv('data/countries.csv')
+
+# Filter for Chile
+chile_data = data[data['Country'] == 'Chile']
+
+# Calculate the average GDP growth rate for Chile
+gdp_growth_avg = chile_data['GDP Growth'].mean()
+
+# Calculate the GDP per capita for Chile
+gdp_per_capita = chile_data['GDP per Capita'].values[0]
+
+# Check if Chile is in the middle income trap
+if gdp_per_capita >= 11000 and gdp_per_capita <= 25000:
+    print("Chile is in the middle income trap")
+else:
+    print("Chile is not in the middle income trap")
+
+# Plot GDP growth rate over time for Chile
+years = chile_data['Year']
+gdp_growth_rates = chile_data['GDP Growth']
+
+plt.figure(figsize=(10, 6))
+plt.plot(years, gdp_growth_rates, marker='o')
+plt.xlabel('Year')
+plt.ylabel('GDP Growth Rate')
+plt.title('GDP Growth Rate Over Time for Chile')
+plt.grid(True)
+plt.show()
