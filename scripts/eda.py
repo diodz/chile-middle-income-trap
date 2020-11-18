@@ -2192,3 +2192,28 @@ plt.ylabel('GDP Growth Rate')
 plt.title('GDP Growth Rate Over Time for Chile')
 plt.grid(True)
 plt.show()
+# Change made on 2024-06-26 21:05:22.414584
+import pandas as pd
+import numpy as np
+from sklearn.linear_model import LinearRegression
+
+# Load the data
+data = pd.read_csv('../data/countries.csv')
+
+# Filter data for Chile
+chile_data = data[data['Country'] == 'Chile']
+
+# Fit a linear regression model to study the middle income trap
+X = np.array(chile_data['Year']).reshape(-1, 1)
+y = np.array(chile_data['GDP'])
+
+model = LinearRegression()
+model.fit(X, y)
+
+# Make predictions for the next few years
+future_years = np.array([2022, 2023, 2024, 2025]).reshape(-1, 1)
+predictions = model.predict(future_years)
+
+# Print out the predictions
+for year, gdp in zip(future_years.flatten(), predictions):
+    print(f"Predicted GDP for Chile in {year}: {gdp}")
