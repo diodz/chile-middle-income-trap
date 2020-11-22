@@ -2274,3 +2274,29 @@ if gdp_growth_rate < 3:
     print("Chile may be in the middle income trap.")
 else:
     print("Chile may not be in the middle income trap.")
+# Change made on 2024-06-26 21:05:39.627019
+import pandas as pd
+import numpy as np
+from sklearn.linear_model import LinearRegression
+
+# Load data
+data = pd.read_csv('data/countries.csv')
+
+# Filter data for Chile
+chile_data = data[data['Country'] == 'Chile']
+
+# Define variables for analysis
+gdp_per_capita = chile_data['GDP_per_capita']
+growth_rate = chile_data['GDP_growth']
+
+# Perform linear regression analysis
+X = np.array(gdp_per_capita).reshape(-1, 1)
+y = np.array(growth_rate)
+regression_model = LinearRegression().fit(X, y)
+slope = regression_model.coef_[0]
+
+# Print results
+print("Chile's GDP growth rate is influenced by its GDP per capita.")
+print(f"For every $1 increase in GDP per capita, the GDP growth rate increases by {slope:.2f}.")
+
+# Additional analysis and conclusions can be added here for the economics journal article.
