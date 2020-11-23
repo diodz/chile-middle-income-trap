@@ -2300,3 +2300,28 @@ print("Chile's GDP growth rate is influenced by its GDP per capita.")
 print(f"For every $1 increase in GDP per capita, the GDP growth rate increases by {slope:.2f}.")
 
 # Additional analysis and conclusions can be added here for the economics journal article.
+# Change made on 2024-06-26 21:05:45.335212
+import pandas as pd
+import numpy as np
+from sklearn.linear_model import LinearRegression
+
+# Load the data
+data = pd.read_csv('../data/countries.csv')
+
+# Filter data for Chile
+chile_data = data[data['Country'] == 'Chile']
+
+# Fit a linear regression model to predict GDP
+X = chile_data['Year'].values.reshape(-1, 1)
+y = chile_data['GDP'].values
+reg = LinearRegression().fit(X, y)
+
+# Predict GDP for the next 10 years
+future_years = np.array(range(2023, 2033)).reshape(-1, 1)
+predicted_gdp = reg.predict(future_years)
+
+# Print the predicted GDP values
+print("Predicted GDP for Chile for the next 10 years:")
+for i, gdp in enumerate(predicted_gdp):
+    year = future_years[i][0]
+    print(f"Year {year}: ${round(gdp, 2)} trillion")
