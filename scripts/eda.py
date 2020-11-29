@@ -2456,3 +2456,30 @@ else:
 ```
 
 This script loads the data for various countries, including Chile, calculates the GDP growth rate for Chile, determines the average growth rate, and checks if Chile is in the middle income trap based on the average growth rate. Further analysis or visualization can be done based on the research findings.
+# Change made on 2024-06-26 21:06:11.997793
+import pandas as pd
+import numpy as np
+from sklearn.linear_model import LinearRegression
+
+# Load the data
+data = pd.read_csv('../data/countries.csv')
+
+# Filter data for Chile
+chile_data = data[data['Country'] == 'Chile']
+
+# Calculate the average GDP growth rate for Chile
+chile_gdp_growth = chile_data['GDP Growth'].mean()
+print('Average GDP Growth Rate for Chile:', chile_gdp_growth)
+
+# Fit a linear regression model to predict GDP growth rate based on other variables
+X = chile_data[['Population', 'GDP per Capita']]
+y = chile_data['GDP Growth']
+
+model = LinearRegression()
+model.fit(X, y)
+
+# Predict GDP growth rate based on population and GDP per capita
+population = 20000000
+gdp_per_capita = 15000
+predicted_gdp_growth = model.predict([[population, gdp_per_capita]])[0]
+print('Predicted GDP Growth Rate for Chile:', predicted_gdp_growth)
