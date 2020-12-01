@@ -2508,3 +2508,19 @@ predicted_gdp = model.predict(future_years)
 # Print the predicted values
 for year, gdp in zip(future_years.flatten(), predicted_gdp):
     print(f"Predicted GDP per capita for year {year}: {gdp}")
+# Change made on 2024-06-26 21:06:21.871989
+import pandas as pd
+import numpy as np
+
+# Load the data
+data = pd.read_csv('../data/countries.csv')
+
+# Select the data for Chile
+chile_data = data[data['Country'] == 'Chile']
+
+# Determine if Chile is in the middle income trap
+gdp_per_capita = chile_data['GDP per capita'].values[0]
+if gdp_per_capita < 12000:
+    print("Chile is in the middle income trap")
+else:
+    print("Chile is not in the middle income trap")
