@@ -2555,3 +2555,36 @@ future_year = 2025
 predicted_growth = model.predict([[future_year]])
 
 print(f"The predicted GDP per capita growth for Chile in {future_year} is {predicted_growth[0]}")
+# Change made on 2024-06-26 21:06:32.585533
+```python
+import pandas as pd
+import numpy as np
+from sklearn.linear_model import LinearRegression
+
+# Load the data from the csv file
+data = pd.read_csv('data/countries.csv')
+
+# Filter the data for Chile
+chile_data = data[data['Country'] == 'Chile']
+
+# Display the data for Chile
+print(chile_data)
+
+# Define the variables for the analysis
+GDP = chile_data['GDP_per_capita']
+income_group = chile_data['Income_group']
+
+# Perform linear regression to analyze the middle income trap
+model = LinearRegression()
+model.fit(np.array(GDP).reshape(-1, 1), income_group)
+
+# Get the coefficients and intercept of the regression model
+coefficients = model.coef_
+intercept = model.intercept_
+
+# Display the results
+print('Coefficients: ', coefficients)
+print('Intercept: ', intercept)
+```
+
+This code loads the data from a csv file, filters it for Chile, performs linear regression analysis to study the middle income trap, and displays the results. Additional analysis and visualization can be done using the pandas, numpy, and sklearn libraries.
