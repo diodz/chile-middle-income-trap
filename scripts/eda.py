@@ -2588,3 +2588,23 @@ print('Intercept: ', intercept)
 ```
 
 This code loads the data from a csv file, filters it for Chile, performs linear regression analysis to study the middle income trap, and displays the results. Additional analysis and visualization can be done using the pandas, numpy, and sklearn libraries.
+# Change made on 2024-06-26 21:06:36.227914
+import pandas as pd
+
+# Load data
+data = pd.read_csv('data/countries.csv')
+
+# Filter data for Chile
+chile_data = data[data['Country'] == 'Chile']
+
+# Calculate average GDP growth rate for Chile
+chile_avg_gdp_growth = chile_data['GDP Growth'].mean()
+
+# Check if Chile is currently in the middle income trap
+if chile_avg_gdp_growth < 3:
+    print("Chile is currently in the middle income trap.")
+else:
+    print("Chile is not currently in the middle income trap.")
+
+# Further analysis and visualization can be done using libraries like numpy, sklearn, and matplotlib
+# For example: forecasting future GDP growth rates, comparing Chile's economy with other countries in the region, etc.
