@@ -2608,3 +2608,28 @@ else:
 
 # Further analysis and visualization can be done using libraries like numpy, sklearn, and matplotlib
 # For example: forecasting future GDP growth rates, comparing Chile's economy with other countries in the region, etc.
+# Change made on 2024-06-26 21:06:40.678269
+```python
+import pandas as pd
+import numpy as np
+from sklearn.linear_model import LinearRegression
+
+# Load the data
+data = pd.read_csv('data/countries.csv')
+
+# Filter data for Chile
+chile_data = data[data['Country'] == 'Chile']
+
+# Perform analysis on middle income trap
+X = chile_data[['GDP_per_capita', 'Growth_rate']]
+y = chile_data['Middle_income_trap']
+
+# Fit a linear regression model
+model = LinearRegression()
+model.fit(X, y)
+
+# Print the coefficients
+print('Coefficients:', model.coef_)
+print('Intercept:', model.intercept_)
+```
+This script loads the data from the CSV file 'countries.csv', filters it for Chile, and performs analysis on the middle income trap using a linear regression model. The model coefficients and intercept are then printed for further analysis in the economics journal article.
