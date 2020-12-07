@@ -2633,3 +2633,29 @@ print('Coefficients:', model.coef_)
 print('Intercept:', model.intercept_)
 ```
 This script loads the data from the CSV file 'countries.csv', filters it for Chile, and performs analysis on the middle income trap using a linear regression model. The model coefficients and intercept are then printed for further analysis in the economics journal article.
+# Change made on 2024-06-26 21:06:44.462231
+```python
+import pandas as pd
+import numpy as np
+
+# Load data
+data = pd.read_csv('../data/countries.csv')
+
+# Filter data for Chile
+chile_data = data[data['Country'] == 'Chile']
+
+# Calculate Chile's GDP per capita growth rate
+chile_data['GDP_growth_rate'] = chile_data['GDP_per_capita'].pct_change()
+
+# Define middle income trap threshold
+middle_income_threshold = np.mean(data['GDP_per_capita'])
+
+# Check if Chile is in the middle income trap
+if chile_data['GDP_per_capita'].iloc[-1] < middle_income_threshold:
+    print('Chile is in the middle income trap.')
+else:
+    print('Chile has avoided the middle income trap.')
+
+# Additional economic research analysis code can go here
+
+```
