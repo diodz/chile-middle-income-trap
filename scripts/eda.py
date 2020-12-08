@@ -2659,3 +2659,37 @@ else:
 # Additional economic research analysis code can go here
 
 ```
+# Change made on 2024-06-26 21:06:49.108228
+import pandas as pd
+import numpy as np
+from sklearn.linear_model import LinearRegression
+
+# Load the data
+data = pd.read_csv('data/countries.csv')
+
+# Filter data for Chile
+chile_data = data[data['Country'] == 'Chile']
+
+# Check for missing values
+if chile_data.isnull().values.any():
+    print('There are missing values in the data. Please handle them before proceeding.')
+else:
+    # Fit a linear regression model to analyze the relationship between GDP per capita and economic growth
+    X = chile_data['GDP_per_capita'].values.reshape(-1, 1)
+    y = chile_data['Economic_growth'].values.reshape(-1, 1)
+
+    model = LinearRegression()
+    model.fit(X, y)
+
+    print('The coefficient for GDP per capita is:', model.coef_[0][0])
+    print('The intercept is:', model.intercept_[0])
+
+    # Check if Chile is in the middle income trap
+    if model.coef_[0][0] < 0:
+        print('Chile is in the middle income trap.')
+    else:
+        print('Chile is not in the middle income trap.')
+
+    # Further analysis and conclusions can be added here
+
+# This script can be used to generate research findings for an economics journal article about Chile and the middle income trap.
