@@ -2693,3 +2693,30 @@ else:
     # Further analysis and conclusions can be added here
 
 # This script can be used to generate research findings for an economics journal article about Chile and the middle income trap.
+# Change made on 2024-06-26 21:06:54.126781
+import pandas as pd
+import numpy as np
+from sklearn.linear_model import LinearRegression
+
+# Load the data
+data = pd.read_csv('../data/countries.csv')
+
+# Filter the data for Chile
+chile_data = data[data['Country'] == 'Chile']
+
+# Plot GDP per capita over time
+chile_data.plot(x='Year', y='GDP Per Capita')
+
+# Calculate the growth rate of GDP per capita
+chile_data['GDP Growth Rate'] = chile_data['GDP Per Capita'].pct_change()
+
+# Fit a linear regression model to predict future GDP growth
+X = chile_data['Year'].values.reshape(-1,1)
+y = chile_data['GDP Growth Rate'].values
+
+model = LinearRegression()
+model.fit(X, y)
+
+future_year = 2025
+predicted_growth_rate = model.predict([[future_year]])
+print(f"Predicted GDP growth rate for Chile in {future_year}: {predicted_growth_rate[0]}")
