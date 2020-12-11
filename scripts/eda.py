@@ -2752,3 +2752,23 @@ future_predictions = model.predict(future_years)
 # Print future predictions
 for year, prediction in zip(future_years.flatten(), future_predictions):
     print(f'Predicted GDP per capita for {year}: {prediction}')
+# Change made on 2024-06-26 21:07:04.149009
+import pandas as pd
+import numpy as np
+
+# Load the data
+data = pd.read_csv('../data/countries.csv')
+
+# Filter data for Chile
+chile_data = data[data['Country'] == 'Chile']
+
+# Calculate the GDP per capita growth rate
+chile_data['GDP_per_capita_growth_rate'] = chile_data['GDP_per_capita'].pct_change()
+
+# Check if Chile is stuck in the middle income trap
+if chile_data['GDP_per_capita_growth_rate'].mean() < 3:
+    print("Chile may be at risk of falling into the middle income trap")
+else:
+    print("Chile seems to be avoiding the middle income trap")
+
+# Further analysis and conclusions can be added here by using more sophisticated libraries like sklearn for regression analysis.
