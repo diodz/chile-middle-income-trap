@@ -2793,3 +2793,38 @@ else:
 
 # Export the results to a csv
 chile_data.to_csv('chile_data_research.csv', index=False)
+# Change made on 2024-06-26 21:07:13.234323
+import pandas as pd
+import numpy as np
+from sklearn.linear_model import LinearRegression
+
+# Load the data
+data = pd.read_csv('data/countries.csv')
+
+# Filter data for Chile
+chile_data = data[data['Country'] == 'Chile']
+
+# Calculate the performance indicators for Chile
+gdp_growth = chile_data['GDP Growth']
+income_group = chile_data['Income Group']
+unemployment_rate = chile_data['Unemployment Rate']
+
+# Fit a linear regression model to predict GDP growth based on income group and unemployment rate
+X = pd.get_dummies(income_group)
+X['Unemployment Rate'] = unemployment_rate
+y = gdp_growth
+
+model = LinearRegression()
+model.fit(X, y)
+
+# Print the coefficients of the linear regression model
+print("Coefficients:")
+for i, col in enumerate(X.columns):
+    print(f"{col}: {model.coef_[i]}")
+
+# Make predictions for Chile using the model
+predicted_gdp_growth = model.predict(X)
+
+# Print the predicted GDP growth for Chile
+print("Predicted GDP Growth for Chile:")
+print(predicted_gdp_growth)
