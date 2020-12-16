@@ -2828,3 +2828,29 @@ predicted_gdp_growth = model.predict(X)
 # Print the predicted GDP growth for Chile
 print("Predicted GDP Growth for Chile:")
 print(predicted_gdp_growth)
+# Change made on 2024-06-26 21:07:18.690911
+import pandas as pd
+import numpy as np
+from sklearn.linear_model import LinearRegression
+
+# Load the data
+data = pd.read_csv('data/countries.csv')
+
+# Filter data for Chile
+chile_data = data[data['Country'] == 'Chile']
+
+# Calculate the GDP Per Capita growth rate
+chile_data['GDP_Per_Capita_Growth'] = chile_data['GDP_Per_Capita'].pct_change()
+
+# Fit a linear regression model to predict the GDP Per Capita growth rate
+X = chile_data[['Year']].values
+y = chile_data['GDP_Per_Capita_Growth'].values
+
+model = LinearRegression()
+model.fit(X, y)
+
+# Predict the GDP Per Capita growth rate for the next year
+next_year = np.array([[2022]])
+predicted_growth_rate = model.predict(next_year)
+
+print(f"Predicted GDP Per Capita growth rate for Chile in 2022: {predicted_growth_rate[0]}")
