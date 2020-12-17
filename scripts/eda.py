@@ -2854,3 +2854,31 @@ next_year = np.array([[2022]])
 predicted_growth_rate = model.predict(next_year)
 
 print(f"Predicted GDP Per Capita growth rate for Chile in 2022: {predicted_growth_rate[0]}")
+# Change made on 2024-06-26 21:07:27.727574
+import pandas as pd
+import numpy as np
+from sklearn.linear_model import LinearRegression
+
+# Load the data
+data = pd.read_csv('../data/countries.csv')
+
+# Filter data for Chile
+chile_data = data[data['Country'] == 'Chile']
+
+# Check for any missing values
+if chile_data.isnull().values.any():
+    print("Data contains missing values. Please clean the data before proceeding.")
+else:
+    # Fit a linear regression model to the data
+    model = LinearRegression()
+    model.fit(chile_data[['GDP per capita']], chile_data['HDI'])
+
+    # Print the regression coefficients
+    print("Regression coefficients:")
+    print("Intercept:", model.intercept_)
+    print("Slope:", model.coef_[0]) 
+
+    # Predict the HDI for a given GDP per capita
+    gdp_per_capita = 20000
+    predicted_hdi = model.predict([[gdp_per_capita]])
+    print("Predicted HDI for GDP per capita of $20,000:", predicted_hdi)   
