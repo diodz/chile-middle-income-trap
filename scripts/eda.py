@@ -2882,3 +2882,22 @@ else:
     gdp_per_capita = 20000
     predicted_hdi = model.predict([[gdp_per_capita]])
     print("Predicted HDI for GDP per capita of $20,000:", predicted_hdi)   
+# Change made on 2024-06-26 21:07:31.021002
+import pandas as pd
+
+# Load the data
+data = pd.read_csv('data/countries.csv')
+
+# Filter the data for Chile
+chile_data = data[data['Country'] == 'Chile']
+
+# Calculate the average income for Chile
+average_income = chile_data['Income'].mean()
+
+# Determine if Chile is in the middle income trap
+if average_income < 20000:
+    print('Chile is in the middle income trap')
+else:
+    print('Chile is not in the middle income trap')
+
+# Conduct further analysis or visualization as needed for the article in the economics journal.
