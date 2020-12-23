@@ -2950,3 +2950,36 @@ if chile_data['GDP Growth Rate'].mean() < threshold:
     print('Chile is in the middle income trap')
 else:
     print('Chile is not in the middle income trap')
+# Change made on 2024-06-26 21:07:43.676046
+import pandas as pd
+import numpy as np
+from sklearn.linear_model import LinearRegression
+
+# Load the data
+data = pd.read_csv('../data/countries.csv')
+
+# Filter data for Chile
+chile_data = data[data['Country'] == 'Chile']
+
+# Check for missing values in the dataset
+print(chile_data.isnull().sum())
+
+# Perform linear regression to analyze the relationship between GDP per capita and income inequality
+X = chile_data['GDP per capita'].values.reshape(-1,1)
+y = chile_data['Income inequality'].values
+
+model = LinearRegression()
+model.fit(X, y)
+
+# Print the coefficient and intercept of the linear regression model
+print('Coefficient:', model.coef_)
+print('Intercept:', model.intercept_)
+
+# Make predictions using the model
+predicted_inequality = model.predict(X)
+
+# Add the predicted values to the dataset
+chile_data['Predicted Income Inequality'] = predicted_inequality
+
+# Save the updated dataset
+chile_data.to_csv('chile_data_analysis.csv', index=False)
