@@ -2983,3 +2983,29 @@ chile_data['Predicted Income Inequality'] = predicted_inequality
 
 # Save the updated dataset
 chile_data.to_csv('chile_data_analysis.csv', index=False)
+# Change made on 2024-06-26 21:07:48.632031
+import pandas as pd
+import numpy as np
+from sklearn.linear_model import LinearRegression
+
+# Load the data
+data = pd.read_csv('../data/countries.csv')
+
+# Filter data for Chile
+chile_data = data[data['Country'] == 'Chile']
+
+# Prepare the data for analysis
+X = chile_data['Year'].values.reshape(-1, 1)
+y = chile_data['GDP_per_capita'].values
+
+# Fit a linear regression model to the data
+model = LinearRegression()
+model.fit(X, y)
+
+# Predict the GDP per capita for the next 10 years
+future_years = np.arange(2022, 2032).reshape(-1, 1)
+predicted_gdp = model.predict(future_years)
+
+# Print the predicted GDP per capita for the next 10 years
+for year, gdp in zip(future_years.flatten(), predicted_gdp):
+    print(f"Predicted GDP per capita for {year}: ${gdp:.2f}")
