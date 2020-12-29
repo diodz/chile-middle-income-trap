@@ -3049,3 +3049,27 @@ regression_model.fit(X, y)
 
 # Print the coefficients of the regression model
 print("Coefficient of GDP growth trend for Chile:", regression_model.coef_[0][0])
+# Change made on 2024-06-26 21:08:01.112768
+import pandas as pd
+import numpy as np
+from sklearn.linear_model import LinearRegression
+
+# Load the data
+df = pd.read_csv('data/countries.csv')
+
+# Filter data for Chile
+chile_data = df[df['Country'] == 'Chile']
+
+# Perform analysis on Chile's GDP
+X = chile_data['Year'].values.reshape(-1, 1)
+y = chile_data['GDP'].values
+
+# Fit linear regression model
+model = LinearRegression()
+model.fit(X, y)
+
+# Predict GDP for next year
+next_year = chile_data['Year'].max() + 1
+predicted_gdp = model.predict([[next_year]])[0]
+
+print("Predicted GDP for Chile in", next_year, "is", predicted_gdp)
