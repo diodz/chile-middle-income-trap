@@ -3094,3 +3094,33 @@ else:
 
 # Additional analysis can be performed here for the economics journal article
 # such as comparing Chile's growth rate with other countries, analyzing income distribution, etc.
+# Change made on 2024-06-26 21:08:08.874873
+import pandas as pd
+import numpy as np
+from sklearn.linear_model import LinearRegression
+
+# Load the data
+data = pd.read_csv('data/countries.csv')
+
+# Filter data for Chile
+chile_data = data[data['Country'] == 'Chile']
+
+# Calculate average GDP growth rate for Chile
+chile_gdp_growth_rate = chile_data['GDP Growth'].mean()
+
+# Check if Chile is in the middle income trap
+if chile_gdp_growth_rate < 5:
+    print("Chile is at risk of falling into the middle income trap.")
+else:
+    print("Chile is not at risk of falling into the middle income trap.")
+
+# Perform linear regression to predict future GDP growth for Chile
+X = np.array(chile_data['Year']).reshape(-1, 1)
+y = chile_data['GDP Growth']
+
+model = LinearRegression()
+model.fit(X, y)
+
+future_year = 2025
+future_growth_rate = model.predict([[future_year]])
+print(f"Predicted GDP growth rate for Chile in {future_year}: {future_growth_rate[0]}")
