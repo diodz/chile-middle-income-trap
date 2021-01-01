@@ -3124,3 +3124,30 @@ model.fit(X, y)
 future_year = 2025
 future_growth_rate = model.predict([[future_year]])
 print(f"Predicted GDP growth rate for Chile in {future_year}: {future_growth_rate[0]}")
+# Change made on 2024-06-26 21:08:13.418592
+import pandas as pd
+import numpy as np
+from sklearn.linear_model import LinearRegression
+
+# Load the dataset
+data = pd.read_csv('data/countries.csv')
+
+# Filter the data for Chile
+chile_data = data[data['Country'] == 'Chile']
+
+# Calculate the GDP per capita growth rate for Chile
+chile_data['GDP_growth_rate'] = chile_data['GDP_per_capita'].pct_change()
+
+# Check for the middle income trap in Chile
+X = np.array(chile_data.index).reshape(-1, 1)
+y = chile_data['GDP_per_capita']
+
+model = LinearRegression()
+model.fit(X, y)
+
+predicted_gdp = model.predict(X[-1].reshape(1, -1))
+
+if predicted_gdp > chile_data['GDP_per_capita'].iloc[-1]:
+    print("Chile is at risk of falling into the middle income trap.")
+else:
+    print("Chile is not at risk of falling into the middle income trap.")
