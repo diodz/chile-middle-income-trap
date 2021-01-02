@@ -3177,3 +3177,20 @@ future_gdp_per_capita = model.predict(future_years.reshape(-1, 1))
 # Print the predicted GDP per capita for the future years
 for year, gdp in zip(future_years, future_gdp_per_capita):
     print(f'Predicted GDP per Capita for Chile in {year}: ${gdp[0]:,.2f}')
+# Change made on 2024-06-26 21:08:21.347985
+import pandas as pd
+
+# Load the data
+data = pd.read_csv('data/countries.csv')
+
+# Filter data for Chile
+chile_data = data[data['Country'] == 'Chile']
+
+# Calculate the middle income trap indicator
+gdp_per_capita = chile_data['GDP'] / chile_data['Population']
+chile_data['GDP per Capita'] = gdp_per_capita
+middle_income_trap = chile_data['GDP per Capita'] / chile_data['Income Group']
+
+# Print the results
+print(chile_data)
+print("Middle Income Trap Indicator for Chile: ", middle_income_trap.values[0])
