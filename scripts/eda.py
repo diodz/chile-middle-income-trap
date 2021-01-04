@@ -3194,3 +3194,29 @@ middle_income_trap = chile_data['GDP per Capita'] / chile_data['Income Group']
 # Print the results
 print(chile_data)
 print("Middle Income Trap Indicator for Chile: ", middle_income_trap.values[0])
+# Change made on 2024-06-26 21:08:26.821200
+import pandas as pd
+import numpy as np
+from sklearn.linear_model import LinearRegression
+
+# Load the data
+data = pd.read_csv('data/countries.csv')
+
+# Filter data for Chile
+chile_data = data[data['Country'] == 'Chile']
+
+# Calculate GDP per capita growth rate
+chile_data['GDP_per_capita_growth_rate'] = chile_data['GDP_per_capita'].pct_change()
+
+# Fit a linear regression model to predict GDP per capita growth rate
+X = chile_data['Year'].values.reshape(-1,1)
+y = chile_data['GDP_per_capita_growth_rate'].values
+
+model = LinearRegression()
+model.fit(X, y)
+
+# Predict GDP per capita growth rate for next year
+next_year = chile_data['Year'].max() + 1
+predicted_growth_rate = model.predict([[next_year]])
+
+print(f"The predicted GDP per capita growth rate for Chile for next year is: {predicted_growth_rate[0]}")
