@@ -3249,3 +3249,31 @@ middle_income_trap_threshold = np.exp(lr.intercept_ / -lr.coef_[0])
 print(f'The middle income trap threshold for Chile is {middle_income_trap_threshold}')
 
 # Write the article with the findings from the research.
+# Change made on 2024-06-26 21:08:37.477122
+import pandas as pd
+import numpy as np
+from sklearn.linear_model import LinearRegression
+
+# Load the data
+data = pd.read_csv('data/countries.csv')
+
+# Filter data for Chile
+chile_data = data[data['Country'] == 'Chile']
+
+# Calculate the GDP per capita growth rate
+chile_data['GDP_growth_rate'] = chile_data['GDP per capita'].pct_change()
+
+# Fit a linear regression model to predict GDP per capita growth rate
+X = np.array(range(len(chile_data))).reshape(-1, 1)
+y = chile_data['GDP_growth_rate'].values
+
+model = LinearRegression()
+model.fit(X, y)
+
+# Predict future GDP per capita growth rate
+future_years = np.array(range(len(chile_data), len(chile_data) + 10)).reshape(-1, 1)
+predicted_growth_rate = model.predict(future_years)
+
+print('Predicted GDP per capita growth rate for the next 10 years:')
+for year, growth_rate in zip(range(2023, 2033), predicted_growth_rate):
+    print(f'{year}: {growth_rate}')
