@@ -3277,3 +3277,26 @@ predicted_growth_rate = model.predict(future_years)
 print('Predicted GDP per capita growth rate for the next 10 years:')
 for year, growth_rate in zip(range(2023, 2033), predicted_growth_rate):
     print(f'{year}: {growth_rate}')
+# Change made on 2024-06-26 21:08:43.037975
+import pandas as pd
+import numpy as np
+
+# Load the data
+data = pd.read_csv("data/countries.csv")
+
+# Filter data for Chile
+chile_data = data[data["Country"] == "Chile"]
+
+# Calculate the average GDP growth rate for Chile
+average_growth_rate = np.mean(chile_data["GDP Growth Rate"])
+
+# Determine if Chile is at risk of falling into the middle income trap
+if average_growth_rate < 5:
+    print("Chile is at risk of falling into the middle income trap.")
+else:
+    print("Chile is not at risk of falling into the middle income trap.")
+
+# Write the results to a file for the economics journal article
+with open("chile_research_results.txt", "w") as file:
+    file.write("Chile GDP Growth Rate: {}\n".format(average_growth_rate))
+    file.write("Middle Income Trap Risk: {}".format("Yes" if average_growth_rate < 5 else "No"))
