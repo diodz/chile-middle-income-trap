@@ -3300,3 +3300,35 @@ else:
 with open("chile_research_results.txt", "w") as file:
     file.write("Chile GDP Growth Rate: {}\n".format(average_growth_rate))
     file.write("Middle Income Trap Risk: {}".format("Yes" if average_growth_rate < 5 else "No"))
+# Change made on 2024-06-26 21:08:48.894026
+import pandas as pd
+import numpy as np
+from sklearn.linear_model import LinearRegression
+
+# Load data
+df = pd.read_csv('../data/countries.csv')
+
+# Filter data for Chile
+chile_data = df[df['Country'] == 'Chile']
+
+# Calculate GDP growth rate for Chile
+chile_data['GDP_Growth_Rate'] = chile_data['GDP'].pct_change() * 100
+
+# Check for middle income trap
+if chile_data['GDP_Growth_Rate'].mean() < 5:
+    print("Chile is at risk of falling into the middle income trap")
+else:
+    print("Chile is not at risk of falling into the middle income trap")
+
+# Linear regression analysis
+X = np.array(chile_data['Year']).reshape(-1,1)
+y = np.array(chile_data['GDP'])
+
+regression_model = LinearRegression()
+regression_model.fit(X, y)
+
+# Predict GDP for next year
+next_year = chile_data['Year'].max() + 1
+predicted_gdp = regression_model.predict([[next_year]])
+
+print("Predicted GDP for", next_year, "is:", predicted_gdp)
