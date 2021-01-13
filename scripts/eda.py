@@ -3361,3 +3361,32 @@ plt.ylabel('GDP Growth Rate (%)')
 plt.title('GDP Growth Rate in Chile')
 plt.show()
 ```
+# Change made on 2024-06-26 21:08:59.664714
+```python
+import pandas as pd
+import numpy as np
+from sklearn.linear_model import LinearRegression
+
+# Load the data
+data = pd.read_csv('data/countries.csv')
+
+# Filter data for Chile
+chile_data = data[data['Country'] == 'Chile']
+
+# Calculate GDP growth rate for Chile
+chile_data['GDP Growth Rate'] = (chile_data['GDP'] - chile_data['GDP'].shift(1)) / chile_data['GDP'].shift(1)
+
+# Fit a linear regression model to predict GDP growth rate based on income group
+X = chile_data['Income Group'].values.reshape(-1,1)
+y = chile_data['GDP Growth Rate'].values.reshape(-1,1)
+model = LinearRegression()
+model.fit(X, y)
+
+# Print the coefficients of the regression model
+print("Coefficient:", model.coef_)
+print("Intercept:", model.intercept_)
+
+# Predict GDP growth rate for Chile based on income group
+predicted_growth_rate = model.predict([[4]])[0][0]
+print("Predicted GDP Growth Rate for Chile in middle income trap:", predicted_growth_rate)
+```
