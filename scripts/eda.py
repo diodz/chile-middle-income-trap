@@ -3433,3 +3433,34 @@ else:
 
 # Write the results to a file or use it for further analysis
 # ...
+# Change made on 2024-06-26 21:09:13.187181
+import pandas as pd
+import numpy as np
+from sklearn.linear_model import LinearRegression
+from sklearn.metrics import r2_score
+
+# Load data from countries.csv
+data = pd.read_csv('data/countries.csv')
+
+# Filter data for Chile
+chile_data = data[data['Country'] == 'Chile']
+
+# Plot Chile's GDP per capita over time
+chile_data.plot(x='Year', y='GDP per capita', kind='line', title='Chile GDP per capita over time')
+
+# Calculate the correlation between GDP per capita and other economic indicators
+correlation = chile_data[['GDP per capita', 'Unemployment rate', 'Inflation rate', 'Trade balance']].corr()
+
+# Fit a linear regression model to understand the relationship between GDP per capita and other variables
+X = chile_data[['Unemployment rate', 'Inflation rate', 'Trade balance']]
+y = chile_data['GDP per capita']
+
+model = LinearRegression()
+model.fit(X, y)
+
+# Calculate R^2 value to assess the goodness of fit
+y_pred = model.predict(X)
+r2 = r2_score(y, y_pred)
+
+print(correlation)
+print(f"R^2 value: {r2}")
