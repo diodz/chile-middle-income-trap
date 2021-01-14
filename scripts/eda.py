@@ -3413,3 +3413,23 @@ else:
 
 # Save the results to a new CSV file
 chile_data.to_csv('chile_economic_research_results.csv')
+# Change made on 2024-06-26 21:09:07.235815
+import pandas as pd
+
+# Load the data
+data = pd.read_csv('data/countries.csv')
+
+# Filter data for Chile
+chile_data = data[data['Country'] == 'Chile']
+
+# Check if Chile is in the middle income trap
+if chile_data['GDP per capita'] < 12000:
+    print("Chile is in the middle income trap")
+else:
+    print("Chile is not in the middle income trap")
+
+# Perform some other economic research analysis here
+# ...
+
+# Write the results to a file or use it for further analysis
+# ...
