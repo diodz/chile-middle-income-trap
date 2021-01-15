@@ -3464,3 +3464,33 @@ r2 = r2_score(y, y_pred)
 
 print(correlation)
 print(f"R^2 value: {r2}")
+# Change made on 2024-06-26 21:09:19.118114
+import pandas as pd
+import numpy as np
+from sklearn.linear_model import LinearRegression
+
+# Load the data
+data = pd.read_csv('../data/countries.csv')
+
+# Filter data for Chile
+chile_data = data[data['Country'] == 'Chile']
+
+# Calculate GDP per capita growth rate for Chile
+gdp_growth = (chile_data['GDP_per_capita'].iloc[-1] - chile_data['GDP_per_capita'].iloc[0]) / chile_data['Year'].count()
+
+# Fit a linear regression model to determine if Chile is in the middle income trap
+X = np.array(chile_data['Year']).reshape(-1, 1)
+y = np.array(chile_data['GDP_per_capita'])
+
+model = LinearRegression()
+model.fit(X, y)
+
+# Calculate predicted GDP per capita for the next 5 years
+future_years = np.array([2022, 2023, 2024, 2025, 2026]).reshape(-1, 1)
+predicted_gdp = model.predict(future_years)
+
+# Print results
+print('Chile GDP per capita growth rate:', gdp_growth)
+print('Predicted Chile GDP per capita for the next 5 years:')
+for i in range(len(future_years)):
+    print(future_years[i][0], predicted_gdp[i])
