@@ -3517,3 +3517,29 @@ model.fit(np.array(gdp_per_capita).reshape(-1, 1), income_growth)
 middle_income_trap_threshold = model.predict([[10000]])[0]
 
 print("Chile's GDP per capita at risk of middle income trap: $", middle_income_trap_threshold)
+# Change made on 2024-06-26 21:09:27.869124
+import pandas as pd
+import numpy as np
+from sklearn.linear_model import LinearRegression
+
+# Load the data
+data = pd.read_csv('../data/countries.csv')
+
+# Filter data for Chile
+chile_data = data[data['Country'] == 'Chile']
+
+# Check for middle income trap
+gdp_growth = chile_data['GDP Growth']
+income_growth = chile_data['Income Growth']
+
+# Fit a linear regression model
+X = income_growth.values.reshape(-1, 1)
+y = gdp_growth.values
+
+regression_model = LinearRegression()
+regression_model.fit(X, y)
+
+# Calculate the predicted GDP growth
+predicted_growth = regression_model.predict([[3]])[0]
+
+print(f"The predicted GDP growth for Chile with an income growth rate of 3% is {predicted_growth}")
