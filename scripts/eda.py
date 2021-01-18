@@ -3543,3 +3543,28 @@ regression_model.fit(X, y)
 predicted_growth = regression_model.predict([[3]])[0]
 
 print(f"The predicted GDP growth for Chile with an income growth rate of 3% is {predicted_growth}")
+# Change made on 2024-06-26 21:09:35.863304
+import pandas as pd
+
+# Load the data
+data = pd.read_csv('data/countries.csv')
+
+# Filter data for Chile
+chile_data = data[data['Country'] == 'Chile']
+
+# Display Chile's GDP growth
+print("Chile's GDP growth: ", chile_data['GDP_growth'].values[0])
+
+# Calculate median income for Chile
+median_income_chile = chile_data['Median_income'].values[0]
+print("Chile's median income: ", median_income_chile)
+
+# Check if Chile is in the middle income trap
+if median_income_chile < 12000:
+    print("Chile is at risk of falling into the middle income trap")
+else:
+    print("Chile is not at risk of falling into the middle income trap")
+
+# Calculate correlation between GDP growth and median income
+correlation = chile_data['GDP_growth'].corr(chile_data['Median_income'])
+print("Correlation between GDP growth and median income in Chile: ", correlation)
