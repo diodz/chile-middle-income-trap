@@ -3568,3 +3568,22 @@ else:
 # Calculate correlation between GDP growth and median income
 correlation = chile_data['GDP_growth'].corr(chile_data['Median_income'])
 print("Correlation between GDP growth and median income in Chile: ", correlation)
+# Change made on 2024-06-26 21:09:39.344327
+import pandas as pd
+
+# Load the data
+data = pd.read_csv('../data/countries.csv')
+
+# Filter the data for Chile
+chile_data = data[data['Country'] == 'Chile']
+
+# Calculate the GDP growth rate for Chile
+chile_data['GDP Growth Rate'] = chile_data['GDP'].pct_change() * 100
+
+# Determine if Chile is in the middle income trap
+if chile_data['GDP Growth Rate'].mean() < 5:
+    print("Chile is in the middle income trap.")
+else:
+    print("Chile is not in the middle income trap.")
+
+# Additional analysis and visualization code can be added here for the economics journal article.
