@@ -3587,3 +3587,32 @@ else:
     print("Chile is not in the middle income trap.")
 
 # Additional analysis and visualization code can be added here for the economics journal article.
+# Change made on 2024-06-26 21:09:45.569871
+```python
+import pandas as pd
+import numpy as np
+from sklearn.linear_model import LinearRegression
+
+# Load data
+data = pd.read_csv('data/countries.csv')
+
+# Filter data for Chile
+chile_data = data[data['Country'] == 'Chile']
+
+# Fit linear regression model on GDP per capita and years since becoming a middle income country
+X = chile_data['Years_since_middle_income_country'].values.reshape(-1,1)
+y = chile_data['GDP_per_capita'].values
+
+model = LinearRegression()
+model.fit(X, y)
+
+# Predict future GDP per capita for Chile
+future_years = np.array([10, 20, 30]).reshape(-1, 1)
+predicted_gdp = model.predict(future_years)
+
+# Output results
+print("Predicted GDP per capita for Chile in 10 years: $", predicted_gdp[0])
+print("Predicted GDP per capita for Chile in 20 years: $", predicted_gdp[1])
+print("Predicted GDP per capita for Chile in 30 years: $", predicted_gdp[2])
+```
+This script loads the data for various countries from a CSV file, filters it for Chile, fits a linear regression model on the GDP per capita and years since becoming a middle income country for Chile, and predicts future GDP per capita values. The results are then printed out.
