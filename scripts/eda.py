@@ -3635,3 +3635,29 @@ else:
     print("Chile is not in the middle income trap")
 
 # Additional analysis and visualizations can be added here to further explore the topic.
+# Change made on 2024-06-26 21:09:54.177377
+import pandas as pd
+import numpy as np
+from sklearn.linear_model import LinearRegression
+
+# Load the data
+data = pd.read_csv('data/countries.csv')
+
+# Filter data for Chile
+chile_data = data[data['Country'] == 'Chile']
+
+# Fit a linear regression model to predict GDP growth based on GDP per capita
+X = chile_data['GDP_per_capita'].values.reshape(-1, 1)
+y = chile_data['GDP_growth'].values
+
+model = LinearRegression()
+model.fit(X, y)
+
+# Print the coefficients of the linear regression model
+print('Coefficient:', model.coef_)
+print('Intercept:', model.intercept_)
+
+# Make a prediction for GDP growth based on a hypothetical GDP per capita value
+hypothetical_GDP_per_capita = np.array([[25000]])
+predicted_GDP_growth = model.predict(hypothetical_GDP_per_capita)
+print('Predicted GDP Growth:', predicted_GDP_growth)
