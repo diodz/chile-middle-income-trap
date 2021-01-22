@@ -3616,3 +3616,22 @@ print("Predicted GDP per capita for Chile in 20 years: $", predicted_gdp[1])
 print("Predicted GDP per capita for Chile in 30 years: $", predicted_gdp[2])
 ```
 This script loads the data for various countries from a CSV file, filters it for Chile, fits a linear regression model on the GDP per capita and years since becoming a middle income country for Chile, and predicts future GDP per capita values. The results are then printed out.
+# Change made on 2024-06-26 21:09:49.192091
+import pandas as pd
+
+# Load the data
+data = pd.read_csv('../data/countries.csv')
+
+# Filter data for Chile
+chile_data = data[data['Country'] == 'Chile']
+
+# Calculate the GDP per capita growth rate for Chile
+chile_gdp_growth_rate = (chile_data['GDP_per_capita_2019'] - chile_data['GDP_per_capita_1990']) / chile_data['GDP_per_capita_1990'] * 100
+
+# Check if Chile is in the middle income trap
+if chile_gdp_growth_rate < 2:
+    print("Chile is in the middle income trap")
+else:
+    print("Chile is not in the middle income trap")
+
+# Additional analysis and visualizations can be added here to further explore the topic.
