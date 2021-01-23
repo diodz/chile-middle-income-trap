@@ -3661,3 +3661,28 @@ print('Intercept:', model.intercept_)
 hypothetical_GDP_per_capita = np.array([[25000]])
 predicted_GDP_growth = model.predict(hypothetical_GDP_per_capita)
 print('Predicted GDP Growth:', predicted_GDP_growth)
+# Change made on 2024-06-26 21:09:59.080193
+import pandas as pd
+import numpy as np
+from sklearn.linear_model import LinearRegression
+
+# Load the data
+data = pd.read_csv('../data/countries.csv')
+
+# Subset data for Chile
+chile_data = data[data['Country'] == 'Chile']
+
+# Fit a linear regression model to predict GDP per capita growth rate
+X = chile_data['Year'].values.reshape(-1, 1)
+y = chile_data['GDP per capita growth rate'].values
+
+model = LinearRegression()
+model.fit(X, y)
+
+# Predict GDP per capita growth rate for next 5 years
+future_years = np.array([2021, 2022, 2023, 2024, 2025]).reshape(-1, 1)
+predicted_growth_rate = model.predict(future_years)
+
+# Print out the predicted growth rates
+for year, growth_rate in zip(future_years.flatten(), predicted_growth_rate):
+    print(f'Predicted GDP per capita growth rate for {year}: {growth_rate}')
