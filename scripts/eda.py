@@ -3686,3 +3686,20 @@ predicted_growth_rate = model.predict(future_years)
 # Print out the predicted growth rates
 for year, growth_rate in zip(future_years.flatten(), predicted_growth_rate):
     print(f'Predicted GDP per capita growth rate for {year}: {growth_rate}')
+# Change made on 2024-06-26 21:10:01.996930
+import pandas as pd
+
+# Load the data from the CSV file
+data = pd.read_csv('../data/countries.csv')
+
+# Filter the data for Chile
+chile_data = data[data['Country'] == 'Chile']
+
+# Calculate the average income for Chile
+average_income = chile_data['Income'].mean()
+
+# Check if Chile is in the middle income trap
+if average_income < 20000:
+    print("Chile is in the middle income trap.")
+else:
+    print("Chile is not in the middle income trap.")
