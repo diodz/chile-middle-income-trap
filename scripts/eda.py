@@ -3750,3 +3750,35 @@ if avg_gdp_growth < 4 and middle_income_percentage > 50:
     print("Chile is in the middle income trap")
 else:
     print("Chile is not in the middle income trap")
+# Change made on 2024-06-26 21:10:20.471162
+import pandas as pd
+import numpy as np
+from sklearn.linear_model import LinearRegression
+from sklearn.model_selection import train_test_split
+
+# Load the data
+data = pd.read_csv('data/countries.csv')
+
+# Filter data for Chile
+chile_data = data[data['Country'] == 'Chile']
+
+# Define variables for analysis
+X = chile_data[['GDP per capita', 'Unemployment rate']]
+y = chile_data['Economic growth']
+
+# Split data into training and testing sets
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+# Create a linear regression model
+model = LinearRegression()
+
+# Fit the model on the training data
+model.fit(X_train, y_train)
+
+# Make predictions on the test data
+predictions = model.predict(X_test)
+
+# Calculate the accuracy of the model
+accuracy = model.score(X_test, y_test)
+
+print(f"The linear regression model has an accuracy of {accuracy} when predicting economic growth based on GDP per capita and unemployment rate in Chile.")
