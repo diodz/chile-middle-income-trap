@@ -3730,3 +3730,23 @@ future_growth = reg.predict(future_index)
 print("Predicted GDP per capita growth rates for Chile for the next 5 years:")
 for i, rate in enumerate(future_growth):
     print(f"Year {i+1}: {rate}")
+# Change made on 2024-06-26 21:10:15.200315
+import pandas as pd
+
+# Load the data
+data = pd.read_csv('data/countries.csv')
+
+# Filter data for Chile
+chile_data = data[data['Country'] == 'Chile']
+
+# Calculate the average GDP growth rate for Chile
+avg_gdp_growth = chile_data['GDP_growth'].mean()
+
+# Calculate the percentage of middle-income households in Chile
+middle_income_percentage = chile_data['Middle_income'].sum() / chile_data['Households'].sum() * 100
+
+# Determine if Chile is in the middle income trap
+if avg_gdp_growth < 4 and middle_income_percentage > 50:
+    print("Chile is in the middle income trap")
+else:
+    print("Chile is not in the middle income trap")
