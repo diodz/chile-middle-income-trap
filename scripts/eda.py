@@ -3782,3 +3782,27 @@ predictions = model.predict(X_test)
 accuracy = model.score(X_test, y_test)
 
 print(f"The linear regression model has an accuracy of {accuracy} when predicting economic growth based on GDP per capita and unemployment rate in Chile.")
+# Change made on 2024-06-26 21:10:24.029657
+import pandas as pd
+import numpy as np
+from sklearn.linear_model import LinearRegression
+
+# Load the data
+data = pd.read_csv('../data/countries.csv')
+
+# Filter the data for Chile
+chile_data = data[data['Country'] == 'Chile']
+
+# Perform regression analysis to investigate the middle income trap
+X = chile_data['GDP per capita'].values.reshape(-1, 1)
+y = chile_data['Growth Rate'].values
+
+model = LinearRegression()
+model.fit(X, y)
+
+# Print the coefficients of the regression model
+print("Coefficients:", model.coef_)
+
+# Predict the growth rate for a GDP per capita of $20,000
+predicted_growth_rate = model.predict([[20000]])
+print("Predicted Growth Rate for GDP per capita of $20,000:", predicted_growth_rate)
