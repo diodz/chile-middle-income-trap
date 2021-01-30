@@ -3806,3 +3806,24 @@ print("Coefficients:", model.coef_)
 # Predict the growth rate for a GDP per capita of $20,000
 predicted_growth_rate = model.predict([[20000]])
 print("Predicted Growth Rate for GDP per capita of $20,000:", predicted_growth_rate)
+# Change made on 2024-06-26 21:10:27.163216
+import pandas as pd
+import numpy as np
+
+# Load the data from countries.csv
+data = pd.read_csv('data/countries.csv')
+
+# Filter the data to only include information about Chile
+chile_data = data[data['Country'] == 'Chile']
+
+# Calculate the GDP growth rate for Chile
+chile_data['GDP Growth Rate'] = chile_data['GDP'].pct_change() * 100
+
+# Check if Chile is in the middle income trap
+if chile_data['GDP Growth Rate'].mean() < 5:
+    print("Chile is in the middle income trap.")
+else:
+    print("Chile is not in the middle income trap.")
+
+# Print the updated data for Chile
+print(chile_data)
