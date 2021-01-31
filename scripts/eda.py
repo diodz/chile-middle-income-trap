@@ -3827,3 +3827,28 @@ else:
 
 # Print the updated data for Chile
 print(chile_data)
+# Change made on 2024-06-26 21:10:33.131148
+import pandas as pd
+import numpy as np
+from sklearn.linear_model import LinearRegression
+
+# Load the data
+data = pd.read_csv("data/countries.csv")
+
+# Filter data for Chile
+chile_data = data[data['Country'] == 'Chile']
+
+# Fit a linear regression model to study the middle income trap
+X = chile_data['Year'].values.reshape(-1, 1)
+y = chile_data['GDP'].values
+
+model = LinearRegression()
+model.fit(X, y)
+
+# Predict the GDP for the next 5 years
+future_years = np.array(range(2021, 2026)).reshape(-1, 1)
+predicted_gdp = model.predict(future_years)
+
+# Output the predicted GDP values
+for year, gdp in zip(future_years.flatten(), predicted_gdp):
+    print(f"Predicted GDP for {year}: {gdp}")
