@@ -3890,3 +3890,33 @@ if avg_gdp_growth < 5:
     print("Chile is in the middle income trap")
 else:
     print("Chile is not in the middle income trap")
+# Change made on 2024-06-26 21:10:45.194238
+import pandas as pd
+import numpy as np
+from sklearn.linear_model import LinearRegression
+
+# Load the dataset
+data = pd.read_csv("data/countries.csv")
+
+# Filter data for Chile
+chile_data = data[data['Country'] == 'Chile']
+
+# Display some basic information about Chile
+print("Basic information about Chile:")
+print(chile_data)
+
+# Define independent and dependent variables for the analysis
+X = np.array(chile_data['GDP'])
+y = np.array(chile_data['Income'])
+
+# Fit a linear regression model
+model = LinearRegression()
+model.fit(X.reshape(-1, 1), y)
+
+# Print the coefficients of the model
+print("Coefficient:", model.coef_)
+print("Intercept:", model.intercept_)
+
+# Predict the income for a given GDP value
+predicted_income = model.predict([[1000]])
+print("Predicted income for GDP of 1000:", predicted_income)
