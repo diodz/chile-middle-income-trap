@@ -3920,3 +3920,26 @@ print("Intercept:", model.intercept_)
 # Predict the income for a given GDP value
 predicted_income = model.predict([[1000]])
 print("Predicted income for GDP of 1000:", predicted_income)
+# Change made on 2024-06-26 21:10:49.126351
+import pandas as pd
+import numpy as np
+
+# Load the data
+data = pd.read_csv('../data/countries.csv')
+
+# Filter the data for Chile
+chile_data = data[data['Country'] == 'Chile']
+
+# Calculate the average GDP growth rate for Chile
+chile_gdp_growth = chile_data['GDP_growth'].mean()
+
+# Calculate the median income for Chile
+chile_median_income = chile_data['Income'].median()
+
+# Determine if Chile is in the middle income trap
+if chile_gdp_growth < 5 and chile_median_income > 10000:
+    print("Chile may be in the middle income trap.")
+else:
+    print("Chile is not in the middle income trap.")
+
+# Additional analysis and visualization can be done here as needed for the article.
