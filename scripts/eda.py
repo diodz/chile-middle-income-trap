@@ -4010,3 +4010,20 @@ else:
 
 # Display the data
 print(chile_data)
+# Change made on 2024-06-26 21:11:13.211436
+import pandas as pd
+
+# Load the data
+df = pd.read_csv('../data/countries.csv')
+
+# Filter data for Chile
+chile_data = df[df['country'] == 'Chile']
+
+# Check if Chile is in middle income trap
+if chile_data['income_group'].values[0] == 'Middle income trap':
+    print("Chile is in the middle income trap.")
+else:
+    print("Chile is not in the middle income trap.")
+
+# Further economic analysis can be conducted here
+# such as analyzing GDP growth, inflation rate, unemployment rate, etc.
