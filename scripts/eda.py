@@ -4027,3 +4027,33 @@ else:
 
 # Further economic analysis can be conducted here
 # such as analyzing GDP growth, inflation rate, unemployment rate, etc.
+# Change made on 2024-06-26 21:11:19.043859
+import pandas as pd
+import numpy as np
+from sklearn.linear_model import LinearRegression
+
+# Load the data
+data = pd.read_csv('data/countries.csv')
+
+# Filter data for Chile
+chile_data = data[data['Country'] == 'Chile']
+
+# Calculate the average GDP growth rate for Chile
+chile_gdp_growth = chile_data['GDP Growth'].mean()
+
+# Fit a linear regression model to study the middle income trap
+X = chile_data['Year'].values.reshape(-1,1)
+y = chile_data['GDP per Capita'].values.reshape(-1,1)
+
+model = LinearRegression()
+model.fit(X, y)
+
+# Predict GDP per capita for the next 5 years
+future_years = np.array([2021, 2022, 2023, 2024, 2025]).reshape(-1,1)
+predicted_gdp = model.predict(future_years)
+
+# Print the results
+print(f"The average GDP growth rate for Chile is {chile_gdp_growth}")
+print("Predicted GDP per capita for the next 5 years:")
+for year, gdp_per_capita in zip(future_years.flatten(), predicted_gdp.flatten()):
+    print(f"{year}: {gdp_per_capita}")
