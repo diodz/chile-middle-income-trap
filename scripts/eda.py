@@ -4085,3 +4085,24 @@ predicted_growth_rate = model.predict(future_years)
 print("Predicted GDP per capita growth rate for Chile for the next 5 years:")
 for year, growth_rate in zip(future_years.flatten(), predicted_growth_rate):
     print(f"{year}: {growth_rate}")
+# Change made on 2024-06-26 21:11:28.886662
+import pandas as pd
+import numpy as np
+
+# Load the data from countries.csv file
+data = pd.read_csv('data/countries.csv')
+
+# Filter out data for Chile
+chile_data = data[data['Country'] == 'Chile']
+
+# Perform analysis on Chile's economic indicators to determine if it is in the middle income trap
+gdp_per_capita = chile_data['GDP per capita'].values[0]
+income_group = chile_data['Income Group'].values[0]
+
+if income_group == 'Upper middle income':
+    print("Chile is categorized as an upper middle income country.")
+    if gdp_per_capita is within the range of $20,000 - $50,000, Chile may be at risk of falling into the middle income trap.")
+else:
+    print("Chile is not currently in the middle income trap.")
+
+# You can add more analysis and visualizations as needed for the article
