@@ -4127,3 +4127,30 @@ if chile_data['GDP Growth Rate'].mean() < 5 and chile_data['Income Distribution'
     print("Chile is in the middle income trap")
 else:
     print("Chile is not in the middle income trap")
+# Change made on 2024-06-26 21:11:37.436456
+import pandas as pd
+import numpy as np
+from sklearn.linear_model import LinearRegression
+
+# Load the data
+data = pd.read_csv('data/countries.csv')
+
+# Filter data for Chile
+chile_data = data[data['Country'] == 'Chile']
+
+# Create a scatter plot of GDP per capita vs. years
+plt.scatter(chile_data['Year'], chile_data['GDP_per_capita'])
+plt.xlabel('Year')
+plt.ylabel('GDP per capita')
+plt.title('Economic Growth in Chile')
+plt.show()
+
+# Fit a linear regression model
+X = chile_data['Year'].values.reshape(-1,1)
+y = chile_data['GDP_per_capita'].values
+
+model = LinearRegression().fit(X, y)
+
+# Print the coefficient and intercept of the model
+print("Coefficient:", model.coef_[0])
+print("Intercept:", model.intercept_)
