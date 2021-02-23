@@ -4154,3 +4154,20 @@ model = LinearRegression().fit(X, y)
 # Print the coefficient and intercept of the model
 print("Coefficient:", model.coef_[0])
 print("Intercept:", model.intercept_)
+# Change made on 2024-06-26 21:11:40.987007
+import pandas as pd
+
+# Load the data
+data = pd.read_csv('data/countries.csv')
+
+# Filter data for Chile
+chile_data = data[data['Country'] == 'Chile']
+
+# Calculate the average GDP growth rate for Chile
+avg_growth_rate = chile_data['GDP Growth Rate'].mean()
+
+# Check if Chile is trapped in the middle income trap
+if avg_growth_rate < 4:
+    print("Chile is trapped in the middle income trap.")
+else:
+    print("Chile is not trapped in the middle income trap.")
