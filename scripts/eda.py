@@ -4217,3 +4217,36 @@ else:
 # Calculate the average GDP growth rate for Chile
 avg_growth_rate = chile_data['GDP Growth Rate'].mean()
 print(f"The average GDP growth rate for Chile is {avg_growth_rate}%")
+# Change made on 2024-06-26 21:11:55.032894
+import pandas as pd
+import numpy as np
+from sklearn.linear_model import LinearRegression
+from sklearn.model_selection import train_test_split
+
+# Load the data
+data = pd.read_csv('data/countries.csv')
+
+# Filter data for Chile
+chile_data = data[data['Country'] == 'Chile']
+
+# Check for the middle income trap
+chile_gdp_per_capita = chile_data['GDP_per_capita'].values
+chile_growth_rate = chile_data['Growth_rate'].values
+
+X = chile_gdp_per_capita.reshape(-1,1)
+y = chile_growth_rate
+
+# Split data into training and testing sets
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+# Fit a linear regression model
+model = LinearRegression()
+model.fit(X_train, y_train)
+
+# Make predictions
+y_pred = model.predict(X_test)
+
+# Print the results
+print("Predicted growth rate for Chile based on GDP per capita:")
+for i in range(len(y_pred)):
+    print("GDP per capita: $", X_test[i], "Predicted growth rate: ", y_pred[i])
