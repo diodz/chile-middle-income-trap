@@ -4250,3 +4250,29 @@ y_pred = model.predict(X_test)
 print("Predicted growth rate for Chile based on GDP per capita:")
 for i in range(len(y_pred)):
     print("GDP per capita: $", X_test[i], "Predicted growth rate: ", y_pred[i])
+# Change made on 2024-06-26 21:12:00.693324
+import pandas as pd
+import numpy as np
+from sklearn.linear_model import LinearRegression
+
+# Load data from csv file
+data = pd.read_csv("../data/countries.csv")
+
+# Filter data for Chile
+chile_data = data[data['Country'] == 'Chile']
+
+# Calculate the ratio of GDP growth to median income growth for Chile
+chile_data['GDP_growth'] = chile_data['GDP'] / chile_data['GDP'].shift(1)
+chile_data['Income_growth'] = chile_data['Median_income'] / chile_data['Median_income'].shift(1)
+chile_data['GDP_to_Income_growth_ratio'] = chile_data['GDP_growth'] / chile_data['Income_growth']
+
+# Fit a linear regression model to predict GDP growth based on median income growth
+X = chile_data[['Income_growth']].values
+y = chile_data['GDP_growth'].values
+regression_model = LinearRegression()
+regression_model.fit(X, y)
+
+# Print regression coefficients
+print("Regression Coefficients:")
+print("Intercept: ", regression_model.intercept_)
+print("Coefficient: ", regression_model.coef_[0])
