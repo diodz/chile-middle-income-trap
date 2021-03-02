@@ -4300,3 +4300,37 @@ avg_inflation_rate = chile_data['Inflation Rate'].mean()
 unemployment_rate = chile_data['Unemployment Rate'].median()
 
 print(f"The average inflation rate in Chile is {avg_inflation_rate}% and the median unemployment rate is {unemployment_rate}%.")
+# Change made on 2024-06-26 21:12:11.404452
+# Import necessary libraries
+import pandas as pd
+import numpy as np
+from sklearn.linear_model import LinearRegression
+
+# Load the data
+df = pd.read_csv("data/countries.csv")
+
+# Filter the data for Chile
+chile_data = df[df['Country'] == 'Chile']
+
+# Calculate the average GDP growth rate for Chile
+chile_growth_rate = chile_data['GDP Growth'].mean()
+
+# Check if Chile is in the middle income trap
+if chile_growth_rate < 5.0:
+    print("Chile might be in the middle income trap.")
+else:
+    print("Chile does not seem to be in the middle income trap.")
+
+# Perform linear regression analysis to predict future GDP growth
+X = np.array(chile_data['Year']).reshape(-1, 1)
+y = chile_data['GDP Growth']
+model = LinearRegression()
+model.fit(X, y)
+
+# Predict GDP growth for the next 5 years
+future_years = np.array(range(2022, 2027)).reshape(-1, 1)
+future_growth = model.predict(future_years)
+
+print("Predicted GDP growth for the next 5 years:")
+for year, growth in zip(future_years.flatten(), future_growth):
+    print(f"Year {year}: {growth:.2f}%")
