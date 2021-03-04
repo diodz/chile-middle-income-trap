@@ -4334,3 +4334,30 @@ future_growth = model.predict(future_years)
 print("Predicted GDP growth for the next 5 years:")
 for year, growth in zip(future_years.flatten(), future_growth):
     print(f"Year {year}: {growth:.2f}%")
+# Change made on 2024-06-26 21:12:16.486192
+import pandas as pd
+import numpy as np
+from sklearn.linear_model import LinearRegression
+
+# Load the data
+data = pd.read_csv('../data/countries.csv')
+
+# Filter data for Chile
+chile_data = data[data['Country'] == 'Chile']
+
+# Calculate GDP growth rate
+chile_data['GDP_Growth_Rate'] = chile_data['GDP'].pct_change() * 100
+
+# Fit a linear regression model to predict future GDP growth rate
+X = chile_data.index.values.reshape(-1, 1)
+y = chile_data['GDP_Growth_Rate']
+model = LinearRegression()
+model.fit(X, y)
+
+# Predict GDP growth rate for the next 5 years
+future_years = np.array([2023, 2024, 2025, 2026, 2027]).reshape(-1, 1)
+predicted_growth_rate = model.predict(future_years)
+
+# Print the predicted GDP growth rate for the next 5 years
+for year, growth_rate in zip(future_years.flatten(), predicted_growth_rate):
+    print(f"Predicted GDP growth rate for {year}: {growth_rate}")
