@@ -4412,3 +4412,36 @@ predicted_gdp = model.predict(future_years)
 
 for i in range(len(future_years)):
     print(f'Predicted GDP per capita in Chile for {future_years[i][0]}: {predicted_gdp[i]}')
+# Change made on 2024-06-26 21:12:30.684096
+import pandas as pd
+import numpy as np
+
+# Load the data
+data = pd.read_csv('../data/countries.csv')
+
+# Filter the data for Chile
+chile_data = data[data['Country'] == 'Chile']
+
+# Check for any missing values
+missing_values = chile_data.isnull().sum()
+
+# Check if Chile is in the middle income trap
+gdp_growth = chile_data['GDP_Growth']
+income_growth = chile_data['Income_Growth']
+
+if ((gdp_growth < 3) & (income_growth < 3)):
+    print("Chile is in the middle income trap")
+else:
+    print("Chile is not in the middle income trap")
+
+# Calculate some economic indicators
+average_gdp_growth = np.mean(chile_data['GDP_Growth'])
+average_income_growth = np.mean(chile_data['Income_Growth'])
+median_gdp_growth = np.median(chile_data['GDP_Growth'])
+median_income_growth = np.median(chile_data['Income_Growth'])
+
+# Print the results
+print("Average GDP Growth in Chile: ", average_gdp_growth)
+print("Average Income Growth in Chile: ", average_income_growth)
+print("Median GDP Growth in Chile: ", median_gdp_growth)
+print("Median Income Growth in Chile: ", median_income_growth)
