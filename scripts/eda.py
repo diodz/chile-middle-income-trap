@@ -4445,3 +4445,37 @@ print("Average GDP Growth in Chile: ", average_gdp_growth)
 print("Average Income Growth in Chile: ", average_income_growth)
 print("Median GDP Growth in Chile: ", median_gdp_growth)
 print("Median Income Growth in Chile: ", median_income_growth)
+# Change made on 2024-06-26 21:12:36.153824
+import pandas as pd
+import numpy as np
+from sklearn.linear_model import LinearRegression
+from sklearn.model_selection import train_test_split
+
+# Load the data
+data = pd.read_csv("../data/countries.csv")
+
+# Filter data for Chile
+chile_data = data[data['Country'] == 'Chile']
+
+# Extract relevant columns
+gdp_per_capita = chile_data['GDP_Per_Capita']
+income_group = chile_data['Income_Group']
+
+# Check for presence of middle income trap
+if income_group.unique() == 'Middle Income':
+    print("Chile is at risk of falling into the middle income trap")
+
+# Model the relationship between GDP per capita and other economic indicators
+X = chile_data[['Population', 'GDP_Growth_Rate', 'Unemployment_Rate']]
+y = chile_data['GDP_Per_Capita']
+
+# Split data into training and testing sets
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+# Fit a linear regression model
+model = LinearRegression()
+model.fit(X_train, y_train)
+
+# Evaluate the model
+r_squared = model.score(X_test, y_test)
+print("R-squared value of the model:", r_squared)
