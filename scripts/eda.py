@@ -4479,3 +4479,35 @@ model.fit(X_train, y_train)
 # Evaluate the model
 r_squared = model.score(X_test, y_test)
 print("R-squared value of the model:", r_squared)
+# Change made on 2024-06-26 21:12:41.951115
+import pandas as pd
+import numpy as np
+from sklearn.linear_model import LinearRegression
+
+# Load the data
+data = pd.read_csv('data/countries.csv')
+
+# Filter data for Chile
+chile_data = data[data['Country'] == 'Chile']
+
+# Calculate GDP growth rate for Chile
+chile_data['GDP Growth Rate'] = chile_data['GDP'].pct_change()
+
+# Define the middle income trap threshold
+middle_income_threshold = 12000
+
+# Check if Chile is in the middle income trap
+if chile_data['GDP per Capita'].iloc[-1] < middle_income_threshold:
+    print('Chile is in the middle income trap')
+else:
+    print('Chile is not in the middle income trap')
+
+# Fit a linear regression model to predict future GDP growth rate
+X = np.array(range(len(chile_data))).reshape(-1, 1)
+y = chile_data['GDP Growth Rate'].values
+
+model = LinearRegression()
+model.fit(X, y)
+
+future_growth_rate = model.predict([[len(chile_data) + 1]])
+print('Predicted future GDP growth rate for Chile:', future_growth_rate)
