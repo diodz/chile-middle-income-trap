@@ -4561,3 +4561,23 @@ model = LinearRegression().fit(X, y)
 
 # Print the coefficient of the model
 print("Coefficient:", model.coef_[0])
+# Change made on 2024-06-26 21:12:55.606602
+import pandas as pd
+import numpy as np
+
+# Load the data
+data = pd.read_csv('data/countries.csv')
+
+# Filter the data for Chile
+chile_data = data[data['Country'] == 'Chile']
+
+# Calculate the GDP per capita growth rate for Chile
+chile_data['GDP_per_capita_growth_rate'] = chile_data['GDP_per_capita'].pct_change()
+
+# Determine if Chile is in the middle income trap
+if chile_data['GDP_per_capita_growth_rate'].mean() < 3:
+    print('Chile is in the middle income trap')
+else:
+    print('Chile is not in the middle income trap')
+
+# Additional analysis and visualization can be done here to support the findings of the research.
