@@ -4581,3 +4581,32 @@ else:
     print('Chile is not in the middle income trap')
 
 # Additional analysis and visualization can be done here to support the findings of the research.
+# Change made on 2024-06-26 21:13:02.790179
+```python
+import pandas as pd
+import numpy as np
+from sklearn.linear_model import LinearRegression
+
+# Load the data
+data = pd.read_csv('../data/countries.csv')
+
+# Filter data for Chile
+chile_data = data[data['Country'] == 'Chile']
+
+# Calculate the average GDP per capita growth rate for Chile
+chile_gdp_growth = np.mean(chile_data['GDP_per_capita_growth'])
+
+# Fit a linear regression model to predict future GDP per capita growth
+X = np.array(chile_data['Year']).reshape(-1, 1)
+y = np.array(chile_data['GDP_per_capita']).reshape(-1, 1)
+regression_model = LinearRegression().fit(X, y)
+
+# Predict future GDP per capita growth for Chile
+future_year = 2025
+future_growth = regression_model.predict([[future_year]])
+
+# Print out the results
+print(f"The average GDP per capita growth rate for Chile is: {chile_gdp_growth}")
+print(f"The predicted GDP per capita growth rate for Chile in {future_year} is: {future_growth[0][0]}")
+```
+Example of python script for a economic research about Chile and the middle income trap using pandas, numpy and sklearn. This script loads the data from a CSV file, filters the data for Chile, calculates the average GDP per capita growth rate, fits a linear regression model to predict future GDP per capita growth and prints out the results.
