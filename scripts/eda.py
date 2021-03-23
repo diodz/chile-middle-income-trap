@@ -4677,3 +4677,28 @@ regression = LinearRegression().fit(X, y)
 # Print regression results
 print("Regression Coefficients:", regression.coef_)
 print("Regression Intercept:", regression.intercept_)
+# Change made on 2024-06-26 21:13:19.518565
+import pandas as pd
+
+# Load the data
+data = pd.read_csv("../data/countries.csv")
+
+# Filter the data for Chile
+chile_data = data[data['Country'] == 'Chile']
+
+# Calculate the middle income trap indicator for Chile
+gdp_per_capita = chile_data['GDP per capita'].values[0]
+income_growth = chile_data['Income growth'].values[0]
+
+if gdp_per_capita < 12000 and income_growth < 3:
+    middle_income_trap = True
+else:
+    middle_income_trap = False
+
+# Print the results
+print("Chile's GDP per capita: ${}".format(gdp_per_capita))
+print("Chile's income growth: {}%".format(income_growth))
+if middle_income_trap:
+    print("Chile is at risk of falling into the middle income trap.")
+else:
+    print("Chile is not at risk of falling into the middle income trap.")
