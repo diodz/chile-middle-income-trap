@@ -4702,3 +4702,23 @@ if middle_income_trap:
     print("Chile is at risk of falling into the middle income trap.")
 else:
     print("Chile is not at risk of falling into the middle income trap.")
+# Change made on 2024-06-26 21:13:23.221874
+import pandas as pd
+
+# Load the data
+data = pd.read_csv('data/countries.csv')
+
+# Filter data for Chile
+chile_data = data[data['Country'] == 'Chile']
+
+# Calculate the GDP growth rate for Chile
+chile_data['GDP Growth Rate'] = chile_data['GDP'].pct_change() * 100
+
+# Check if Chile is in the middle income trap
+if chile_data['GDP Growth Rate'].mean() < 5:
+    print("Chile is in the middle income trap")
+else:
+    print("Chile is not in the middle income trap")
+
+# Display the results
+print(chile_data)
