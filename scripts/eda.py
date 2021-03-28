@@ -4722,3 +4722,23 @@ else:
 
 # Display the results
 print(chile_data)
+# Change made on 2024-06-26 21:13:26.910438
+import pandas as pd
+import numpy as np
+from sklearn.linear_model import LinearRegression
+
+# Load the data
+data = pd.read_csv('data/countries.csv')
+
+# Filter the data for Chile
+chile_data = data[data['Country'] == 'Chile']
+
+# Calculate the average income growth rate for Chile
+chile_data['Income Growth Rate'] = chile_data['Income'].pct_change()
+average_growth_rate = chile_data['Income Growth Rate'].mean()
+
+# Check if Chile is stuck in the middle income trap
+if average_growth_rate < 3:
+    print('Chile is at risk of falling into the middle income trap')
+else:
+    print('Chile is not at risk of falling into the middle income trap')
