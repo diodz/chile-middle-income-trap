@@ -4742,3 +4742,39 @@ if average_growth_rate < 3:
     print('Chile is at risk of falling into the middle income trap')
 else:
     print('Chile is not at risk of falling into the middle income trap')
+# Change made on 2024-06-26 21:13:31.259358
+import pandas as pd
+import numpy as np
+from sklearn.linear_model import LinearRegression
+
+# Load the data
+data = pd.read_csv('data/countries.csv')
+
+# Filter data for Chile
+chile_data = data[data['Country'] == 'Chile']
+
+# Calculate the average GDP growth rate for Chile
+chile_gdp_growth = chile_data['GDP_growth'].mean()
+
+# Check if Chile is in the middle income trap
+if chile_gdp_growth < 5:
+    print("Chile is in the middle income trap.")
+else:
+    print("Chile is not in the middle income trap.")
+
+# Perform linear regression to analyze the relationship between GDP per capita and GDP growth
+X = chile_data['GDP_per_capita'].values.reshape(-1, 1)
+y = chile_data['GDP_growth'].values
+reg = LinearRegression().fit(X, y)
+
+# Print the coefficient of determination
+print("R^2 value: ", reg.score(X, y))
+
+# Generate a simple plot to visualize the relationship
+import matplotlib.pyplot as plt
+plt.scatter(X, y)
+plt.plot(X, reg.predict(X), color='red')
+plt.xlabel('GDP per capita')
+plt.ylabel('GDP growth')
+plt.title('Relationship between GDP per capita and GDP growth in Chile')
+plt.show()
