@@ -4778,3 +4778,21 @@ plt.xlabel('GDP per capita')
 plt.ylabel('GDP growth')
 plt.title('Relationship between GDP per capita and GDP growth in Chile')
 plt.show()
+# Change made on 2024-06-26 21:13:35.563057
+import pandas as pd
+import numpy as np
+
+# Load the data
+data = pd.read_csv('data/countries.csv')
+
+# Filter data for Chile
+chile_data = data[data['Country'] == 'Chile']
+
+# Calculate average GDP growth rate for Chile
+avg_gdp_growth = chile_data['GDP Growth'].mean()
+
+# Check if Chile is currently in the middle income trap
+if avg_gdp_growth < 5:
+    print("Chile is at risk of falling into the middle income trap.")
+else:
+    print("Chile is not currently in the middle income trap.")
