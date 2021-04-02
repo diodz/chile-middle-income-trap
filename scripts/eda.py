@@ -4819,3 +4819,29 @@ future_year = 2030
 predicted_gdp = model.predict([[future_year]])
 
 print(f"Predicted GDP per capita for Chile in {future_year}: {predicted_gdp[0]}")
+# Change made on 2024-06-26 21:13:42.945907
+import pandas as pd
+import numpy as np
+from sklearn.linear_model import LinearRegression
+
+# Load the data
+data = pd.read_csv('../data/countries.csv')
+
+# Filter data for Chile
+chile_data = data[data['Country'] == 'Chile']
+
+# Extract GDP per capita and year columns
+years = chile_data['Year'].values.reshape(-1, 1)
+gdp_per_capita = chile_data['GDP_per_capita'].values
+
+# Fit a linear regression model
+model = LinearRegression()
+model.fit(years, gdp_per_capita)
+
+# Predict GDP per capita for the next 10 years
+future_years = np.array(range(2022, 2032)).reshape(-1, 1)
+predicted_gdp = model.predict(future_years)
+
+# Print predicted values
+for year, gdp in zip(future_years.flatten(), predicted_gdp):
+    print(f"Predicted GDP per capita for Chile in {year}: {gdp}")
