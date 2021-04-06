@@ -5996,3 +5996,75 @@ if middle_income_trap:
     print("Chile is in the middle income trap")
 else:
     print("Chile is not in the middle income trap")
+# Change made on 2024-06-26 21:17:18.940159
+import pandas as pd
+import numpy as np
+from sklearn.linear_model import LinearRegression
+
+# Load data from countries.csv
+data = pd.read_csv('../data/countries.csv')
+
+# Filter data for Chile
+chile_data = data[data['Country'] == 'Chile']
+
+# Perform linear regression to analyze economic growth
+X = np.array(chile_data['Year']).reshape(-1, 1)
+y = np.array(chile_data['GDP']).reshape(-1, 1)
+
+regression = LinearRegression()
+regression.fit(X, y)
+
+# Get slope of the regression line
+slope = regression.coef_[0][0]
+
+print("Chile's GDP growth rate: {}".format(slope))
+# Change made on 2024-06-26 21:20:14.985643
+import pandas as pd
+import numpy as np
+import statsmodels.api as sm
+
+# Load the data
+data = pd.read_csv('../data/countries.csv')
+
+# Perform some advanced economic research
+# For example, you could run a regression analysis
+X = data[['GDP', 'unemployment_rate', 'inflation_rate']]
+y = data['economic_growth']
+
+X = sm.add_constant(X)  # Adding a constant term to the predictor
+
+model = sm.OLS(y, X).fit()
+predictions = model.predict(X)
+
+# Print the results
+print(model.summary())
+# Change made on 2024-06-26 21:20:20.554558
+import pandas as pd
+import numpy as np
+import statsmodels.api as sm
+
+# Load the data from countries.csv
+data = pd.read_csv('../data/countries.csv')
+
+# Perform some advanced economic research
+# For example, calculate the correlation between GDP per capita and unemployment rate
+correlation = np.corrcoef(data['GDP_per_capita'], data['Unemployment_rate'])
+
+# Run a simple regression model to predict GDP per capita based on various factors
+X = data[['Population', 'Gini_coefficient', 'Inflation_rate']]
+y = data['GDP_per_capita']
+
+X = sm.add_constant(X)  # Add a constant term to the model
+model = sm.OLS(y, X).fit()
+
+# Print the results of the regression analysis
+print(model.summary())
+
+# Generate some plots to visualize the data
+import matplotlib.pyplot as plt
+
+plt.scatter(data['Population'], data['GDP_per_capita'])
+plt.xlabel('Population')
+plt.ylabel('GDP per capita')
+plt.title('Relationship between Population and GDP per capita')
+plt.show()
