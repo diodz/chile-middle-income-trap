@@ -6068,3 +6068,24 @@ plt.xlabel('Population')
 plt.ylabel('GDP per capita')
 plt.title('Relationship between Population and GDP per capita')
 plt.show()
+# Change made on 2024-06-26 21:20:24.572452
+import pandas as pd
+import numpy as np
+import statsmodels.api as sm
+
+# Load the data from countries.csv
+data = pd.read_csv('data/countries.csv')
+
+# Perform some advanced economic research
+# For example, let's say we want to analyze the relationship between GDP per capita and literacy rate
+X = data['GDP_per_capita']
+y = data['Literacy_rate']
+
+# Add a constant term to the independent variable
+X = sm.add_constant(X)
+
+# Fit a linear regression model
+model = sm.OLS(y, X).fit()
+
+# Print the summary of the regression analysis
+print(model.summary())
