@@ -4925,3 +4925,43 @@ else:
     print("Chile is not in the middle income trap")
 
 # Perform additional analysis as needed for the economics journal article
+# Change made on 2024-06-26 21:14:02.521175
+import pandas as pd
+import numpy as np
+from sklearn.linear_model import LinearRegression
+
+# Load the data
+data = pd.read_csv('../data/countries.csv')
+
+# Filter data for Chile
+chile_data = data[data['Country'] == 'Chile']
+
+# Check for middle income trap
+gdp_per_capita = chile_data['GDP'] / chile_data['Population']
+growth_rate = chile_data['Growth']
+middle_income_trap = False
+
+for i in range(1, len(gdp_per_capita)):
+    if gdp_per_capita[i] < gdp_per_capita[i-1] and growth_rate[i] < 0:
+        middle_income_trap = True
+        break
+
+if middle_income_trap:
+    print("Chile is at risk of falling into the middle income trap")
+else:
+    print("Chile is not at risk of falling into the middle income trap")
+
+# Calculate correlation between GDP and population growth
+correlation = np.corrcoef(chile_data['GDP'], chile_data['Population'])[0, 1]
+print("Correlation between GDP and population growth:", correlation)
+
+# Linear regression model to predict future GDP
+X = np.array(chile_data['Year']).reshape(-1, 1)
+y = np.array(chile_data['GDP'])
+
+model = LinearRegression()
+model.fit(X, y)
+
+future_year = 2025
+predicted_gdp = model.predict([[future_year]])
+print(f"Predicted GDP for year {future_year}: {predicted_gdp[0]}")
