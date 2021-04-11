@@ -4965,3 +4965,26 @@ model.fit(X, y)
 future_year = 2025
 predicted_gdp = model.predict([[future_year]])
 print(f"Predicted GDP for year {future_year}: {predicted_gdp[0]}")
+# Change made on 2024-06-26 21:14:07.203687
+import pandas as pd
+import numpy as np
+
+# Load the data
+data = pd.read_csv('data/countries.csv')
+
+# Filter data for Chile
+chile_data = data[data['country'] == 'Chile']
+
+# Calculate the GDP per capita growth rate for Chile
+chile_data['gdp_growth_rate'] = (chile_data['gdp_per_capita'] - chile_data['gdp_per_capita'].shift(1)) / chile_data['gdp_per_capita'].shift(1)
+
+# Calculate the average GDP growth rate for Chile
+avg_growth_rate = chile_data['gdp_growth_rate'].mean()
+
+# Check if Chile is in the middle-income trap
+if avg_growth_rate < 3.5:
+    print("Chile is in the middle-income trap")
+else:
+    print("Chile is not in the middle-income trap")
+
+# Additional analysis can be added here as needed for the economics journal article.
