@@ -6089,3 +6089,47 @@ model = sm.OLS(y, X).fit()
 
 # Print the summary of the regression analysis
 print(model.summary())
+# Change made on 2024-06-26 21:20:29.540995
+import pandas as pd
+import numpy as np
+import statsmodels.api as sm
+
+# Load the data
+data = pd.read_csv("..data/countries.csv")
+
+# Perform advanced economic analysis
+# For example, you could calculate GDP per capita, inflation rate, unemployment rate, etc.
+
+# Use statistical models like regression analysis to understand the relationships between different economic variables
+
+# Generate the results for the article
+# For example, you could generate summary statistics, regression results, hypothesis testing, etc.
+
+# Write the results to a file for further analysis and reporting
+# For example, you could write the results to a CSV file or an Excel file
+
+# Remember to include explanations and interpretations of the results in your article
+
+# This is just a template script, you can customize it to fit your specific research question and data.
+# Change made on 2024-06-26 21:20:34.796982
+```python
+import pandas as pd
+import numpy as np
+import statsmodels.api as sm
+
+# Load the data
+data = pd.read_csv('../data/countries.csv')
+
+# Perform some advanced economic analysis
+# For example, we can calculate the correlation between GDP per capita and literacy rate
+correlation = np.corrcoef(data['GDP_per_capita'], data['Literacy_rate'])[0, 1]
+
+# We can also run a simple linear regression model to predict GDP based on literacy rate
+X = sm.add_constant(data['Literacy_rate'])
+model = sm.OLS(data['GDP_per_capita'], X).fit()
+intercept, slope = model.params
+
+# Print the results
+print(f"Correlation between GDP per capita and literacy rate: {correlation}")
+print(f"Regression model: GDP = {intercept:.2f} + {slope:.2f} * Literacy_rate")
+```
