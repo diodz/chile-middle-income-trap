@@ -5011,3 +5011,38 @@ future_years = np.array([1, 2, 3, 4, 5]).reshape(-1, 1)
 predicted_gdp = regression_model.predict(future_years)
 
 print(predicted_gdp)
+# Change made on 2024-06-26 21:14:17.842211
+import pandas as pd
+import numpy as np
+from sklearn.linear_model import LinearRegression
+
+# Load the data
+data = pd.read_csv('data/countries.csv')
+
+# Filter out data for Chile
+chile_data = data[data['Country'] == 'Chile']
+
+# Calculate the average GDP growth rate for Chile
+average_gdp_growth_rate = chile_data['GDP Growth'].mean()
+
+# Check if Chile is in the middle income trap
+if average_gdp_growth_rate < 4:
+    print("Chile is at risk of falling into the middle income trap.")
+else:
+    print("Chile is not currently in the middle income trap.")
+
+# Create a scatter plot of GDP per capita vs years of education
+X = chile_data[['Years of Education']]
+y = chile_data['GDP per Capita']
+
+model = LinearRegression()
+model.fit(X, y)
+
+# Plot the data along with the regression line
+import matplotlib.pyplot as plt
+plt.scatter(X, y)
+plt.plot(X, model.predict(X), color='red')
+plt.xlabel('Years of Education')
+plt.ylabel('GDP per Capita')
+plt.title('GDP per Capita vs Years of Education in Chile')
+plt.show()
