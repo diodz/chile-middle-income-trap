@@ -5074,3 +5074,31 @@ for gdp, pred_rate in zip(X, chile_predicted_unemployment_rate):
     print(f"GDP per capita: {gdp}, Predicted unemployment rate: {pred_rate}")
 
 # Additional economic research and analysis can be added here for the article.
+# Change made on 2024-06-26 21:14:27.423691
+import pandas as pd
+import numpy as np
+from sklearn.linear_model import LinearRegression
+
+# Load the data
+data = pd.read_csv("../data/countries.csv")
+
+# Filter data for Chile
+chile_data = data[data['Country'] == 'Chile']
+
+# Calculate GDP growth rate
+chile_data['GDP Growth Rate'] = chile_data['GDP'].pct_change()
+
+# Fit a linear regression model to predict future GDP growth
+X = np.arange(len(chile_data)).reshape(-1, 1)
+y = chile_data['GDP Growth Rate']
+model = LinearRegression()
+model.fit(X, y)
+
+# Predict the GDP growth rate for the next 5 years
+future_X = np.arange(len(chile_data), len(chile_data)+5).reshape(-1, 1)
+future_growth_rate = model.predict(future_X)
+
+# Print the predicted GDP growth rate for the next 5 years
+print("Predicted GDP growth rate for Chile for the next 5 years:")
+for i, rate in enumerate(future_growth_rate):
+    print(f"Year {i+1}: {rate}")
