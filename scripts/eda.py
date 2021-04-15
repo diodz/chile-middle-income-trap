@@ -5046,3 +5046,31 @@ plt.xlabel('Years of Education')
 plt.ylabel('GDP per Capita')
 plt.title('GDP per Capita vs Years of Education in Chile')
 plt.show()
+# Change made on 2024-06-26 21:14:23.280745
+import pandas as pd
+import numpy as np
+from sklearn.linear_model import LinearRegression
+
+# Load the dataset
+data = pd.read_csv("../data/countries.csv")
+
+# Filter data for Chile
+chile_data = data[data['country'] == 'Chile']
+
+# Prepare data for analysis
+X = chile_data['gdp_per_capita'].values.reshape(-1, 1)
+y = chile_data['unemployment_rate'].values
+
+# Create a linear regression model
+model = LinearRegression()
+model.fit(X, y)
+
+# Make predictions
+chile_predicted_unemployment_rate = model.predict(X)
+
+# Print results
+print("Chile's predicted unemployment rate based on GDP per capita:")
+for gdp, pred_rate in zip(X, chile_predicted_unemployment_rate):
+    print(f"GDP per capita: {gdp}, Predicted unemployment rate: {pred_rate}")
+
+# Additional economic research and analysis can be added here for the article.
