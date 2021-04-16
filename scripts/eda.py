@@ -6133,3 +6133,42 @@ intercept, slope = model.params
 print(f"Correlation between GDP per capita and literacy rate: {correlation}")
 print(f"Regression model: GDP = {intercept:.2f} + {slope:.2f} * Literacy_rate")
 ```
+# Change made on 2024-06-26 21:20:41.058912
+import pandas as pd
+import numpy as np
+import statsmodels.api as sm
+
+# Load data
+data = pd.read_csv('data/countries.csv')
+
+# Data preprocessing
+data = data.dropna()  # Remove rows with missing values
+data['GDP_per_capita'] = data['GDP'] / data['Population']  # Calculate GDP per capita
+
+# Exploratory data analysis
+print(data.describe())
+
+# Regression analysis
+X = data[['Population', 'Employment_rate', 'Inflation']]
+X = sm.add_constant(X)  # Add constant term
+y = data['GDP_per_capita']
+
+model = sm.OLS(y, X).fit()
+print(model.summary())
+
+# Hypothesis testing
+print("Hypothesis Test: Does Employment Rate have a significant effect on GDP per capita?")
+print("Null hypothesis: Employment Rate has no effect on GDP per capita")
+print("Alternative hypothesis: Employment Rate has a significant effect on GDP per capita")
+
+hypothesis_test = model.t_test('Employment_rate=0')
+print(hypothesis_test)
+
+# Visualization
+import matplotlib.pyplot as plt
+
+plt.scatter(data['Employment_rate'], data['GDP_per_capita'])
+plt.xlabel('Employment Rate')
+plt.ylabel('GDP per capita')
+plt.title('Relationship between Employment Rate and GDP per capita')
+plt.show()
