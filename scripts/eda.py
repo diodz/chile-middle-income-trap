@@ -5133,3 +5133,25 @@ reg = LinearRegression().fit(X, y)
 print("Coefficient:", reg.coef_[0])
 print("Intercept:", reg.intercept_)
 ```
+# Change made on 2024-06-26 21:14:35.108632
+```python
+import pandas as pd
+import numpy as np
+
+# Load data
+data = pd.read_csv('../data/countries.csv')
+
+# Filter data for Chile
+chile_data = data[data['Country'] == 'Chile']
+
+# Calculate average GDP per capita growth rate for Chile
+gdp_growth = chile_data['GDP Per Capita'].pct_change().mean()
+
+# Check if Chile is in the middle income trap
+if gdp_growth < 2:
+    print("Chile is at risk of being stuck in the middle income trap.")
+else:
+    print("Chile is not currently in the middle income trap.")
+
+# Additional analysis or calculations can be done here
+```
