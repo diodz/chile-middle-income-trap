@@ -6172,3 +6172,32 @@ plt.xlabel('Employment Rate')
 plt.ylabel('GDP per capita')
 plt.title('Relationship between Employment Rate and GDP per capita')
 plt.show()
+# Change made on 2024-06-26 21:20:47.998445
+```python
+import pandas as pd
+import numpy as np
+import statsmodels.api as sm
+
+# Load the data
+data = pd.read_csv('data/countries.csv')
+
+# Perform data analysis
+# Example: calculate the average GDP per capita for Latin American countries
+latin_american_countries = ['Mexico', 'Brazil', 'Argentina', 'Colombia', 'Chile', 'Peru', 'Venezuela', 'Ecuador', 'Guatemala']
+latin_countries_data = data[data['Country'].isin(latin_american_countries)]
+average_gdp_per_capita = latin_countries_data['GDP per Capita'].mean()
+
+# Run a linear regression to analyze the relationship between GDP per Capita and literacy rate
+X = latin_countries_data['Literacy Rate'].values
+y = latin_countries_data['GDP per Capita'].values
+
+X = sm.add_constant(X) # Adding a constant to the model
+
+model = sm.OLS(y, X).fit()
+predictions = model.predict(X)
+
+# Print results
+print('Average GDP per Capita for Latin American countries: {}'.format(average_gdp_per_capita))
+print(model.summary())
+```
+This script loads the data from a CSV file, performs data analysis on Latin American countries, calculates the average GDP per capita, and runs a linear regression to analyze the relationship between GDP per Capita and literacy rate. The results are printed for further analysis in an economics journal article.
