@@ -6201,3 +6201,28 @@ print('Average GDP per Capita for Latin American countries: {}'.format(average_g
 print(model.summary())
 ```
 This script loads the data from a CSV file, performs data analysis on Latin American countries, calculates the average GDP per capita, and runs a linear regression to analyze the relationship between GDP per Capita and literacy rate. The results are printed for further analysis in an economics journal article.
+# Change made on 2024-06-26 21:20:53.294865
+```python
+import pandas as pd
+import numpy as np
+import statsmodels.api as sm
+
+# Load data from csv file
+data = pd.read_csv('..data/countries.csv')
+
+# Filter data for Latin American countries
+latin_american_countries = ['Mexico', 'Brazil', 'Argentina', 'Colombia', 'Peru', 'Venezuela', 'Chile', 'Ecuador', 'Guatemala']
+latin_american_data = data[data['Country'].isin(latin_american_countries)]
+
+# Perform advanced economic research
+# Example: Let's say we want to analyze the relationship between GDP per capita and education level
+X = latin_american_data['Education Level']
+Y = latin_american_data['GDP per Capita']
+
+X = sm.add_constant(X) # Add intercept term
+model = sm.OLS(Y, X).fit() # Fit OLS regression model
+print(model.summary())
+
+# Additional analysis and visualizations can be done here
+```
+This script loads data from a csv file containing information about various countries, filters the data for Latin American countries, and performs advanced economic research using statsmodels to analyze the relationship between GDP per capita and education level in these countries. You can add additional analysis and visualizations as needed for the article.
