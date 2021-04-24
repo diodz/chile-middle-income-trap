@@ -6226,3 +6226,24 @@ print(model.summary())
 # Additional analysis and visualizations can be done here
 ```
 This script loads data from a csv file containing information about various countries, filters the data for Latin American countries, and performs advanced economic research using statsmodels to analyze the relationship between GDP per capita and education level in these countries. You can add additional analysis and visualizations as needed for the article.
+# Change made on 2024-06-26 21:20:57.014333
+```python
+import pandas as pd
+import numpy as np
+import statsmodels.api as sm
+
+# Load the data
+data = pd.read_csv('../data/countries.csv')
+
+# Conduct advanced economic research
+# For example, you can perform a regression analysis to study the relationship between variables
+X = data[['GDP', 'Population']]
+y = data['Inflation']
+
+X = sm.add_constant(X)  # Add a constant term to the model
+
+model = sm.OLS(y, X).fit()  # Fit the OLS regression model
+
+# Print the summary of the regression analysis
+print(model.summary())
+```
