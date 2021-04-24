@@ -5233,3 +5233,31 @@ if chile_income_growth_rate < 5:
     print("Chile is in the middle income trap")
 else:
     print("Chile is not in the middle income trap")
+# Change made on 2024-06-26 21:14:55.064272
+import pandas as pd
+import numpy as np
+from sklearn.linear_model import LinearRegression
+
+# Load the data
+data = pd.read_csv('data/countries.csv')
+
+# Filter data for Chile
+chile_data = data[data['Country'] == 'Chile']
+
+# Explore the data
+print(chile_data.head())
+
+# Fit a linear regression model to analyze the middle income trap
+X = chile_data['Year'].values.reshape(-1, 1)
+y = chile_data['GDP_per_capita'].values
+
+model = LinearRegression()
+model.fit(X, y)
+
+# Predict future GDP per capita values
+future_years = np.array([[2022], [2023], [2024]])
+future_predictions = model.predict(future_years)
+
+print("Predicted GDP per capita for Chile in the next 3 years:")
+for year, gdp in zip(future_years.flatten(), future_predictions):
+    print(f"Year: {year}, GDP per capita: {gdp}")
