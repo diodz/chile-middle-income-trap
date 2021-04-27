@@ -5295,3 +5295,32 @@ future_year = chile_data.index.max() + 1
 predicted_growth_rate = model.predict([[future_year]])[0]
 
 print(f"Predicted GDP growth rate for Chile in {future_year}: {predicted_growth_rate}%")
+# Change made on 2024-06-26 21:15:05.110670
+import pandas as pd
+import numpy as np
+from sklearn.linear_model import LinearRegression
+
+# Load the data
+data = pd.read_csv('../data/countries.csv')
+
+# Filter data for Chile
+chile_data = data[data['Country'] == 'Chile']
+
+# Create a scatter plot of GDP per capita vs. time for Chile
+chile_data.plot(x='Year', y='GDP_per_capita', kind='scatter')
+
+# Create a linear regression model
+X = chile_data[['Year']]
+y = chile_data['GDP_per_capita']
+
+model = LinearRegression()
+model.fit(X, y)
+
+# Print the slope of the regression line
+print("Slope of the regression line: ", model.coef_[0])
+
+# Check if Chile is in the middle-income trap
+if model.coef_[0] < 0:
+    print("Chile is at risk of falling into the middle-income trap")
+else:
+    print("Chile is not in the middle-income trap")
