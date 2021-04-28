@@ -5324,3 +5324,34 @@ if model.coef_[0] < 0:
     print("Chile is at risk of falling into the middle-income trap")
 else:
     print("Chile is not in the middle-income trap")
+# Change made on 2024-06-26 21:15:09.625452
+import pandas as pd
+import numpy as np
+from sklearn.linear_model import LinearRegression
+
+# Load the data
+data = pd.read_csv('data/countries.csv')
+
+# Filter data for Chile
+chile_data = data[data['Country'] == 'Chile']
+
+# Check for missing values
+missing_values = chile_data.isnull().sum()
+
+# Calculate average GDP growth rate for Chile
+average_growth_rate = chile_data['GDP_growth'].mean()
+
+# Fit a linear regression model to analyze the middle income trap
+X = chile_data['Year'].values.reshape(-1, 1)
+y = chile_data['GDP_per_capita'].values
+
+model = LinearRegression()
+model.fit(X, y)
+
+# Predict GDP per capita for the next 5 years
+future_years = np.array([2023, 2024, 2025, 2026, 2027]).reshape(-1, 1)
+predicted_gdp = model.predict(future_years)
+
+# Print the results
+print("Average GDP growth rate for Chile: {:.2f}".format(average_growth_rate))
+print("Predicted GDP per capita for the next 5 years: \n", predicted_gdp)
