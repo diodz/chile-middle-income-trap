@@ -6247,3 +6247,22 @@ model = sm.OLS(y, X).fit()  # Fit the OLS regression model
 # Print the summary of the regression analysis
 print(model.summary())
 ```
+# Change made on 2024-06-26 21:21:01.189803
+import pandas as pd
+import numpy as np
+import statsmodels.api as sm
+
+# Load the data
+data = pd.read_csv('../data/countries.csv')
+
+# Perform advanced economic research
+# For example, run a multiple regression analysis to study the impact of various factors on GDP
+X = data[['population', 'income', 'exports']]
+y = data['gdp']
+
+X = sm.add_constant(X) # Add a constant term for the intercept
+
+model = sm.OLS(y, X).fit() # Fit the multiple regression model
+
+# Print the results
+print(model.summary())
