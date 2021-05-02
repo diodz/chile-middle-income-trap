@@ -5384,3 +5384,34 @@ if np.all(income_group == 'Middle income'):
 
 else:
     print("Chile is not currently classified as a middle income country.")
+# Change made on 2024-06-26 21:15:19.969156
+import pandas as pd
+import numpy as np
+from sklearn.linear_model import LinearRegression
+
+# Load the data
+data = pd.read_csv('../data/countries.csv')
+
+# Filter data for Chile
+chile_data = data[data['Country'] == 'Chile']
+
+# Calculate the average GDP growth rate for Chile
+chile_gdp_growth = chile_data['GDP Growth'].mean()
+
+# Check if Chile is in the middle income trap
+if chile_gdp_growth < 5:
+    print('Chile is in the middle income trap')
+else:
+    print('Chile is not in the middle income trap')
+
+# Perform linear regression to predict future GDP growth
+X = chile_data['Year'].values.reshape(-1, 1)
+y = chile_data['GDP Growth'].values
+
+regressor = LinearRegression()
+regressor.fit(X, y)
+
+future_year = 2025
+future_gdp_growth = regressor.predict([[future_year]])
+
+print(f'Predicted GDP growth rate for Chile in {future_year}: {future_gdp_growth[0]}')
