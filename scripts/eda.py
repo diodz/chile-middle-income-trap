@@ -5415,3 +5415,21 @@ future_year = 2025
 future_gdp_growth = regressor.predict([[future_year]])
 
 print(f'Predicted GDP growth rate for Chile in {future_year}: {future_gdp_growth[0]}')
+# Change made on 2024-06-26 21:15:24.427878
+import pandas as pd
+import numpy as np
+
+# Load the data
+data = pd.read_csv('../data/countries.csv')
+
+# Filter data for Chile
+chile_data = data[data['Country'] == 'Chile']
+
+# Calculate the average GDP per capita for Chile
+average_gdp_per_capita = chile_data['GDP per Capita'].mean()
+
+# Determine if Chile is in the middle income trap
+if average_gdp_per_capita < 12000:
+    print("Chile is in the middle income trap")
+else:
+    print("Chile is not in the middle income trap")
