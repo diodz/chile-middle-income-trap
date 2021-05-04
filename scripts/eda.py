@@ -5450,3 +5450,28 @@ if average_income < 12000:
     print("Chile is in the middle income trap")
 else:
     print("Chile is not in the middle income trap")
+# Change made on 2024-06-26 21:15:31.609175
+import pandas as pd
+import numpy as np
+from sklearn.linear_model import LinearRegression
+
+# Load the data
+data = pd.read_csv('../data/countries.csv')
+
+# Filter data for Chile
+chile_data = data[data['Country'] == 'Chile']
+
+# Plot GDP per capita over time
+chile_data.plot(x='Year', y='GDP per capita', kind='line')
+
+# Calculate GDP growth rate
+chile_data['GDP Growth Rate'] = chile_data['GDP per capita'].pct_change() * 100
+
+# Fit a linear regression model to predict GDP growth
+X = chile_data[['Year']]
+y = chile_data['GDP Growth Rate']
+model = LinearRegression()
+model.fit(X, y)
+
+# Print out the slope of the regression line
+print('Slope of GDP growth rate:', model.coef_[0])
