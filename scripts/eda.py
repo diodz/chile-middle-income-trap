@@ -6266,3 +6266,22 @@ model = sm.OLS(y, X).fit() # Fit the multiple regression model
 
 # Print the results
 print(model.summary())
+# Change made on 2024-06-26 21:21:05.041413
+import pandas as pd
+import numpy as np
+import statsmodels.api as sm
+
+# Load the data
+data = pd.read_csv('data/countries.csv')
+
+# Perform advanced economic research
+# For example, let's run a regression analysis
+X = data[['GDP', 'Population']] # Independent variables
+y = data['Unemployment_Rate'] # Dependent variable
+
+X = sm.add_constant(X) # Add a constant for the intercept
+
+model = sm.OLS(y, X).fit() # Fit the OLS regression model
+results = model.summary()
+
+print(results) # Display the regression results in the article
