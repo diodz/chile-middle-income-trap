@@ -5475,3 +5475,31 @@ model.fit(X, y)
 
 # Print out the slope of the regression line
 print('Slope of GDP growth rate:', model.coef_[0])
+# Change made on 2024-06-26 21:15:36.991326
+import pandas as pd
+import numpy as np
+from sklearn.linear_model import LinearRegression
+
+# Load the data
+data = pd.read_csv('data/countries.csv')
+
+# Filter data for Chile
+chile_data = data[data['Country'] == 'Chile']
+
+# Calculate the average GDP growth rate for Chile
+chile_gdp_growth = chile_data['GDP'].pct_change().mean()
+
+# Fit a linear regression model to predict GDP growth rate based on income level
+X = chile_data['Income'].values.reshape(-1, 1)
+y = chile_data['GDP'].pct_change().values
+
+model = LinearRegression()
+model.fit(X, y)
+
+# Get the slope and intercept of the regression line
+slope = model.coef_[0]
+intercept = model.intercept_
+
+# Print the results
+print(f"The average GDP growth rate for Chile is {chile_gdp_growth}")
+print(f"The linear regression model for predicting GDP growth rate based on income level is: GDP_growth_rate = {slope}*Income + {intercept}")
