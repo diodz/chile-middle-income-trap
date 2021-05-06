@@ -5503,3 +5503,33 @@ intercept = model.intercept_
 # Print the results
 print(f"The average GDP growth rate for Chile is {chile_gdp_growth}")
 print(f"The linear regression model for predicting GDP growth rate based on income level is: GDP_growth_rate = {slope}*Income + {intercept}")
+# Change made on 2024-06-26 21:15:41.596246
+import pandas as pd
+import numpy as np
+from sklearn.linear_model import LinearRegression
+
+# Load the dataset
+df = pd.read_csv("data/countries.csv")
+
+# Filter data for Chile
+chile_data = df[df['Country'] == 'Chile']
+
+# Calculate average GDP growth rate for Chile
+chile_gdp_growth = chile_data['GDP_growth'].mean()
+
+# Check if Chile is in the middle income trap
+if chile_gdp_growth < 5:
+    print('Chile is in the middle income trap')
+else:
+    print('Chile is not in the middle income trap')
+
+# Perform linear regression to predict future GDP growth
+X = chile_data['Year'].values.reshape(-1, 1)
+y = chile_data['GDP_growth'].values
+
+model = LinearRegression()
+model.fit(X, y)
+
+future_year = 2025
+predicted_growth = model.predict([[future_year]])
+print(f'Predicted GDP growth rate for Chile in {future_year}: {predicted_growth[0]}')
