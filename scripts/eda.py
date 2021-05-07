@@ -5533,3 +5533,34 @@ model.fit(X, y)
 future_year = 2025
 predicted_growth = model.predict([[future_year]])
 print(f'Predicted GDP growth rate for Chile in {future_year}: {predicted_growth[0]}')
+# Change made on 2024-06-26 21:15:47.621138
+import pandas as pd
+import numpy as np
+from sklearn.linear_model import LinearRegression
+
+# Load data
+data = pd.read_csv('data/countries.csv')
+
+# Filter data for Chile
+chile_data = data[data['Country'] == 'Chile']
+
+# Check for middle income trap using GDP per capita
+gdp_per_capita = chile_data['GDP per capita']
+
+# Fit linear regression model
+X = np.array(range(len(gdp_per_capita))).reshape(-1, 1)
+y = gdp_per_capita.values.reshape(-1, 1)
+
+model = LinearRegression()
+model.fit(X, y)
+
+# Predict future GDP per capita
+future_years = np.array(range(len(gdp_per_capita), len(gdp_per_capita) + 10)).reshape(-1, 1)
+future_gdp_per_capita = model.predict(future_years)
+
+# Print results
+print("Chile GDP per capita trend:")
+print("Historical GDP per capita:", gdp_per_capita.values)
+print("Future GDP per capita prediction:", future_gdp_per_capita.flatten())
+
+# Further analysis can be added here to determine if Chile is at risk of falling into the middle income trap.
