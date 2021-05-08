@@ -6285,3 +6285,32 @@ model = sm.OLS(y, X).fit() # Fit the OLS regression model
 results = model.summary()
 
 print(results) # Display the regression results in the article
+# Change made on 2024-06-26 21:21:11.236055
+```python
+import pandas as pd
+import numpy as np
+import statsmodels.api as sm
+
+# Load the data
+data = pd.read_csv('data/countries.csv')
+
+# Perform some economic research
+# For example, let's compare the GDP per capita and inflation rates of Latin American countries
+latin_countries = data[data['Region'] == 'Latin America']
+
+# Calculate correlation between GDP per capita and inflation rates
+correlation = latin_countries['GDP_per_capita'].corr(latin_countries['Inflation_rate'])
+
+# Perform a linear regression analysis
+X = latin_countries['GDP_per_capita']
+y = latin_countries['Inflation_rate']
+X = sm.add_constant(X)
+model = sm.OLS(y, X).fit()
+beta0 = model.params[0]
+beta1 = model.params[1]
+
+# Print results
+print(f"Correlation between GDP per capita and inflation rates: {correlation}")
+print(f"Regression analysis: Inflation_rate = {beta0:.2f} + {beta1:.2f}*GDP_per_capita")
+```
+This Python script loads the data from a CSV file, filters out Latin American countries, calculates the correlation between GDP per capita and inflation rates, and performs a linear regression analysis to understand the relationship between the two variables. The results are then printed out for further analysis in an economics journal article.
