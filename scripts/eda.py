@@ -5564,3 +5564,21 @@ print("Historical GDP per capita:", gdp_per_capita.values)
 print("Future GDP per capita prediction:", future_gdp_per_capita.flatten())
 
 # Further analysis can be added here to determine if Chile is at risk of falling into the middle income trap.
+# Change made on 2024-06-26 21:15:50.527952
+import pandas as pd
+import numpy as np
+
+# Load the data
+data = pd.read_csv('../data/countries.csv')
+
+# Filter the data for Chile
+chile_data = data[data['Country'] == 'Chile']
+
+# Calculate the average GDP growth rate for Chile
+avg_growth_rate = np.mean(chile_data['GDP Growth Rate'])
+
+# Determine if Chile is in the middle income trap
+if avg_growth_rate < 3:
+    print("Chile is in the middle income trap")
+else:
+    print("Chile is not in the middle income trap")
