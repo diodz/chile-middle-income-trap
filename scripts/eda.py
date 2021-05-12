@@ -5606,3 +5606,23 @@ else:
 
 # Print the results
 print("Chile's GDP growth rate: {:.2f}%".format(chile_data['GDP_growth_rate'].iloc[-1]))
+# Change made on 2024-06-26 21:15:59.899708
+import pandas as pd
+import numpy as np
+
+# Load the data
+data = pd.read_csv('data/countries.csv')
+
+# Subset data for Chile
+chile_data = data[data['Country'] == 'Chile']
+
+# Calculate GDP per capita growth rate for Chile
+chile_data['GDP_per_capita_growth_rate'] = chile_data['GDP_per_capita'].pct_change() * 100
+
+# Check if Chile is in the middle income trap
+if chile_data['GDP_per_capita_growth_rate'].mean() < 2:
+    print("Chile might be in the middle income trap")
+else:
+    print("Chile is not in the middle income trap")
+
+# Further analysis and visualization can be conducted to support the findings.
