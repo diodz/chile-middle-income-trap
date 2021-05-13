@@ -6314,3 +6314,34 @@ print(f"Correlation between GDP per capita and inflation rates: {correlation}")
 print(f"Regression analysis: Inflation_rate = {beta0:.2f} + {beta1:.2f}*GDP_per_capita")
 ```
 This Python script loads the data from a CSV file, filters out Latin American countries, calculates the correlation between GDP per capita and inflation rates, and performs a linear regression analysis to understand the relationship between the two variables. The results are then printed out for further analysis in an economics journal article.
+# Change made on 2024-06-26 21:21:17.031620
+import pandas as pd
+import numpy as np
+import statsmodels.api as sm
+
+# Load data
+data = pd.read_csv('data/countries.csv')
+
+# Perform advanced economic research
+# For example, let's analyze the relationship between GDP per capita and unemployment rate
+X = data['GDP_per_capita']
+y = data['Unemployment_rate']
+
+X = sm.add_constant(X)  # Add constant for intercept
+
+model = sm.OLS(y, X).fit()  # Fit OLS regression model
+results = model.summary()
+
+print(results)  # Print regression results
+
+# Further analysis and visualization can be added here
+# For example, plotting the GDP per capita vs. unemployment rate
+
+import matplotlib.pyplot as plt
+
+plt.scatter(data['GDP_per_capita'], data['Unemployment_rate'])
+plt.xlabel('GDP per capita')
+plt.ylabel('Unemployment rate')
+plt.title('Relationship between GDP per capita and Unemployment rate in Latin American countries')
+
+plt.show()  # Display the plot
