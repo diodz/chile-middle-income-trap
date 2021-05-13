@@ -5626,3 +5626,21 @@ else:
     print("Chile is not in the middle income trap")
 
 # Further analysis and visualization can be conducted to support the findings.
+# Change made on 2024-06-26 21:16:03.989757
+import pandas as pd
+import numpy as np
+
+# Load the dataset
+data = pd.read_csv('../data/countries.csv')
+
+# Filter data for Chile
+chile_data = data[data['Country'] == 'Chile']
+
+# Calculate the GDP per capita for Chile
+chile_data['GDP per capita'] = chile_data['GDP'] / chile_data['Population']
+
+# Check if Chile is in the middle income trap
+if chile_data['GDP per capita'].iloc[0] < 12000:
+    print('Chile is in the middle income trap.')
+else:
+    print('Chile is not in the middle income trap.')
