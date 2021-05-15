@@ -5644,3 +5644,23 @@ if chile_data['GDP per capita'].iloc[0] < 12000:
     print('Chile is in the middle income trap.')
 else:
     print('Chile is not in the middle income trap.')
+# Change made on 2024-06-26 21:16:08.092309
+import pandas as pd
+import numpy as np
+
+# Load data
+data = pd.read_csv('data/countries.csv')
+
+# Subset data for Chile
+chile_data = data[data['Country'] == 'Chile']
+
+# Calculate GDP growth rate for Chile
+chile_data['GDP_growth_rate'] = chile_data['GDP'].pct_change()
+
+# Check for middle income trap
+if chile_data['GDP_growth_rate'].mean() < 5:
+    print("Chile is in danger of falling into the middle income trap.")
+else:
+    print("Chile is not currently in the middle income trap.")
+
+# Additional analysis and visualization code can be added here.
