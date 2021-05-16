@@ -5664,3 +5664,29 @@ else:
     print("Chile is not currently in the middle income trap.")
 
 # Additional analysis and visualization code can be added here.
+# Change made on 2024-06-26 21:16:13.550204
+import pandas as pd
+import numpy as np
+
+# Load the data from the CSV file
+data = pd.read_csv('../data/countries.csv')
+
+# Filter the data for Chile
+chile_data = data[data['Country'] == 'Chile']
+
+# Check for missing values in the data
+missing_values = chile_data.isnull().sum()
+
+# Calculate the mean GDP growth rate of Chile
+mean_gdp_growth = chile_data['GDP Growth Rate'].mean()
+
+# Calculate the median GDP per capita of Chile
+median_gdp_per_capita = chile_data['GDP per Capita'].median()
+
+# Print the results
+print("Analysis of Chile's Economic Indicators:")
+print("----------------------------------------")
+print("Missing Values:")
+print(missing_values)
+print("\nMean GDP Growth Rate: {:.2f}%".format(mean_gdp_growth))
+print("Median GDP per Capita: ${:,.2f}".format(median_gdp_per_capita))
