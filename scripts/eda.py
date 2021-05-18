@@ -5690,3 +5690,22 @@ print("Missing Values:")
 print(missing_values)
 print("\nMean GDP Growth Rate: {:.2f}%".format(mean_gdp_growth))
 print("Median GDP per Capita: ${:,.2f}".format(median_gdp_per_capita))
+# Change made on 2024-06-26 21:16:17.986053
+import pandas as pd
+
+# Load the data
+data = pd.read_csv('data/countries.csv')
+
+# Filter data for Chile
+chile_data = data[data['Country'] == 'Chile']
+
+# Calculate average GDP growth rate for Chile
+avg_growth_rate = chile_data['GDP Growth Rate'].mean()
+
+# Check if Chile is in the middle income trap
+if avg_growth_rate < 4:
+    print("Chile is in the middle income trap.")
+else:
+    print("Chile is not in the middle income trap.")
+
+# Additional analysis or visualization code can be added here for the economics journal article.
