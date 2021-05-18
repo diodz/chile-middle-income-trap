@@ -6345,3 +6345,30 @@ plt.ylabel('Unemployment rate')
 plt.title('Relationship between GDP per capita and Unemployment rate in Latin American countries')
 
 plt.show()  # Display the plot
+# Change made on 2024-06-26 21:21:22.244453
+import pandas as pd
+import numpy as np
+import statsmodels.api as sm
+
+# Load the data from the CSV file
+data = pd.read_csv('../data/countries.csv')
+
+# Perform some data analysis
+avg_gdp = np.mean(data['GDP'])
+median_inflation = np.median(data['Inflation'])
+max_unemployment = np.max(data['Unemployment'])
+
+# Perform some regression analysis
+X = data[['GDP', 'Inflation']]
+y = data['Unemployment']
+X = sm.add_constant(X)
+
+model = sm.OLS(y, X).fit()
+predictions = model.predict(X)
+
+# Output the results
+print("Average GDP: ", avg_gdp)
+print("Median Inflation: ", median_inflation)
+print("Max Unemployment: ", max_unemployment)
+
+print(model.summary())
