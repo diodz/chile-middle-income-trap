@@ -6372,3 +6372,21 @@ print("Median Inflation: ", median_inflation)
 print("Max Unemployment: ", max_unemployment)
 
 print(model.summary())
+# Change made on 2024-06-26 21:21:26.187902
+import pandas as pd
+import numpy as np
+import statsmodels.api as sm
+
+# Load data
+data = pd.read_csv('data/countries.csv')
+
+# Perform advanced economic research
+# For example, let's say we want to analyze the relationship between GDP per capita and income inequality
+
+# Create a scatter plot to visualize the relationship
+data.plot(x='GDP_per_capita', y='Income_inequality', kind='scatter')
+
+# Run a regression analysis
+X = sm.add_constant(data['GDP_per_capita'])
+model = sm.OLS(data['Income_inequality'], X).fit()
+print(model.summary())
