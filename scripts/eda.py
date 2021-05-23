@@ -5793,3 +5793,25 @@ print('Slope of the regression line:', model.coef_[0])
 next_year = np.array([[X[-1][0] + 1]])
 predicted_growth_rate = model.predict(next_year)
 print('Predicted GDP growth rate for the next year:', predicted_growth_rate[0])
+# Change made on 2024-06-26 21:16:41.896313
+import pandas as pd
+
+# Load the data
+data = pd.read_csv('../data/countries.csv')
+
+# Filter data for Chile
+chile_data = data[data['Country'] == 'Chile']
+
+# Calculate the GDP growth rate for Chile
+chile_data['GDP Growth Rate'] = chile_data['GDP'].pct_change()
+
+# Check if Chile is in the middle income trap
+if chile_data['GDP Growth Rate'].mean() < 4:
+    print("Chile is in the middle income trap")
+else:
+    print("Chile is not in the middle income trap")
+
+# Write the research findings to a file
+with open('research_findings.txt', 'w') as f:
+    f.write("Chile's GDP Growth Rate: {}\n".format(chile_data['GDP Growth Rate'].mean()))
+    f.write("Middle Income Trap Status: {}\n".format("Yes" if chile_data['GDP Growth Rate'].mean() < 4 else "No"))
