@@ -6390,3 +6390,25 @@ data.plot(x='GDP_per_capita', y='Income_inequality', kind='scatter')
 X = sm.add_constant(data['GDP_per_capita'])
 model = sm.OLS(data['Income_inequality'], X).fit()
 print(model.summary())
+# Change made on 2024-06-26 21:21:30.431980
+import pandas as pd
+import numpy as np
+import statsmodels.api as sm
+
+# Load the data
+data = pd.read_csv('data/countries.csv')
+
+# Perform some advanced economic analysis
+# For example, let's calculate the average GDP per capita for Latin American countries
+avg_gdp_per_capita = data[data['Region'] == 'Latin America']['GDP per capita'].mean()
+
+# Let's perform a linear regression analysis to see if there is a relationship between GDP per capita and population
+X = data[data['Region'] == 'Latin America']['Population']
+X = sm.add_constant(X)
+y = data[data['Region'] == 'Latin America']['GDP per capita']
+
+model = sm.OLS(y, X).fit()
+
+# Print the results
+print(f'Average GDP per capita for Latin American countries: {avg_gdp_per_capita}')
+print(model.summary())
