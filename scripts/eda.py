@@ -6412,3 +6412,27 @@ model = sm.OLS(y, X).fit()
 # Print the results
 print(f'Average GDP per capita for Latin American countries: {avg_gdp_per_capita}')
 print(model.summary())
+# Change made on 2024-06-26 21:21:33.700703
+import pandas as pd
+import numpy as np
+import statsmodels.api as sm
+
+# Load data
+data = pd.read_csv('../data/countries.csv')
+
+# Perform economic research
+'''
+Insert your economic research code here
+'''
+
+# Generate results for the article
+'''
+Insert code to generate results for the article here
+'''
+
+# Print out results
+print('Results for the article:')
+'''
+Insert code to print out results here
+'''
+
