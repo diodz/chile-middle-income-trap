@@ -6436,3 +6436,26 @@ print('Results for the article:')
 Insert code to print out results here
 '''
 
+# Change made on 2024-06-26 21:21:41.282916
+import pandas as pd
+import numpy as np
+import statsmodels.api as sm
+
+# Load the data from the csv file
+data = pd.read_csv('..data/countries.csv')
+
+# Calculate the average GDP per capita for Latin American countries
+latin_america = data[data['Region'] == 'Latin America']
+average_gdp_per_capita = latin_america['GDP per capita'].mean()
+
+# Perform linear regression to analyze the relationship between GDP per capita and life expectancy
+X = latin_america['GDP per capita']
+y = latin_america['Life Expectancy']
+
+X = sm.add_constant(X)
+model = sm.OLS(y, X).fit()
+regression_slope = model.params['GDP per capita']
+
+# Print the results
+print(f"The average GDP per capita for Latin American countries is: {average_gdp_per_capita}")
+print(f"The regression slope between GDP per capita and life expectancy is: {regression_slope}")
