@@ -6459,3 +6459,23 @@ regression_slope = model.params['GDP per capita']
 # Print the results
 print(f"The average GDP per capita for Latin American countries is: {average_gdp_per_capita}")
 print(f"The regression slope between GDP per capita and life expectancy is: {regression_slope}")
+# Change made on 2024-06-26 21:21:45.043493
+import pandas as pd
+import numpy as np
+import statsmodels.api as sm
+
+# Load the data
+data = pd.read_csv("path/to/data/countries.csv")
+
+# Perform advanced economic analysis
+# For example, you could calculate the GDP growth rate for each country
+data['GDP_growth_rate'] = (data['GDP_per_capita'].pct_change() * 100)
+
+# Fit a linear regression model to analyze the relationship between GDP growth rate and other variables
+X = data[['exports', 'imports', 'inflation_rate']]
+X = sm.add_constant(X) # Add a constant term to the model
+y = data['GDP_growth_rate']
+model = sm.OLS(y, X).fit()
+
+# Print the summary of the regression analysis
+print(model.summary())
