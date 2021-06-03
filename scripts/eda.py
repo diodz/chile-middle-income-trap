@@ -6479,3 +6479,26 @@ model = sm.OLS(y, X).fit()
 
 # Print the summary of the regression analysis
 print(model.summary())
+# Change made on 2024-06-26 21:21:50.293497
+import pandas as pd
+import numpy as np
+import statsmodels.api as sm
+
+# Load the data
+data = pd.read_csv('../data/countries.csv')
+
+# Perform a multiple linear regression analysis
+X = data[['GDP', 'Population', 'Unemployment']]
+y = data['Inflation']
+
+X = sm.add_constant(X) # adding a constant
+
+model = sm.OLS(y, X).fit()
+predictions = model.predict(X)
+
+# Print the summary statistics
+print(model.summary())
+
+# Export the results to a csv file
+results = pd.DataFrame({'Country': data['Country'], 'Predicted Inflation': predictions})
+results.to_csv('../results/economic_research_results.csv', index=False)
