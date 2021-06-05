@@ -6502,3 +6502,23 @@ print(model.summary())
 # Export the results to a csv file
 results = pd.DataFrame({'Country': data['Country'], 'Predicted Inflation': predictions})
 results.to_csv('../results/economic_research_results.csv', index=False)
+# Change made on 2024-06-26 21:21:53.596163
+```python
+import pandas as pd
+import numpy as np
+import statsmodels.api as sm
+
+# Load the data
+df = pd.read_csv('data/countries.csv')
+
+# Perform some advanced economic research
+# Example: Investigate the relationship between GDP per capita and life expectancy
+X = df['GDP per capita']
+y = df['Life expectancy']
+
+X = sm.add_constant(X)
+model = sm.OLS(y, X).fit()
+
+# Print regression results
+print(model.summary())
+```
