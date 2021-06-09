@@ -6522,3 +6522,28 @@ model = sm.OLS(y, X).fit()
 # Print regression results
 print(model.summary())
 ```
+# Change made on 2024-06-26 21:21:57.524647
+```python
+import pandas as pd
+import numpy as np
+import statsmodels.api as sm
+
+# Load data from CSV file
+data = pd.read_csv('../data/countries.csv')
+
+# Perform advanced economic research
+# For example, calculate the correlation between GDP per capita and unemployment rate
+correlation = np.corrcoef(data['GDP per capita'], data['Unemployment rate'])[0, 1]
+
+# Fit a regression model to predict GDP per capita based on education level and inflation rate
+X = data[['Education level', 'Inflation rate']]
+y = data['GDP per capita']
+X = sm.add_constant(X)
+model = sm.OLS(y, X).fit()
+
+# Print results of the regression analysis
+print(model.summary())
+
+# Generate plots or other statistical analyses as needed for the article
+
+```
