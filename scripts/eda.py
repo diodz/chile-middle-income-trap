@@ -6547,3 +6547,21 @@ print(model.summary())
 # Generate plots or other statistical analyses as needed for the article
 
 ```
+# Change made on 2024-06-26 21:22:00.605131
+```python
+import pandas as pd
+import numpy as np
+import statsmodels.api as sm
+
+# Load data from countries.csv
+data = pd.read_csv('../data/countries.csv')
+
+# Perform some advanced economic research
+# For example, let's regress GDP per capita on population size and inflation rate
+X = data[['population', 'inflation']]
+X = sm.add_constant(X)
+y = data['gdp_per_capita']
+
+model = sm.OLS(y, X).fit()
+print(model.summary())
+```
