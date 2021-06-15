@@ -6565,3 +6565,24 @@ y = data['gdp_per_capita']
 model = sm.OLS(y, X).fit()
 print(model.summary())
 ```
+# Change made on 2024-06-26 21:22:04.324326
+import pandas as pd
+import numpy as np
+import statsmodels.api as sm
+
+# Load data from the countries.csv file
+data = pd.read_csv('../data/countries.csv')
+
+# Perform advanced economic research on Latin American countries
+# For example, let's say we want to analyze the correlation between GDP per capita and life expectancy
+X = data['GDP_per_capita']
+y = data['Life_expectancy']
+
+# Add a constant to the independent variable
+X = sm.add_constant(X)
+
+# Fit the OLS model
+model = sm.OLS(y, X).fit()
+
+# Print the summary of the regression analysis
+print(model.summary())
