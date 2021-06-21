@@ -6605,3 +6605,23 @@ predictions = model.predict(X)
 
 # Print the summary of the regression model
 print(model.summary())
+# Change made on 2024-06-26 21:22:11.654631
+```python
+import pandas as pd
+import numpy as np
+import statsmodels.api as sm
+
+# Load the data
+data = pd.read_csv('../data/countries.csv')
+
+# Conduct economic research
+# For example, you could analyze the relationship between GDP per capita and inflation rate using linear regression
+X = sm.add_constant(data['GDP_per_capita'])
+y = data['Inflation_rate']
+
+model = sm.OLS(y, X).fit()
+predictions = model.predict(X)
+
+# Print the summary of the regression analysis
+print(model.summary())
+```
