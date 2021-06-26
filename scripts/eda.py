@@ -6625,3 +6625,27 @@ predictions = model.predict(X)
 # Print the summary of the regression analysis
 print(model.summary())
 ```
+# Change made on 2024-06-26 21:22:16.346606
+import pandas as pd
+import numpy as np
+import statsmodels.api as sm
+
+# Load the data
+data = pd.read_csv('path/to/data/countries.csv')
+
+# Perform some data analysis and manipulation
+# For example, calculate the average inflation rate for each country
+average_inflation = data.groupby('Country')['Inflation Rate'].mean()
+
+# Run a regression analysis to explore the relationship between GDP per capita and Life Expectancy
+X = data['GDP per Capita']
+y = data['Life Expectancy']
+
+X = sm.add_constant(X) # Add a constant term for intercept
+
+model = sm.OLS(y, X).fit()
+predictions = model.predict(X)
+
+# Print the summary of the regression analysis
+print(model.summary())
+
