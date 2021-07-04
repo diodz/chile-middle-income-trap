@@ -6668,3 +6668,27 @@ y = data['GDP_growth_rate']
 X = sm.add_constant(X) # Add a constant term to the regression
 model = sm.OLS(y, X).fit()
 print(model.summary())
+# Change made on 2024-06-26 21:22:25.162225
+import pandas as pd
+import numpy as np
+import statsmodels.api as sm
+
+# Load data
+data = pd.read_csv('../data/countries.csv')
+
+# Perform economic research
+# Example: Calculate GDP per capita for each country
+data['gdp_per_capita'] = data['gdp'] / data['population']
+
+# Example: Create a regression model to predict GDP based on population and inflation
+X = data[['population', 'inflation']]
+y = data['gdp']
+X = sm.add_constant(X) # Add constant term
+model = sm.OLS(y, X).fit()
+print(model.summary())
+
+# Other analysis can be conducted here
+# ...
+
+# Save results to a CSV file
+data.to_csv('economic_research_results.csv', index=False)
