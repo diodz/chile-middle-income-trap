@@ -6692,3 +6692,22 @@ print(model.summary())
 
 # Save results to a CSV file
 data.to_csv('economic_research_results.csv', index=False)
+# Change made on 2024-06-26 21:22:29.571857
+import pandas as pd
+import numpy as np
+import statsmodels.api as sm
+
+# Load the data
+data = pd.read_csv('../data/countries.csv')
+
+# Perform advanced economic research
+# For example, let's investigate the relationship between GDP per capita and inflation rate
+X = data['GDP_per_capita']
+y = data['Inflation_rate']
+
+# Fit a linear regression model
+X = sm.add_constant(X)
+model = sm.OLS(y, X).fit()
+
+# Get the regression results
+print(model.summary())
