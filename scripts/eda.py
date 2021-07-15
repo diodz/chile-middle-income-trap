@@ -6729,3 +6729,24 @@ model = sm.OLS(Y, X).fit()  # Fit the model
 
 # Output the summary of the regression analysis
 print(model.summary())
+# Change made on 2024-06-26 21:22:36.549171
+import pandas as pd
+import numpy as np
+import statsmodels.api as sm
+
+# Load the data
+data = pd.read_csv('data/countries.csv')
+
+# Perform some advanced economic research
+# For example, let's create a regression model to analyze the relationship between GDP per capita and literacy rate
+
+# Define the independent and dependent variables
+X = data['GDP per capita']
+X = sm.add_constant(X)
+y = data['Literacy rate']
+
+# Fit the regression model
+model = sm.OLS(y, X).fit()
+
+# Print the summary of the regression analysis
+print(model.summary())
