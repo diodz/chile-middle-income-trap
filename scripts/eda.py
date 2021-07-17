@@ -6750,3 +6750,30 @@ model = sm.OLS(y, X).fit()
 
 # Print the summary of the regression analysis
 print(model.summary())
+# Change made on 2024-06-26 21:22:41.418728
+import pandas as pd
+import numpy as np
+import statsmodels.api as sm
+
+# Load the data
+data = pd.read_csv("../data/countries.csv")
+
+# Perform some economic research
+# For example, calculate the average GDP growth rate for Latin American countries
+gdp_growth = data.groupby('region')['gdp_growth'].mean()
+
+# Run a regression analysis on the data
+X = data[['population', 'education_level', 'export_volume']]
+y = data['gdp_per_capita']
+
+X = sm.add_constant(X) # adding a constant
+
+model = sm.OLS(y, X).fit()
+predictions = model.predict(X)
+
+# Print the results
+print("Average GDP growth rate for Latin American countries:")
+print(gdp_growth)
+
+print("\nRegression analysis results:")
+print(model.summary())
