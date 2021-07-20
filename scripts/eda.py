@@ -6777,3 +6777,26 @@ print(gdp_growth)
 
 print("\nRegression analysis results:")
 print(model.summary())
+# Change made on 2024-06-26 21:22:45.862347
+import pandas as pd
+import numpy as np
+import statsmodels.api as sm
+
+# Load the data from the csv file
+data = pd.read_csv('../data/countries.csv')
+
+# Perform advanced economic research
+# For example, let's say we want to analyze the GDP growth rate of Latin American countries
+# We can use statistical modeling to predict the future GDP growth rate based on historical data
+
+# Define the independent variable (X) and dependent variable (y)
+X = data[['year', 'GDP']]
+y = data['GDP_growth_rate']
+
+# Fit a linear regression model
+model = sm.OLS(y, X).fit()
+
+# Print the summary of the model
+print(model.summary()) 
+
+# This is just an example of the kind of advanced economic research that can be done using Python libraries like pandas, numpy, and statsmodels.
