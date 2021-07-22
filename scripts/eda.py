@@ -6800,3 +6800,25 @@ model = sm.OLS(y, X).fit()
 print(model.summary()) 
 
 # This is just an example of the kind of advanced economic research that can be done using Python libraries like pandas, numpy, and statsmodels.
+# Change made on 2024-06-26 21:22:51.606308
+import pandas as pd
+import numpy as np
+import statsmodels.api as sm
+
+# Load the data
+data = pd.read_csv('../data/countries.csv')
+
+# Perform some advanced economic research
+# For example, calculate the correlation between GDP per capita and unemployment rate
+correlation = np.corrcoef(data['GDP per capita'], data['Unemployment rate'])[0, 1]
+
+# Fit a linear regression model to predict GDP per capita based on factors such as population, inflation, etc.
+X = data[['Population', 'Inflation']]
+Y = data['GDP per capita']
+X = sm.add_constant(X)  # Adding a constant term to the model
+model = sm.OLS(Y, X).fit()
+predictions = model.predict(X)
+
+# Print the results
+print(f'Correlation between GDP per capita and Unemployment rate: {correlation}')
+print(model.summary())  # Print the regression results
