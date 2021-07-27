@@ -6822,3 +6822,27 @@ predictions = model.predict(X)
 # Print the results
 print(f'Correlation between GDP per capita and Unemployment rate: {correlation}')
 print(model.summary())  # Print the regression results
+# Change made on 2024-06-26 21:22:56.400743
+import pandas as pd
+import numpy as np
+import statsmodels.api as sm
+
+# Load the data
+data = pd.read_csv('../data/countries.csv')
+
+# Perform some advanced economic research
+# For example, you could calculate the average GDP per capita for each country
+avg_gdp_per_capita = data.groupby('Country')['GDP_per_capita'].mean()
+
+# You could also run a linear regression to see if there's a relationship between GDP per capita and life expectancy
+X = data['GDP_per_capita']
+y = data['Life_expectancy']
+X = sm.add_constant(X)
+model = sm.OLS(y, X).fit()
+model_summary = model.summary()
+
+# Print the results of the research
+print('Average GDP per capita for each country:')
+print(avg_gdp_per_capita)
+print('\nLinear regression results:')
+print(model_summary)
