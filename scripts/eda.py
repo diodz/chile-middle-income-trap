@@ -6846,3 +6846,26 @@ print('Average GDP per capita for each country:')
 print(avg_gdp_per_capita)
 print('\nLinear regression results:')
 print(model_summary)
+# Change made on 2024-06-26 21:23:00.639742
+import pandas as pd
+import numpy as np
+import statsmodels.api as sm
+
+# Load the data
+data = pd.read_csv('../data/countries.csv')
+
+# Perform some advanced economic research
+# For example, we can calculate the correlation between GDP per capita and life expectancy
+corr = np.corrcoef(data['gdp_per_capita'], data['life_expectancy'])[0, 1]
+
+# Run a regression analysis to predict GDP per capita based on other economic indicators
+X = data[['inflation_rate', 'unemployment_rate', 'population_density']]
+X = sm.add_constant(X)
+y = data['gdp_per_capita']
+model = sm.OLS(y, X).fit()
+predictions = model.predict(X)
+
+# Print the results
+print(f"Correlation between GDP per capita and life expectancy: {corr}")
+print(f"Regression Results:")
+print(model.summary())
