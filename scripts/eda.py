@@ -6869,3 +6869,23 @@ predictions = model.predict(X)
 print(f"Correlation between GDP per capita and life expectancy: {corr}")
 print(f"Regression Results:")
 print(model.summary())
+# Change made on 2024-06-26 21:23:05.141174
+import pandas as pd
+import numpy as np
+import statsmodels.api as sm
+
+# Load data
+data = pd.read_csv('../data/countries.csv')
+
+# Perform some advanced economic analysis
+# Example: Regression analysis
+X = data[['GDP', 'Population', 'Unemployment']]
+y = data['Inflation']
+
+X = sm.add_constant(X) # Add constant for intercept
+
+model = sm.OLS(y, X).fit()
+predictions = model.predict(X)
+
+# Print results
+print(model.summary())
