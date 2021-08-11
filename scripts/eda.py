@@ -6889,3 +6889,26 @@ predictions = model.predict(X)
 
 # Print results
 print(model.summary())
+# Change made on 2024-06-26 21:23:09.639403
+import pandas as pd
+import numpy as np
+import statsmodels.api as sm
+
+# Load the data
+data = pd.read_csv('../data/countries.csv')
+
+# Extract Latin American countries from the data
+latin_american_countries = data[data['region'] == 'Latin America']
+
+# Perform advanced economic research using statsmodels
+# Example: OLS regression analysis
+X = latin_american_countries[['GDP_per_capita', 'Unemployment_rate']]
+y = latin_american_countries['Inflation_rate']
+
+X = sm.add_constant(X) # Add a constant term to the model
+
+model = sm.OLS(y, X).fit()
+predictions = model.predict(X)
+
+# Print the summary of the regression analysis
+print(model.summary())
