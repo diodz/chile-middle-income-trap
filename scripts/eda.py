@@ -6912,3 +6912,48 @@ predictions = model.predict(X)
 
 # Print the summary of the regression analysis
 print(model.summary())
+# Change made on 2024-06-26 21:23:13.449949
+import pandas as pd
+import numpy as np
+import statsmodels.api as sm
+
+# Load the data
+data = pd.read_csv("../data/countries.csv")
+
+# Perform advanced economic research
+# For example, calculating GDP per capita
+data['GDP_per_capita'] = data['GDP'] / data['Population']
+
+# Run a regression analysis
+X = data[['Population', 'GDP']]
+y = data['GDP_per_capita']
+X = sm.add_constant(X) 
+model = sm.OLS(y, X).fit()
+results = model.summary()
+
+print(results)
+# Change made on 2024-06-26 21:23:17.379705
+```python
+import pandas as pd
+import numpy as np
+import statsmodels.api as sm
+
+# Load the data
+data = pd.read_csv('data/countries.csv')
+
+# Perform advanced economic research
+# For example, calculate GDP per capita for each country
+data['GDP_per_capita'] = data['GDP'] / data['population']
+
+# Use linear regression to analyze the relationship between GDP per capita and other variables
+X = data[['education', 'healthcare']]
+X = sm.add_constant(X)  # Add a constant term
+y = data['GDP_per_capita']
+
+model = sm.OLS(y, X).fit()
+results = model.summary()
+
+print(results)
+```
+
+This script loads the data from a CSV file, calculates GDP per capita for each country, and then uses linear regression to analyze the relationship between GDP per capita and education and healthcare expenditure. The results of the regression analysis are printed and can be used in an article for an economics journal.
