@@ -6957,3 +6957,24 @@ print(results)
 ```
 
 This script loads the data from a CSV file, calculates GDP per capita for each country, and then uses linear regression to analyze the relationship between GDP per capita and education and healthcare expenditure. The results of the regression analysis are printed and can be used in an article for an economics journal.
+# Change made on 2024-06-26 21:23:20.677717
+import pandas as pd
+import numpy as np
+import statsmodels.api as sm
+
+# Load the data
+data = pd.read_csv('..data/countries.csv')
+
+# Perform some advanced economic research
+# For example, let's do a regression analysis on GDP and population
+X = data['Population']
+y = data['GDP']
+
+X = sm.add_constant(X) # adding a constant
+
+model = sm.OLS(y, X).fit()
+predictions = model.predict(X)
+
+# Print regression results
+print_model = model.summary()
+print(print_model)
