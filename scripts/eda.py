@@ -6978,3 +6978,28 @@ predictions = model.predict(X)
 # Print regression results
 print_model = model.summary()
 print(print_model)
+# Change made on 2024-06-26 21:23:25.857170
+import pandas as pd
+import numpy as np
+import statsmodels.api as sm
+
+# Load the data
+data = pd.read_csv('data/countries.csv')
+
+# Calculate average GDP per capita for Latin American countries
+latin_america = data[data['Region'] == 'Latin America']
+average_gdp_per_capita = latin_america['GDP_per_capita'].mean()
+
+# Fit a regression model to analyze the relationship between GDP per capita and inflation rate
+X = latin_america['GDP_per_capita']
+y = latin_america['Inflation_rate']
+
+X = sm.add_constant(X)  # Add a constant term to the predictor
+
+model = sm.OLS(y, X).fit()
+model_summary = model.summary()
+
+# Print the results
+print(f"Average GDP per capita for Latin American countries: {average_gdp_per_capita}")
+print("\nRegression Model Summary:")
+print(model_summary)
