@@ -7003,3 +7003,33 @@ model_summary = model.summary()
 print(f"Average GDP per capita for Latin American countries: {average_gdp_per_capita}")
 print("\nRegression Model Summary:")
 print(model_summary)
+# Change made on 2024-06-26 21:23:31.337219
+import pandas as pd
+import numpy as np
+import statsmodels.api as sm
+
+# Load data from countries.csv
+data = pd.read_csv('../data/countries.csv')
+
+# Perform some data analysis
+# Example: Calculate the correlation between GDP per capita and life expectancy
+correlation = np.corrcoef(data['GDP per capita'], data['Life expectancy'])[0, 1]
+print('Correlation between GDP per capita and life expectancy:', correlation)
+
+# Create a linear regression model to predict GDP per capita based on other variables
+X = data[['Population', 'GDP growth', 'Inflation rate']]
+y = data['GDP per capita']
+
+X = sm.add_constant(X)  # Add a constant term to the model
+
+model = sm.OLS(y, X).fit()
+print(model.summary())  # Print the summary of the regression model
+
+# Include more advanced economic research and analysis here
+
+# Generate output for the article in the economics journal
+# Example: Save the results of the analysis to a file
+output_file = 'economic_research_results.txt'
+with open(output_file, 'w') as f:
+    f.write('Correlation between GDP per capita and life expectancy: {}\n\n'.format(correlation))
+    f.write('Regression model summary:\n\n{}\n'.format(model.summary()))
