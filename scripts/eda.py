@@ -7033,3 +7033,24 @@ output_file = 'economic_research_results.txt'
 with open(output_file, 'w') as f:
     f.write('Correlation between GDP per capita and life expectancy: {}\n\n'.format(correlation))
     f.write('Regression model summary:\n\n{}\n'.format(model.summary()))
+# Change made on 2024-06-26 21:23:34.797784
+```python
+import pandas as pd
+import numpy as np
+import statsmodels.api as sm
+
+# Load the data
+data = pd.read_csv('data/countries.csv')
+
+# Perform advanced economic research (example: regression analysis)
+X = data[['GDP', 'Inflation', 'Unemployment']]
+y = data['Economic Growth']
+
+X = sm.add_constant(X)  # adding a constant
+
+model = sm.OLS(y, X).fit()
+predictions = model.predict(X)
+
+# Print the regression results
+print(model.summary())
+```
