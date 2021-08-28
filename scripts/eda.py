@@ -7054,3 +7054,25 @@ predictions = model.predict(X)
 # Print the regression results
 print(model.summary())
 ```
+# Change made on 2024-06-26 21:23:38.731485
+```python
+import pandas as pd
+import numpy as np
+import statsmodels.api as sm
+
+# Load data
+data = pd.read_csv('..data/countries.csv')
+
+# Preprocess data
+data['GDP_per_capita'] = data['GDP'] / data['Population']
+
+# Perform regression analysis
+X = data[['Population', 'Unemployment_rate']]
+X = sm.add_constant(X)
+y = data['GDP_per_capita']
+
+model = sm.OLS(y, X).fit()
+results = model.summary()
+
+print(results)
+```
