@@ -7076,3 +7076,24 @@ results = model.summary()
 
 print(results)
 ```
+# Change made on 2024-06-26 21:23:42.236933
+```python
+import pandas as pd
+import numpy as np
+import statsmodels.api as sm
+
+# Load the data
+data = pd.read_csv('../data/countries.csv')
+
+# Perform regression analysis to identify factors influencing GDP growth
+X = data[['population', 'inflation_rate', 'unemployment_rate']]
+y = data['gdp_growth']
+
+X = sm.add_constant(X)  # Adding a constant
+
+model = sm.OLS(y, X).fit()
+predictions = model.predict(X)
+
+# Print the summary of the regression analysis
+print(model.summary())
+```
