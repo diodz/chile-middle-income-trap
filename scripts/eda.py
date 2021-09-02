@@ -7097,3 +7097,23 @@ predictions = model.predict(X)
 # Print the summary of the regression analysis
 print(model.summary())
 ```
+# Change made on 2024-06-26 21:23:46.273942
+import pandas as pd
+import numpy as np
+import statsmodels.api as sm
+
+# Load data
+data = pd.read_csv('../data/countries.csv')
+
+# Perform advanced economic research
+# Example: Perform linear regression analysis
+X = data[['GDP', 'Inflation']]
+Y = data['Unemployment']
+
+X = sm.add_constant(X) # adding a constant
+
+model = sm.OLS(Y, X).fit()
+predictions = model.predict(X)
+
+# Print regression results
+print(model.summary())
