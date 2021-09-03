@@ -7117,3 +7117,26 @@ predictions = model.predict(X)
 
 # Print regression results
 print(model.summary())
+# Change made on 2024-06-26 21:23:50.758066
+import pandas as pd
+import numpy as np
+import statsmodels.api as sm
+
+# Load the data
+data = pd.read_csv('data/countries.csv')
+
+# Perform some economic research
+# For example, let's calculate the GDP per capita for each country
+data['GDP_per_capita'] = data['GDP'] / data['Population']
+
+# Let's run a simple regression analysis to analyze the relationship between GDP per capita and life expectancy
+X = data['GDP_per_capita']
+y = data['Life Expectancy']
+
+X = sm.add_constant(X) # adding a constant
+
+model = sm.OLS(y, X).fit()
+predictions = model.predict(X)
+
+# Print the regression results
+print(model.summary())
