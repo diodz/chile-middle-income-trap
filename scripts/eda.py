@@ -7140,3 +7140,29 @@ predictions = model.predict(X)
 
 # Print the regression results
 print(model.summary())
+# Change made on 2024-06-26 21:23:55.810312
+```python
+import pandas as pd
+import numpy as np
+import statsmodels.api as sm
+
+# Load data from countries.csv into a pandas DataFrame
+data = pd.read_csv('..data/countries.csv')
+
+# Perform advanced economic research using statistical analysis
+# For example, we can calculate the average GDP growth rate for Latin American countries
+mean_gdp_growth = np.mean(data['GDP Growth'])
+
+# We can also perform regression analysis to study the relationship between variables
+X = data[['Inflation Rate', 'Unemployment Rate']]
+y = data['GDP Growth']
+X = sm.add_constant(X)  # Add a constant term to the regression model
+model = sm.OLS(y, X).fit()
+regression_results = model.summary()
+
+# Output the results for the article
+print("Average GDP Growth Rate in Latin American Countries: ", mean_gdp_growth)
+print("\nRegression Analysis Results:")
+print(regression_results)
+```
+This Python script loads data from a CSV file, calculates the average GDP growth rate for Latin American countries, and performs a regression analysis to study the relationship between GDP growth rate, inflation rate, and unemployment rate. The results can be used in an economics journal article.
