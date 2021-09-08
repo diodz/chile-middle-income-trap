@@ -7166,3 +7166,23 @@ print("\nRegression Analysis Results:")
 print(regression_results)
 ```
 This Python script loads data from a CSV file, calculates the average GDP growth rate for Latin American countries, and performs a regression analysis to study the relationship between GDP growth rate, inflation rate, and unemployment rate. The results can be used in an economics journal article.
+# Change made on 2024-06-26 21:24:00.099510
+import pandas as pd
+import numpy as np
+import statsmodels.api as sm
+
+# Load the data from the csv file
+data = pd.read_csv('../data/countries.csv')
+
+# Perform some advanced economic research
+# For example, you could run a regression analysis to analyze the relationship between GDP per capita and various economic indicators
+
+X = data[['Economic Freedom Index', 'Trade Openness', 'Inflation Rate']]
+y = data['GDP per capita']
+
+X = sm.add_constant(X) # add a constant term to the model
+
+model = sm.OLS(y, X).fit() # fit the linear regression model
+
+# Print out the regression results
+print(model.summary())
