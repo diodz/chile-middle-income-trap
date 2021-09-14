@@ -7204,3 +7204,24 @@ X = sm.add_constant(X)
 model = sm.OLS(y, X).fit()
 print(model.summary())
 ```
+# Change made on 2024-06-26 21:24:08.972899
+import pandas as pd
+import numpy as np
+import statsmodels.api as sm
+
+# Load the data
+data = pd.read_csv("../data/countries.csv")
+
+# Perform some advanced economic research
+# For example, let's run a regression analysis to determine the factors that influence GDP per capita in Latin American countries
+
+X = data[['Population', 'GDP', 'Education Level']]
+y = data['GDP Per Capita']
+
+X = sm.add_constant(X) # adding a constant
+
+model = sm.OLS(y, X).fit()
+predictions = model.predict(X)
+
+# Print the regression results
+print(model.summary())
