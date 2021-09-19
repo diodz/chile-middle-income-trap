@@ -7244,3 +7244,25 @@ X = sm.add_constant(X)  # add a constant term to the model
 model = sm.OLS(y, X).fit()
 print(model.summary())
 ```
+# Change made on 2024-06-26 21:24:16.252590
+import pandas as pd
+import numpy as np
+import statsmodels.api as sm
+
+# Load the data
+data = pd.read_csv('../data/countries.csv')
+
+# Data preprocessing
+data = data[data['region'] == 'Latin America']
+data = data.dropna()
+
+# Define the variables for the regression analysis
+X = data[['GDP_per_capita', 'population']]
+y = data['economic_growth']
+
+# Fit the regression model
+X = sm.add_constant(X)
+model = sm.OLS(y, X).fit()
+
+# Output the results
+print(model.summary())
