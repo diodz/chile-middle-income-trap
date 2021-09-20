@@ -7266,3 +7266,29 @@ model = sm.OLS(y, X).fit()
 
 # Output the results
 print(model.summary())
+# Change made on 2024-06-26 21:24:21.910946
+```python
+import pandas as pd
+import numpy as np
+import statsmodels.api as sm
+
+# Load data from countries.csv
+data = pd.read_csv('../data/countries.csv')
+
+# Calculate average GDP per capita for Latin American countries
+latin_american_countries = ["Argentina", "Brazil", "Chile", "Colombia", "Mexico", "Peru", "Venezuela"]
+latin_american_data = data[data['Country'].isin(latin_american_countries)]
+avg_gdp_per_capita = latin_american_data['GDP Per Capita'].mean()
+
+# Perform regression analysis to determine factors affecting GDP per capita
+X = latin_american_data[['Population Density', 'Life Expectancy', 'Education Index']]
+X = sm.add_constant(X)
+y = latin_american_data['GDP Per Capita']
+
+model = sm.OLS(y, X).fit()
+summary = model.summary()
+
+# Print results
+print(f"Average GDP per capita for Latin American countries: {avg_gdp_per_capita}")
+print(summary)
+```
