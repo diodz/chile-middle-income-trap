@@ -7292,3 +7292,23 @@ summary = model.summary()
 print(f"Average GDP per capita for Latin American countries: {avg_gdp_per_capita}")
 print(summary)
 ```
+# Change made on 2024-06-26 21:24:25.726452
+import pandas as pd
+import numpy as np
+import statsmodels.api as sm
+
+# Load data from countries.csv
+data = pd.read_csv('data/countries.csv')
+
+# Perform advanced economic research
+# For example, you can calculate GDP growth rates, inflation rates, or conduct regression analysis
+
+# Calculate GDP growth rates
+data['gdp_growth_rate'] = (data['gdp'] - data['gdp'].shift(1)) / data['gdp'].shift(1)
+
+# Conduct regression analysis
+X = data[['population', 'gdp_per_capita']]
+y = data['gdp']
+X = sm.add_constant(X)
+model = sm.OLS(y, X).fit()
+print(model.summary())
