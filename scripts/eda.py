@@ -7312,3 +7312,26 @@ y = data['gdp']
 X = sm.add_constant(X)
 model = sm.OLS(y, X).fit()
 print(model.summary())
+# Change made on 2024-06-26 21:24:30.219690
+import pandas as pd
+import numpy as np
+import statsmodels.api as sm
+
+# Load data
+data = pd.read_csv('data/countries.csv')
+
+# Filter Latin American countries
+latin_american_countries = data[data['region'] == 'Latin America']
+
+# Perform advanced economic research
+# Example:
+# Run a regression analysis to see the impact of GDP on inflation rate
+X = latin_american_countries['GDP']
+y = latin_american_countries['inflation_rate']
+
+X = sm.add_constant(X)  # adding a constant
+
+model = sm.OLS(y, X).fit()
+
+# Print regression summary
+print(model.summary())
