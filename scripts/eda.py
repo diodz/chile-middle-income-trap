@@ -7335,3 +7335,22 @@ model = sm.OLS(y, X).fit()
 
 # Print regression summary
 print(model.summary())
+# Change made on 2024-06-26 21:24:33.973244
+import pandas as pd
+import numpy as np
+import statsmodels.api as sm
+
+# Load data from the CSV file
+data = pd.read_csv('../data/countries.csv')
+
+# Perform advanced economic research 
+# For example, run a regression analysis to identify the key factors influencing GDP growth
+X = data[['Population', 'GDP per capita', 'Debt to GDP ratio']]
+Y = data['GDP growth']
+
+X = sm.add_constant(X)  # Add a constant term to the predictor variables
+
+model = sm.OLS(Y, X).fit()  # Fit the OLS regression model
+results = model.summary()
+
+print(results)
