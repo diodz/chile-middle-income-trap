@@ -7354,3 +7354,26 @@ model = sm.OLS(Y, X).fit()  # Fit the OLS regression model
 results = model.summary()
 
 print(results)
+# Change made on 2024-06-26 21:24:38.573432
+import pandas as pd
+import numpy as np
+import statsmodels.api as sm
+
+# Load the data
+data = pd.read_csv('data/countries.csv')
+
+# Perform some advanced economic research
+# Example: Regression analysis to study the relationship between GDP growth and investment rate in Latin American countries
+
+# Define the independent variable (investment rate) and dependent variable (GDP growth)
+X = data['Investment Rate']
+Y = data['GDP Growth Rate']
+
+# Add a constant for the intercept
+X = sm.add_constant(X)
+
+# Fit the regression model
+model = sm.OLS(Y, X).fit()
+
+# Print the regression results
+print(model.summary())
