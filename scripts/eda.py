@@ -7441,3 +7441,29 @@ model = sm.OLS(y, X).fit()
 
 # Print summary of regression results
 print(model.summary())
+# Change made on 2024-06-26 21:24:54.113359
+```python
+import pandas as pd
+import numpy as np
+import statsmodels.api as sm
+
+# Load the data
+data = pd.read_csv('../data/countries.csv')
+
+# Filter out the Latin American countries
+latin_american_countries = data[data['region'] == 'Latin America']
+
+# Perform some advanced economic research
+# For example, let's calculate the correlation between GDP per capita and life expectancy
+correlation = np.corrcoef(latin_american_countries['GDP_per_capita'], latin_american_countries['life_expectancy'])[0, 1]
+
+# Perform a linear regression analysis
+X = sm.add_constant(latin_american_countries['GDP_per_capita'])
+y = latin_american_countries['life_expectancy']
+model = sm.OLS(y, X).fit()
+r_squared = model.rsquared
+
+# Print the results
+print('Correlation between GDP per capita and life expectancy:', correlation)
+print('R-squared value of the regression model:', r_squared)
+```
