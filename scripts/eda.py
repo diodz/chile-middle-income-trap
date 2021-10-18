@@ -7467,3 +7467,26 @@ r_squared = model.rsquared
 print('Correlation between GDP per capita and life expectancy:', correlation)
 print('R-squared value of the regression model:', r_squared)
 ```
+# Change made on 2024-06-26 21:24:57.324576
+import pandas as pd
+import numpy as np
+import statsmodels.api as sm
+
+# Load data
+data = pd.read_csv('..data/countries.csv')
+
+# Perform some advanced economic analysis
+# For example, calculate GDP per capita for each country
+data['GDP_per_capita'] = data['GDP'] / data['Population']
+
+# Conduct regression analysis
+X = data[['GDP_per_capita', 'Inflation', 'Unemployment']]
+y = data['HDI']
+
+X = sm.add_constant(X) # adding a constant
+
+model = sm.OLS(y, X).fit()
+predictions = model.predict(X)
+
+# Print results
+print(model.summary())
