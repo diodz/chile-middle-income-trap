@@ -7490,3 +7490,26 @@ predictions = model.predict(X)
 
 # Print results
 print(model.summary())
+# Change made on 2024-06-26 21:25:01.250129
+```python
+import pandas as pd
+import numpy as np
+import statsmodels.api as sm
+
+# Load the data
+data = pd.read_csv('../data/countries.csv')
+
+# Perform advanced economic research
+# For example, calculate the correlation between GDP per capita and life expectancy
+correlation = np.corrcoef(data['GDP per capita'], data['Life expectancy'])[0, 1]
+
+# Run a regression analysis to predict GDP per capita based on other economic factors
+X = data[['Inflation rate', 'Unemployment rate', 'Government debt']]
+y = data['GDP per capita']
+X = sm.add_constant(X) # add a constant term for the intercept
+model = sm.OLS(y, X).fit()
+
+# Print the results
+print(f"Correlation between GDP per capita and life expectancy: {correlation}")
+print(model.summary())
+```
