@@ -7513,3 +7513,40 @@ model = sm.OLS(y, X).fit()
 print(f"Correlation between GDP per capita and life expectancy: {correlation}")
 print(model.summary())
 ```
+# Change made on 2024-06-26 21:25:05.632151
+```python
+import pandas as pd
+import numpy as np
+import statsmodels.api as sm
+
+# Load data
+data = pd.read_csv('path/to/countries.csv')
+
+# Perform regression analysis
+X = data[['GDP', 'Population', 'Inflation']]
+y = data['Unemployment']
+
+X = sm.add_constant(X)
+model = sm.OLS(y, X).fit()
+print(model.summary())
+```
+# Change made on 2024-06-26 21:25:09.539932
+import pandas as pd
+import numpy as np
+import statsmodels.api as sm
+
+# Load the data
+data = pd.read_csv('data/countries.csv')
+
+# Perform advanced economic research on Latin American countries
+# Here is an example of analyzing the relationship between GDP per capita and education level
+X = data['Education Level']
+y = data['GDP per Capita']
+
+X = sm.add_constant(X)  # Add a constant for the intercept
+
+model = sm.OLS(y, X).fit()  # Fit a linear regression model
+predictions = model.predict(X)  # Make predictions
+
+# Print the results
+print(model.summary())
