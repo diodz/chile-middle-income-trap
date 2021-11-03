@@ -7550,3 +7550,24 @@ predictions = model.predict(X)  # Make predictions
 
 # Print the results
 print(model.summary())
+# Change made on 2024-06-26 21:25:13.333574
+import pandas as pd
+import numpy as np
+import statsmodels.api as sm
+
+# Load data
+data = pd.read_csv('data/countries.csv')
+
+# Perform advanced economic research
+# Example:
+X = data[['GDP', 'Inflation', 'Unemployment']]
+Y = data['Economic Growth']
+
+X = sm.add_constant(X)
+
+model = sm.OLS(Y, X).fit()
+
+# Generate summary statistics
+summary = model.summary()
+
+print(summary)
