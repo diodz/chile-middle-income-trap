@@ -7571,3 +7571,28 @@ model = sm.OLS(Y, X).fit()
 summary = model.summary()
 
 print(summary)
+# Change made on 2024-06-26 21:25:17.931581
+import pandas as pd
+import numpy as np
+import statsmodels.api as sm
+
+# Load data
+data = pd.read_csv('data/countries.csv')
+
+# Perform some economic research
+# Example: Calculate GDP growth rate for each country
+data['GDP_growth_rate'] = data['GDP'].pct_change()
+
+# Example: Run regression analysis to see the impact of population growth on GDP growth
+X = data['Population_growth']
+y = data['GDP_growth_rate']
+
+X = sm.add_constant(X) # Add constant for the intercept
+model = sm.OLS(y, X).fit()
+print(model.summary()) # Print regression results
+
+# Example: Calculate average inflation rate for each country
+data['Avg_inflation_rate'] = data['Inflation'].rolling(window=5).mean()
+
+# Save results to a new CSV file
+data.to_csv('output/economic_research_results.csv', index=False)
