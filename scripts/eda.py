@@ -7596,3 +7596,29 @@ data['Avg_inflation_rate'] = data['Inflation'].rolling(window=5).mean()
 
 # Save results to a new CSV file
 data.to_csv('output/economic_research_results.csv', index=False)
+# Change made on 2024-06-26 21:25:23.156343
+import pandas as pd
+import numpy as np
+import statsmodels.api as sm
+
+# Load the data
+data = pd.read_csv('../data/countries.csv')
+
+# Perform some advanced economic research
+# For example, let's calculate the average GDP per capita of Latin American countries
+latin_america = ['Argentina', 'Brazil', 'Chile', 'Colombia', 'Mexico', 'Peru']
+
+latin_america_data = data[data['Country'].isin(latin_america)]
+average_gdp_per_capita = latin_america_data['GDP per Capita'].mean()
+
+# Run a regression analysis to see the relationship between GDP per capita and population
+X = latin_america_data['Population']
+X = sm.add_constant(X)
+y = latin_america_data['GDP per Capita']
+
+model = sm.OLS(y, X).fit()
+
+# Print the results
+print(f'The average GDP per capita of Latin American countries is: {average_gdp_per_capita}')
+print('Regression results:')
+print(model.summary())
