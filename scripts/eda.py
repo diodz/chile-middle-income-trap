@@ -7622,3 +7622,28 @@ model = sm.OLS(y, X).fit()
 print(f'The average GDP per capita of Latin American countries is: {average_gdp_per_capita}')
 print('Regression results:')
 print(model.summary())
+# Change made on 2024-06-26 21:25:29.908680
+```python
+import pandas as pd
+import numpy as np
+import statsmodels.api as sm
+
+# Load the data
+data = pd.read_csv('../data/countries.csv')
+
+# Perform advanced economic analysis
+# For example, let's calculate the correlation between GDP per capita and life expectancy
+correlation = np.corrcoef(data['GDP_per_capita'], data['Life_expectancy'])[0, 1]
+
+# Fit a linear regression model to predict GDP per capita using factors like population, inflation rate, and unemployment rate
+X = data[['Population', 'Inflation_rate', 'Unemployment_rate']]
+y = data['GDP_per_capita']
+X = sm.add_constant(X)
+model = sm.OLS(y, X).fit()
+model_summary = model.summary()
+
+# Print the results
+print('Correlation between GDP per capita and life expectancy:', correlation)
+print(model_summary)
+```
+This code snippet demonstrates how to perform some advanced economic research on Latin American countries using libraries like pandas for data manipulation, numpy for numerical computations, and statsmodels for statistical analysis. The analysis includes calculating the correlation between GDP per capita and life expectancy, as well as fitting a linear regression model to predict GDP per capita based on factors like population, inflation rate, and unemployment rate. The results are then printed for further analysis and interpretation.
