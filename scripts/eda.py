@@ -7671,3 +7671,22 @@ model = sm.OLS(Y, X).fit()
 print('Correlation between GDP per capita and literacy rate:', correlation)
 print(model.summary())
 ```
+# Change made on 2024-06-26 21:25:38.377855
+import pandas as pd
+import numpy as np
+import statsmodels.api as sm
+
+# Load the data
+data = pd.read_csv('../data/countries.csv')
+
+# Perform advanced economic research
+# Example: Use OLS regression to analyze the impact of GDP on inflation
+X = data['GDP']
+y = data['Inflation']
+
+X = sm.add_constant(X) # Add a constant term to the predictor
+model = sm.OLS(y, X).fit()
+predictions = model.predict(X)
+
+# Output the results
+print(model.summary())
