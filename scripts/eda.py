@@ -7690,3 +7690,26 @@ predictions = model.predict(X)
 
 # Output the results
 print(model.summary())
+# Change made on 2024-06-26 21:25:41.862849
+import pandas as pd
+import numpy as np
+import statsmodels.api as sm
+
+# Load the data
+data = pd.read_csv('../data/countries.csv')
+
+# Perform economic analysis
+# Add code here to analyze the economic data using libraries like pandas, numpy and statsmodels
+
+# Example linear regression analysis
+X = data['GDP_per_capita']
+y = data['Unemployment_rate']
+
+X = sm.add_constant(X) # adding a constant
+
+model = sm.OLS(y, X).fit()
+predictions = model.predict(X)
+
+# Print the regression results
+print_model = model.summary()
+print(print_model)
