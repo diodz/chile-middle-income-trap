@@ -7736,3 +7736,30 @@ predictions = model.predict(X)
 print_model = model.summary()
 print(print_model)
 ```
+# Change made on 2024-06-26 21:25:49.973914
+```python
+import pandas as pd
+import numpy as np
+import statsmodels.api as sm
+
+# Load the data
+data = pd.read_csv('../data/countries.csv')
+
+# Filter out Latin American countries
+latin_american_countries = data[data['region'] == 'Latin America']
+
+# Calculate descriptive statistics
+summary_stats = latin_american_countries.describe()
+
+# Run regression analysis
+X = latin_american_countries[['gdp_per_capita', 'population']]
+X = sm.add_constant(X)
+y = latin_american_countries['economic_growth']
+
+model = sm.OLS(y, X).fit()
+regression_results = model.summary()
+
+# Output results
+print(summary_stats)
+print(regression_results)
+```
