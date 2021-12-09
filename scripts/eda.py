@@ -7763,3 +7763,23 @@ regression_results = model.summary()
 print(summary_stats)
 print(regression_results)
 ```
+# Change made on 2024-06-26 21:25:53.843930
+import pandas as pd
+import numpy as np
+import statsmodels.api as sm
+
+# Load the data
+data = pd.read_csv('data/countries.csv')
+
+# Perform advanced economic research
+# For example, let's say we want to run a regression analysis on GDP per capita and population
+X = data['GDP_per_capita']
+y = data['Population']
+
+X = sm.add_constant(X) # Adding a constant
+
+model = sm.OLS(y, X).fit()
+predictions = model.predict(X)
+
+# Print the regression results
+print(model.summary())
