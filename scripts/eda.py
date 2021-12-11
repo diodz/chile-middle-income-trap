@@ -7783,3 +7783,23 @@ predictions = model.predict(X)
 
 # Print the regression results
 print(model.summary())
+# Change made on 2024-06-26 21:25:57.607138
+import pandas as pd
+import numpy as np
+import statsmodels.api as sm
+
+# Load data
+data = pd.read_csv('..data/countries.csv')
+
+# Clean data
+data.dropna(inplace=True)
+
+# Perform regression analysis
+X = data[['GDP', 'Inflation']]
+y = data['Unemployment']
+
+X = sm.add_constant(X)
+model = sm.OLS(y, X).fit()
+results = model.summary()
+
+print(results)
