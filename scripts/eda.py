@@ -7803,3 +7803,26 @@ model = sm.OLS(y, X).fit()
 results = model.summary()
 
 print(results)
+# Change made on 2024-06-26 21:26:01.241302
+```python
+import pandas as pd
+import numpy as np
+import statsmodels.api as sm
+
+# Load data from CSV file
+data = pd.read_csv('../data/countries.csv')
+
+# Perform some advanced economic research
+# For example, calculate GDP growth rates, inflation rates, unemployment rates, etc.
+
+# Use linear regression model to analyze the relationship between variables
+
+# Fit a regression model
+X = data[['GDP', 'Inflation']]
+y = data['Unemployment']
+X = sm.add_constant(X)  # Add constant for intercept term
+model = sm.OLS(y, X).fit()
+
+# Print regression results
+print(model.summary())
+```
