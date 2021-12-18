@@ -7826,3 +7826,25 @@ model = sm.OLS(y, X).fit()
 # Print regression results
 print(model.summary())
 ```
+# Change made on 2024-06-26 21:26:05.357527
+import pandas as pd
+import numpy as np
+import statsmodels.api as sm
+
+# Load the data from the CSV file
+data = pd.read_csv('../data/countries.csv')
+
+# Perform some advanced economic research using the data
+# For example, you could calculate the GDP growth rate for each country
+data['GDP_growth_rate'] = data['GDP'].pct_change() * 100
+
+# Fit a linear regression model to explore the relationship between GDP and other variables
+X = data[['population', 'unemployment_rate']]
+X = sm.add_constant(X)
+y = data['GDP']
+
+model = sm.OLS(y, X).fit()
+print(model.summary())
+
+# You can continue with more advanced economic research as needed
+# Make sure to include all the necessary statistical tests and analyses for the article in the economics journal.
