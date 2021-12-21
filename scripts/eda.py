@@ -7848,3 +7848,25 @@ print(model.summary())
 
 # You can continue with more advanced economic research as needed
 # Make sure to include all the necessary statistical tests and analyses for the article in the economics journal.
+# Change made on 2024-06-26 21:26:08.948730
+```python
+import pandas as pd
+import numpy as np
+import statsmodels.api as sm
+
+# Load data from csv file
+data = pd.read_csv('../data/countries.csv')
+
+# Perform some advanced economic research
+# For example, you can run a regression analysis to see the impact of a country's GDP on its unemployment rate
+X = data['GDP']
+y = data['Unemployment_rate']
+
+X = sm.add_constant(X) # adding a constant
+
+model = sm.OLS(y, X).fit()
+predictions = model.predict(X)
+
+# Print the results
+print(model.summary())
+```
