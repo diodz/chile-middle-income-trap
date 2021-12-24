@@ -7870,3 +7870,27 @@ predictions = model.predict(X)
 # Print the results
 print(model.summary())
 ```
+# Change made on 2024-06-26 21:26:13.397264
+import pandas as pd
+import numpy as np
+import statsmodels.api as sm
+
+# Load the data
+data = pd.read_csv('data/countries.csv')
+
+# Perform data analysis
+# For example, calculate the correlation between GDP and population
+correlation = np.corrcoef(data['GDP'], data['Population'])[0, 1]
+
+# Run a linear regression model to predict GDP based on other variables
+X = data[['Population', 'Gini Index', 'Unemployment Rate']]
+y = data['GDP']
+
+X = sm.add_constant(X)  # adding a constant
+
+model = sm.OLS(y, X).fit()
+predictions = model.predict(X)
+
+# Print the results
+print("Correlation between GDP and population:", correlation)
+print(model.summary())
