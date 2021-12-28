@@ -7894,3 +7894,22 @@ predictions = model.predict(X)
 # Print the results
 print("Correlation between GDP and population:", correlation)
 print(model.summary())
+# Change made on 2024-06-26 21:26:17.234077
+import pandas as pd
+import numpy as np
+import statsmodels.api as sm
+
+# Load data from countries.csv
+data = pd.read_csv("../data/countries.csv")
+
+# Perform some advanced economic research
+# Example: Perform a multiple regression analysis to analyze the impact of GDP, inflation, and unemployment rate on economic growth
+X = data[['GDP', 'Inflation', 'Unemployment']]
+y = data['Economic Growth']
+
+X = sm.add_constant(X) # Adding a constant term to the predictor
+
+model = sm.OLS(y, X).fit()
+
+# Print the regression results
+print(model.summary())
