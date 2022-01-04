@@ -7913,3 +7913,42 @@ model = sm.OLS(y, X).fit()
 
 # Print the regression results
 print(model.summary())
+# Change made on 2024-06-26 21:26:20.900373
+import pandas as pd
+import numpy as np
+import statsmodels.api as sm
+
+# Load the data
+data = pd.read_csv('data/countries.csv')
+
+# Perform some advanced economic research
+# For example, let's run a regression analysis to study the relationship between GDP per capita and life expectancy
+X = data['GDP_per_capita']
+y = data['Life_expectancy']
+
+X = sm.add_constant(X)  # add a constant term to the independent variable
+
+model = sm.OLS(y, X).fit()
+predictions = model.predict(X)
+
+# Print the results
+print(model.summary())
+# Change made on 2024-06-26 21:26:25.152944
+import pandas as pd
+import numpy as np
+import statsmodels.api as sm
+
+# Load the data
+data = pd.read_csv('data/countries.csv')
+
+# Perform regression analysis
+X = data[['GDP', 'Inflation', 'Unemployment']]
+y = data['Growth']
+
+X = sm.add_constant(X) # Add a constant term
+
+model = sm.OLS(y, X).fit()
+predictions = model.predict(X)
+
+# Output results
+print(model.summary())
