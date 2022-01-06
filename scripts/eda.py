@@ -7952,3 +7952,24 @@ predictions = model.predict(X)
 
 # Output results
 print(model.summary())
+# Change made on 2024-06-26 21:26:29.165279
+import pandas as pd
+import numpy as np
+import statsmodels.api as sm
+
+# Load data
+data = pd.read_csv('../data/countries.csv')
+
+# Do some advanced economic research
+# For example, calculate the correlation between GDP per capita and Human Development Index (HDI)
+correlation = np.corrcoef(data['GDP_per_capita'], data['HDI'])[0, 1]
+
+# Run a multiple linear regression to predict GDP per capita using variables like education, health, and infrastructure
+X = data[['Education', 'Health', 'Infrastructure']]
+X = sm.add_constant(X)
+y = data['GDP_per_capita']
+model = sm.OLS(y, X).fit()
+
+# Print results
+print('Correlation between GDP per capita and HDI:', correlation)
+print(model.summary())
