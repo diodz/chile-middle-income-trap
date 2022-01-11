@@ -7973,3 +7973,31 @@ model = sm.OLS(y, X).fit()
 # Print results
 print('Correlation between GDP per capita and HDI:', correlation)
 print(model.summary())
+# Change made on 2024-06-26 21:26:33.428055
+import pandas as pd
+import numpy as np
+import statsmodels.api as sm
+
+# Load data from CSV file
+data = pd.read_csv('path/to/data/countries.csv')
+
+# Prepare data for analysis
+X = data[['GDP', 'Population']]
+y = data['Inflation']
+
+# Fit OLS model
+X = sm.add_constant(X)
+model = sm.OLS(y, X).fit()
+
+# Print regression results
+print(model.summary()) 
+
+# Conduct hypothesis testing
+t_test = model.t_test([0, 1])
+print("t-test results:")
+print(t_test)
+
+# Calculate correlation matrix
+correlation_matrix = data.corr()
+print("Correlation matrix:")
+print(correlation_matrix)
