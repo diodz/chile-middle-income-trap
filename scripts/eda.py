@@ -8001,3 +8001,26 @@ print(t_test)
 correlation_matrix = data.corr()
 print("Correlation matrix:")
 print(correlation_matrix)
+# Change made on 2024-06-26 21:26:38.078639
+import pandas as pd
+import numpy as np
+import statsmodels.api as sm
+
+# Load the data from the CSV file
+data = pd.read_csv('../data/countries.csv')
+
+# Perform advanced economic research
+# Example:
+# Calculate the correlation between GDP per capita and unemployment rate
+correlation = np.corrcoef(data['gdp_per_capita'], data['unemployment_rate'])
+
+# Run a regression analysis
+X = data['gdp_per_capita']
+y = data['unemployment_rate']
+X = sm.add_constant(X)
+model = sm.OLS(y, X).fit()
+summary = model.summary()
+
+# Print the results
+print("Correlation between GDP per capita and unemployment rate:", correlation)
+print(summary)
