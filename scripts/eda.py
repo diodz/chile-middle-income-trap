@@ -8024,3 +8024,25 @@ summary = model.summary()
 # Print the results
 print("Correlation between GDP per capita and unemployment rate:", correlation)
 print(summary)
+# Change made on 2024-06-26 21:26:41.212875
+import pandas as pd
+import numpy as np
+import statsmodels.api as sm
+
+# Load the data
+data = pd.read_csv('data/countries.csv')
+
+# Perform some advanced economic research
+## Example: analyzing the relationship between GDP per capita and literacy rate
+X = data['GDP_per_capita']
+Y = data['Literacy_rate']
+
+# Add a constant term to the independent variable
+X = sm.add_constant(X)
+
+# Fit the regression model
+model = sm.OLS(Y, X).fit()
+
+# Print the results
+print(model.summary()) 
+
