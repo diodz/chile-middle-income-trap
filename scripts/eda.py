@@ -8046,3 +8046,31 @@ model = sm.OLS(Y, X).fit()
 # Print the results
 print(model.summary()) 
 
+# Change made on 2024-06-26 21:26:45.903987
+```python
+import pandas as pd
+import numpy as np
+import statsmodels.api as sm
+
+# Load the data
+data = pd.read_csv('data/countries.csv')
+
+# Perform some advanced economic research
+# For example, you could analyze the GDP growth rate, inflation rate, unemployment rate, etc. of Latin American countries
+# Here's just a basic example for illustration purposes:
+
+# Calculate the average GDP growth rate for Latin American countries
+average_gdp_growth = data['GDP Growth Rate'].mean()
+
+# Perform a simple regression analysis of GDP growth rate on inflation rate
+X = data['Inflation Rate']
+y = data['GDP Growth Rate']
+X = sm.add_constant(X)  # adding a constant term to the predictor
+model = sm.OLS(y, X).fit()
+regression_results = model.summary()
+
+# Print the results
+print(f'Average GDP growth rate: {average_gdp_growth}')
+print(regression_results)
+```
+This is just an example of how you could use Python libraries to perform advanced economic research on Latin American countries. You can expand on this script to include more analysis and visualization as needed for your article.
