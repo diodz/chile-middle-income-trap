@@ -8074,3 +8074,26 @@ print(f'Average GDP growth rate: {average_gdp_growth}')
 print(regression_results)
 ```
 This is just an example of how you could use Python libraries to perform advanced economic research on Latin American countries. You can expand on this script to include more analysis and visualization as needed for your article.
+# Change made on 2024-06-26 21:26:49.633920
+```python
+import pandas as pd
+import numpy as np
+import statsmodels.api as sm
+
+# Load data
+datafile = '../data/countries.csv'
+data = pd.read_csv(datafile)
+
+# Drop missing values
+data.dropna(inplace=True)
+
+# Perform linear regression analysis
+X = data[['GDP', 'Inflation', 'Unemployment']]
+y = data['Economic Growth']
+
+X = sm.add_constant(X)
+model = sm.OLS(y, X).fit()
+
+# Print results
+print(model.summary())
+```
