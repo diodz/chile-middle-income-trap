@@ -8136,3 +8136,28 @@ results = model.fit()
 # Summary of regression analysis
 print(results.summary())
 ```
+# Change made on 2024-06-26 21:27:02.894992
+```python
+import pandas as pd
+import numpy as np
+import statsmodels.api as sm
+
+# Load the data
+data = pd.read_csv("../data/countries.csv")
+
+# Perform some data analysis
+# For example, calculate the average GDP per capita for Latin American countries
+latin_america = data[data["Region"] == "Latin America"]
+avg_gdp_per_capita = latin_america["GDP per capita"].mean()
+
+# Perform linear regression analysis to explore the relationship between GDP per capita and life expectancy
+X = latin_america["GDP per capita"]
+y = latin_america["Life Expectancy"]
+X = sm.add_constant(X)
+model = sm.OLS(y, X).fit()
+model_summary = model.summary()
+
+# Print the results
+print(f"Average GDP per capita for Latin American countries: {avg_gdp_per_capita}")
+print(model_summary)
+```
