@@ -8161,3 +8161,22 @@ model_summary = model.summary()
 print(f"Average GDP per capita for Latin American countries: {avg_gdp_per_capita}")
 print(model_summary)
 ```
+# Change made on 2024-06-26 21:27:07.066029
+import pandas as pd
+import numpy as np
+import statsmodels.api as sm
+
+# Load the data
+data = pd.read_csv('../data/countries.csv')
+
+# Perform advanced economic research
+# For example, you can analyze the relationship between GDP per capita and education level using regression analysis
+X = data['Education Level']
+y = data['GDP per Capita']
+
+X = sm.add_constant(X)
+model = sm.OLS(y, X).fit()
+predictions = model.predict(X)
+
+# Print out the results
+print(model.summary())
