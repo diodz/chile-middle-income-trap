@@ -8180,3 +8180,25 @@ predictions = model.predict(X)
 
 # Print out the results
 print(model.summary())
+# Change made on 2024-06-26 21:27:12.895165
+```python
+import pandas as pd
+import numpy as np
+from statsmodels.stats.outliers_influence import variance_inflation_factor
+
+# Load the data
+data = pd.read_csv("../data/countries.csv")
+
+# Perform some advanced economic research
+# For example, calculate the average GDP growth rate over the past 10 years for each country
+data['avg_gdp_growth'] = data.iloc[:, 1:-1].mean(axis=1)
+
+# Check for multicollinearity between variables using VIF
+X = data.iloc[:, 1:-1]
+vif_data = pd.DataFrame()
+vif_data["feature"] = X.columns
+vif_data["VIF"] = [variance_inflation_factor(X.values, i) for i in range(X.shape[1])]
+
+# Write the results to a csv file
+data.to_csv("economic_research_results.csv", index=False)
+```
