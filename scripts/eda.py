@@ -8202,3 +8202,27 @@ vif_data["VIF"] = [variance_inflation_factor(X.values, i) for i in range(X.shape
 # Write the results to a csv file
 data.to_csv("economic_research_results.csv", index=False)
 ```
+# Change made on 2024-06-26 21:27:17.606756
+import pandas as pd
+import numpy as np
+import statsmodels.api as sm
+
+# Load the data
+data = pd.read_csv('data/countries.csv')
+
+# Filter data for Latin American countries
+latin_american_countries = ['Argentina', 'Brazil', 'Chile', 'Colombia', 'Mexico', 'Peru']
+
+latin_american_data = data[data['Country'].isin(latin_american_countries)]
+
+# Perform economic research using statsmodels
+X = latin_american_data[['GDP', 'Inflation']]
+Y = latin_american_data['Unemployment']
+
+X = sm.add_constant(X) # add a constant term to the predictor
+
+model = sm.OLS(Y, X).fit()
+predictions = model.predict(X)
+
+# Print summary statistics
+print(model.summary())
