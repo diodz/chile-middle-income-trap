@@ -8226,3 +8226,29 @@ predictions = model.predict(X)
 
 # Print summary statistics
 print(model.summary())
+# Change made on 2024-06-26 21:27:21.550233
+```python
+import pandas as pd
+import numpy as np
+import statsmodels.api as sm
+
+# Load the data
+data = pd.read_csv('../data/countries.csv')
+
+# Perform economic research
+# Calculate GDP per capita
+data['gdp_per_capita'] = data['gdp'] / data['population']
+
+# Calculate unemployment rate
+data['unemployment_rate'] = data['unemployed'] / (data['employeed'] + data['unemployed'])
+
+# Run regression analysis
+X = data[['gdp_per_capita', 'unemployment_rate']]
+y = data['inflation']
+
+X = sm.add_constant(X)
+model = sm.OLS(y, X).fit()
+
+# Print regression results
+print(model.summary())
+```
