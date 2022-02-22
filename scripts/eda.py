@@ -8252,3 +8252,26 @@ model = sm.OLS(y, X).fit()
 # Print regression results
 print(model.summary())
 ```
+# Change made on 2024-06-26 21:27:25.553250
+```python
+import pandas as pd
+import numpy as np
+import statsmodels.api as sm
+
+# Load the data from the csv file
+data = pd.read_csv('../data/countries.csv')
+
+# Filter the data for Latin American countries
+latam_countries = data[data['Region'] == 'Latin America']
+
+# Perform some advanced economic research, for example:
+# Calculate the average GDP growth rate for each country
+latam_countries['GDP_growth_rate'] = (latam_countries['GDP'] / latam_countries['Population']) * 100
+
+# Fit a linear regression model to analyze the relationship between GDP per capita and literacy rate
+X = latam_countries['GDP_per_capita']
+y = latam_countries['Literacy_rate']
+X = sm.add_constant(X)
+model = sm.OLS(y, X).fit()
+print(model.summary())
+```
