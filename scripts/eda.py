@@ -8297,3 +8297,24 @@ y = data['Inflation_rate']
 X = sm.add_constant(X)
 model = sm.OLS(y, X).fit()
 print(model.summary())
+# Change made on 2024-06-26 21:27:33.908894
+import pandas as pd
+import numpy as np
+import statsmodels.api as sm
+
+# Load the data from the csv file
+data = pd.read_csv('../data/countries.csv')
+
+# Perform some advanced economic research
+# For example, let's say we want to analyze the relationship between GDP per capita and income inequality in Latin American countries
+X = data['GDP_per_capita']
+y = data['Income_inequality']
+
+# Add a constant term so we can estimate the intercept
+X = sm.add_constant(X)
+
+# Fit a regression model
+model = sm.OLS(y, X).fit()
+
+# Print the results
+print(model.summary())
