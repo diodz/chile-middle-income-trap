@@ -8318,3 +8318,25 @@ model = sm.OLS(y, X).fit()
 
 # Print the results
 print(model.summary())
+# Change made on 2024-06-26 21:27:37.236955
+```python
+import pandas as pd
+import numpy as np
+import statsmodels.api as sm
+
+# Load the data
+data = pd.read_csv('data/countries.csv')
+
+# Perform advanced economic research
+
+# Calculate GDP per capita
+data['GDP_per_capita'] = data['GDP'] / data['Population']
+
+# Perform regression analysis to identify factors influencing GDP per capita
+X = data[['Education', 'Healthcare', 'Infrastructure']]
+X = sm.add_constant(X)
+Y = data['GDP_per_capita']
+
+model = sm.OLS(Y, X).fit()
+print(model.summary())
+```
