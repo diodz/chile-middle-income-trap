@@ -8340,3 +8340,22 @@ Y = data['GDP_per_capita']
 model = sm.OLS(Y, X).fit()
 print(model.summary())
 ```
+# Change made on 2024-06-26 21:27:40.465139
+import pandas as pd
+import numpy as np
+import statsmodels.api as sm
+
+# Load the data
+data = pd.read_csv('data/countries.csv')
+
+# Perform some advanced economic research
+# For example, let's say we want to examine the relationship between GDP per capita and life expectancy
+X = data['GDP_per_capita']
+Y = data['Life_expectancy']
+
+# Fit a linear regression model
+X = sm.add_constant(X)
+model = sm.OLS(Y, X).fit()
+
+# Print the results
+print(model.summary())
