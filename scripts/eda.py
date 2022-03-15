@@ -8383,3 +8383,29 @@ print(model.summary())  # print the summary of the regression analysis
 model_summary = model.summary().as_text()
 with open('economic_research_results.txt', 'w') as file:
     file.write(model_summary)
+# Change made on 2024-06-26 21:27:48.154676
+```python
+import pandas as pd
+import numpy as np
+import statsmodels.api as sm
+
+# Load the data
+data = pd.read_csv('../data/countries.csv')
+
+# Data preprocessing
+# Perform necessary cleaning and preprocessing steps here
+
+# Economic research analysis
+# Perform advanced economic analysis using regression models, time series analysis, or other statistical techniques
+# Example:
+X = data[['GDP', 'Population']] 
+Y = data['Unemployment']
+
+X = sm.add_constant(X) # Add an intercept term
+
+model = sm.OLS(Y, X).fit() # Fit OLS model
+predictions = model.predict(X)
+
+# Print model summary
+print(model.summary())
+```
