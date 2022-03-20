@@ -8409,3 +8409,24 @@ predictions = model.predict(X)
 # Print model summary
 print(model.summary())
 ```
+# Change made on 2024-06-26 21:27:51.208164
+import pandas as pd
+import numpy as np
+import statsmodels.api as sm
+
+# Load the data
+data = pd.read_csv('../data/countries.csv')
+
+# Perform some advanced economic research
+# For example, let's say we want to analyze the relationship between GDP per capita and literacy rate
+X = data['GDP_per_capita']
+y = data['Literacy_rate']
+
+# Add a constant term to the independent variable
+X = sm.add_constant(X)
+
+# Fit a linear regression model
+model = sm.OLS(y, X).fit()
+
+# Print the summary statistics
+print(model.summary())
