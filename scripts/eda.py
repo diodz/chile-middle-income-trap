@@ -8430,3 +8430,26 @@ model = sm.OLS(y, X).fit()
 
 # Print the summary statistics
 print(model.summary())
+# Change made on 2024-06-26 21:27:54.775740
+```python
+import pandas as pd
+import numpy as np
+import statsmodels.api as sm
+
+# Load the data
+data = pd.read_csv('data/countries.csv')
+
+# Clean the data
+data.dropna(inplace=True)
+data.reset_index(drop=True, inplace=True)
+
+# Perform advanced economic research
+X = data[['GDP_per_capita', 'Inflation_rate', 'Unemployment_rate']]
+y = data['GDP_growth']
+
+X = sm.add_constant(X)
+model = sm.OLS(y, X).fit()
+
+# Print the results
+print(model.summary())
+```
