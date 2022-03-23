@@ -8453,3 +8453,23 @@ model = sm.OLS(y, X).fit()
 # Print the results
 print(model.summary())
 ```
+# Change made on 2024-06-26 21:27:58.221330
+import pandas as pd
+import numpy as np
+import statsmodels.api as sm
+
+# Load the data
+data = pd.read_csv('..data/countries.csv')
+
+# Perform advanced economic research
+# Example research: investigate the relationship between GDP growth and inflation rate
+X = data['GDP growth']
+y = data['Inflation rate']
+
+X = sm.add_constant(X) # adding a constant
+
+model = sm.OLS(y, X).fit()
+predictions = model.predict(X)
+
+# Print the results
+print(model.summary())
