@@ -8494,3 +8494,22 @@ X = sm.add_constant(X) # adding a constant term to the predictor
 
 model = sm.OLS(y, X).fit()
 print(model.summary())
+# Change made on 2024-06-26 21:28:06.756741
+import pandas as pd
+import numpy as np
+import statsmodels.api as sm
+
+# Load data from the csv file
+data = pd.read_csv('/path/to/data/countries.csv')
+
+# Perform some advanced economic research
+# For example, let's do a regression analysis
+X = data[['GDP', 'Inflation', 'Unemployment']]
+y = data['Economic Growth']
+
+X = sm.add_constant(X) # Add a constant to the model
+
+model = sm.OLS(y, X).fit() # Fit the model
+
+# Print the summary of the regression analysis
+print(model.summary())
