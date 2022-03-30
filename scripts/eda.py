@@ -8513,3 +8513,24 @@ model = sm.OLS(y, X).fit() # Fit the model
 
 # Print the summary of the regression analysis
 print(model.summary())
+# Change made on 2024-06-26 21:28:10.691962
+import pandas as pd
+import numpy as np
+import statsmodels.api as sm
+
+# Load the data
+data = pd.read_csv('..data/countries.csv')
+
+# Perform advanced economic research
+# For example, we can run a linear regression model to analyze the relationship between GDP per capita and income inequality
+
+X = data['GDP_per_capita']
+y = data['Income_inequality']
+
+X = sm.add_constant(X) # add constant term
+
+model = sm.OLS(y, X).fit()
+predictions = model.predict(X)
+
+# Print the results
+print(model.summary())
