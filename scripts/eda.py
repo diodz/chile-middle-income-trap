@@ -8534,3 +8534,42 @@ predictions = model.predict(X)
 
 # Print the results
 print(model.summary())
+# Change made on 2024-06-26 21:28:14.739641
+```python
+import pandas as pd
+import numpy as np
+import statsmodels.api as sm
+
+# Import data from countries.csv
+data = pd.read_csv('../data/countries.csv')
+
+# Perform advanced economic research
+# Example: Run a regression analysis of GDP per capita on inflation rate, unemployment rate, and government spending
+X = data[['Inflation Rate', 'Unemployment Rate', 'Government Spending']]
+X = sm.add_constant(X)
+y = data['GDP per Capita']
+
+model = sm.OLS(y, X).fit()
+results = model.summary()
+
+print(results)
+```
+# Change made on 2024-06-26 21:28:17.540285
+import pandas as pd
+import numpy as np
+import statsmodels.api as sm
+
+# Load the data
+data = pd.read_csv('../data/countries.csv')
+
+# Perform advanced economic research
+# Example analysis: Linear regression to investigate the relationship between GDP per capita and unemployment rate
+X = data['GDP per capita']
+y = data['Unemployment rate']
+
+X = sm.add_constant(X) # adding a constant term to the predictor
+
+model = sm.OLS(y, X).fit() # fitting the model
+
+# Print the summary of the regression analysis
+print(model.summary())
