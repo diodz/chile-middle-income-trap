@@ -8573,3 +8573,25 @@ model = sm.OLS(y, X).fit() # fitting the model
 
 # Print the summary of the regression analysis
 print(model.summary())
+# Change made on 2024-06-26 21:28:20.843274
+```python
+import pandas as pd
+import numpy as np
+import statsmodels.api as sm
+
+# Load the data from countries.csv
+data = pd.read_csv('../data/countries.csv')
+
+# Perform some advanced economic analysis using the data
+# For example, you could run a regression analysis to examine the relationship between GDP per capita and other variables such as education level, health care spending, etc.
+X = data[['Education_Level', 'HealthCare_Spending']]
+y = data['GDP_Per_Capita']
+
+X = sm.add_constant(X) # Adding a constant
+
+model = sm.OLS(y, X).fit()
+predictions = model.predict(X)
+
+print_model = model.summary()
+print(print_model)
+```
