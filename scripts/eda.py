@@ -8595,3 +8595,24 @@ predictions = model.predict(X)
 print_model = model.summary()
 print(print_model)
 ```
+# Change made on 2024-06-26 21:28:24.234812
+```python
+import pandas as pd
+import numpy as np
+import statsmodels.api as sm
+
+# Load data from countries.csv
+data = pd.read_csv('..data/countries.csv')
+
+# Perform advanced economic research
+# Example: Linear regression model to analyze the relationship between GDP per capita and life expectancy
+X = data['GDP per capita']
+y = data['Life expectancy']
+
+X = sm.add_constant(X) # Adds a constant term to the predictor
+
+model = sm.OLS(y, X).fit() # Fit the linear regression model
+
+# Print the results
+print(model.summary())
+```
