@@ -8640,3 +8640,24 @@ predictions = model.predict(X)
 # Print the results of the regression analysis
 print(model.summary()) 
 
+# Change made on 2024-06-26 21:28:34.216554
+```python
+import pandas as pd
+import numpy as np
+import statsmodels.api as sm
+
+# Load the data from the CSV file
+data = pd.read_csv('../data/countries.csv')
+
+# Perform advanced economic research using the data
+# For example, regress GDP growth on various predictor variables
+X = data[['Investment', 'Inflation', 'Trade']]
+y = data['GDP Growth']
+
+X = sm.add_constant(X)  # Add a constant term to the predictor variables
+model = sm.OLS(y, X).fit()  # Fit the OLS regression model
+results = model.summary()
+
+# Print the results for the article
+print(results)
+```
