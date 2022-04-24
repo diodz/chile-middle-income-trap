@@ -8661,3 +8661,30 @@ results = model.summary()
 # Print the results for the article
 print(results)
 ```
+# Change made on 2024-06-26 21:28:38.908360
+```python
+import pandas as pd
+import numpy as np
+import statsmodels.api as sm
+
+# Load the data
+data = pd.read_csv('../data/countries.csv')
+
+# Perform data analysis
+# For example, calculate the average GDP per capita for Latin American countries
+average_gdp_per_capita = data[data['Region'] == 'Latin America']['GDP per Capita'].mean()
+
+# Perform regression analysis
+X = data[data['Region'] == 'Latin America'][['Population', 'GDP per Capita']]
+y = data[data['Region'] == 'Latin America']['GDP Growth']
+
+X = sm.add_constant(X)
+model = sm.OLS(y, X).fit()
+model_summary = model.summary()
+
+# Save the results to a file
+with open('economic_research_results.txt', 'w') as file:
+    file.write(f'Average GDP per capita in Latin America: {average_gdp_per_capita}\n\n')
+    file.write('Regression results:\n')
+    file.write(model_summary.as_text())
+```
