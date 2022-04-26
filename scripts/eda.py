@@ -8688,3 +8688,24 @@ with open('economic_research_results.txt', 'w') as file:
     file.write('Regression results:\n')
     file.write(model_summary.as_text())
 ```
+# Change made on 2024-06-26 21:28:43.085887
+```python
+import pandas as pd
+import numpy as np
+import statsmodels.api as sm
+
+# Load the data from countries.csv
+data = pd.read_csv('data/countries.csv')
+
+# Perform some advanced economic research
+# For example, we can calculate the correlation between GDP per capita and life expectancy
+correlation = np.corrcoef(data['GDP per capita'], data['Life expectancy'])[0, 1]
+print(f"Correlation between GDP per capita and life expectancy: {correlation}")
+
+# We can also run a simple linear regression to predict life expectancy based on GDP per capita
+X = sm.add_constant(data['GDP per capita'])
+y = data['Life expectancy']
+
+model = sm.OLS(y, X).fit()
+print(model.summary())
+```
