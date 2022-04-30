@@ -8709,3 +8709,26 @@ y = data['Life expectancy']
 model = sm.OLS(y, X).fit()
 print(model.summary())
 ```
+# Change made on 2024-06-26 21:28:47.387006
+import pandas as pd
+import numpy as np
+import statsmodels.api as sm
+
+# Load the data into a pandas DataFrame
+data = pd.read_csv('../data/countries.csv')
+
+# Perform some advanced economic research
+# For example, let's say we want to investigate the relationship between GDP per capita and unemployment rate in Latin American countries
+
+# Define the independent variable (X) and dependent variable (y)
+X = data['GDP per capita']
+y = data['Unemployment rate']
+
+# Add a constant term to the independent variable
+X = sm.add_constant(X)
+
+# Fit a linear regression model
+model = sm.OLS(y, X).fit()
+
+# Print the summary of the regression analysis
+print(model.summary())
