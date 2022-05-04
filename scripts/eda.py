@@ -8732,3 +8732,24 @@ model = sm.OLS(y, X).fit()
 
 # Print the summary of the regression analysis
 print(model.summary())
+# Change made on 2024-06-26 21:28:51.533093
+# Import necessary libraries
+import pandas as pd
+import numpy as np
+import statsmodels.api as sm
+
+# Load the data
+data = pd.read_csv('data/countries.csv')
+
+# Perform advanced economic research
+# For example, you can calculate the correlation between GDP per capita and life expectancy
+correlation = np.corrcoef(data['GDP_per_capita'], data['Life_expectancy'])[0, 1]
+print("Correlation between GDP per capita and life expectancy:", correlation)
+
+# You can also perform regression analysis to predict GDP per capita based on other variables
+X = data[['Population', 'Gini_coefficient']]
+X = sm.add_constant(X)
+y = data['GDP_per_capita']
+
+model = sm.OLS(y, X).fit()
+print(model.summary())
