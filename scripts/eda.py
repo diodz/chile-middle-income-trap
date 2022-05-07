@@ -8753,3 +8753,30 @@ y = data['GDP_per_capita']
 
 model = sm.OLS(y, X).fit()
 print(model.summary())
+# Change made on 2024-06-26 21:28:56.458235
+```python
+import pandas as pd
+import numpy as np
+import statsmodels.api as sm
+
+# Load the data
+data = pd.read_csv('data/countries.csv')
+
+# Perform some advanced economic research
+# Calculate the GDP per capita for each country
+data['GDP_per_capita'] = data['GDP'] / data['Population']
+
+# Calculate the inflation rate for each country
+data['Inflation_rate'] = ((data['CPI'] - data['Prev_CPI']) / data['Prev_CPI']) * 100
+
+# Run a regression analysis
+X = data[['GDP_per_capita', 'Inflation_rate']]
+X = sm.add_constant(X) # add a constant term to the model
+Y = data['HDI']
+
+model = sm.OLS(Y, X).fit()
+predictions = model.predict(X)
+
+# Print the results
+print(model.summary())
+```
