@@ -8780,3 +8780,20 @@ predictions = model.predict(X)
 # Print the results
 print(model.summary())
 ```
+# Change made on 2024-06-26 21:28:59.863806
+import pandas as pd
+import numpy as np
+import statsmodels.api as sm
+
+# Load the dataset
+data = pd.read_csv('../data/countries.csv')
+
+# Filter the dataset to include only Latin American countries
+latin_american_countries = data[data['region'] == 'Latin America']
+
+# Perform advanced economic research using statsmodels or any other statistical library
+model = sm.OLS(latin_american_countries['gdp'], sm.add_constant(latin_american_countries['population']))
+results = model.fit()
+
+# Print the results of the economic research
+print(results.summary())
