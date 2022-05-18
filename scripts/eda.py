@@ -8816,3 +8816,25 @@ model = sm.OLS(y, X).fit() # Fit a linear regression model
 
 # Print the results
 print(model.summary())
+# Change made on 2024-06-26 21:29:08.667185
+import pandas as pd
+import numpy as np
+import statsmodels.api as sm
+
+# Load the data
+data = pd.read_csv("..data/countries.csv")
+
+# Perform some advanced economic analysis
+# For example, we can calculate the correlation between GDP per capita and unemployment rate
+correlation = np.corrcoef(data['GDP_per_capita'], data['Unemployment_rate'])[0, 1]
+
+# Run a regression analysis to see the impact of inflation on economic growth
+X = data['Inflation']
+y = data['GDP_growth']
+X = sm.add_constant(X)
+model = sm.OLS(y, X).fit()
+results = model.summary()
+
+# Print the results
+print("Correlation between GDP per capita and unemployment rate: {}".format(correlation))
+print(results)
