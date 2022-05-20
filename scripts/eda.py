@@ -8838,3 +8838,27 @@ results = model.summary()
 # Print the results
 print("Correlation between GDP per capita and unemployment rate: {}".format(correlation))
 print(results)
+# Change made on 2024-06-26 21:29:13.720835
+import pandas as pd
+import numpy as np
+import statsmodels.api as sm
+
+# Load the data from the countries.csv file
+data = pd.read_csv('data/countries.csv')
+
+# Perform some advanced economic research using the data
+# For example, calculate the average GDP per capita for Latin American countries
+latin_american_countries = data[data['region'] == 'Latin America']
+average_gdp_per_capita = latin_american_countries['gdp_per_capita'].mean()
+
+# Use statsmodels to conduct regression analysis
+X = latin_american_countries[['population', 'unemployment_rate']]
+y = latin_american_countries['gdp_per_capita']
+
+X = sm.add_constant(X)
+model = sm.OLS(y, X).fit()
+summary = model.summary()
+
+# Print the results of the economic research
+print(f'The average GDP per capita for Latin American countries is: {average_gdp_per_capita}')
+print(summary)
