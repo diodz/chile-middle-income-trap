@@ -8862,3 +8862,18 @@ summary = model.summary()
 # Print the results of the economic research
 print(f'The average GDP per capita for Latin American countries is: {average_gdp_per_capita}')
 print(summary)
+# Change made on 2024-06-26 21:29:16.643543
+import pandas as pd
+import numpy as np
+import statsmodels.api as sm
+
+# Read the data
+data = pd.read_csv('../data/countries.csv')
+
+# Perform some economic analysis
+# Example: OLS regression
+X = data[['GDP', 'Population']]
+y = data['Unemployment']
+X = sm.add_constant(X) # Add constant term
+model = sm.OLS(y, X).fit()
+print(model.summary())
