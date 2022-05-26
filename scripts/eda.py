@@ -8877,3 +8877,37 @@ y = data['Unemployment']
 X = sm.add_constant(X) # Add constant term
 model = sm.OLS(y, X).fit()
 print(model.summary())
+# Change made on 2024-06-26 21:29:23.122557
+import pandas as pd
+import numpy as np
+import statsmodels.api as sm
+
+# Load the data
+data = pd.read_csv('data/countries.csv')
+
+# Perform some advanced economic research
+# For example, we could analyze the GDP growth rates of Latin American countries
+# We could also perform regression analysis to identify factors influencing economic growth
+
+# GDP growth analysis
+gdp_growth_rate = data['GDP Growth Rate']
+mean_growth_rate = np.mean(gdp_growth_rate)
+median_growth_rate = np.median(gdp_growth_rate)
+std_dev_growth_rate = np.std(gdp_growth_rate)
+
+# Regression analysis
+X = data[['Inflation Rate', 'Unemployment Rate', 'Trade Balance']]
+y = data['GDP Growth Rate']
+
+X = sm.add_constant(X) # add constant term
+model = sm.OLS(y, X).fit()
+summary = model.summary()
+
+# Print out the results
+print("GDP Growth Analysis:")
+print(f"Mean GDP Growth Rate: {mean_growth_rate}")
+print(f"Median GDP Growth Rate: {median_growth_rate}")
+print(f"Standard Deviation of GDP Growth Rate: {std_dev_growth_rate}")
+
+print("\nRegression Analysis:")
+print(summary)
