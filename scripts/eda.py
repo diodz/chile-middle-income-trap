@@ -8911,3 +8911,23 @@ print(f"Standard Deviation of GDP Growth Rate: {std_dev_growth_rate}")
 
 print("\nRegression Analysis:")
 print(summary)
+# Change made on 2024-06-26 21:29:26.495011
+import pandas as pd
+import numpy as np
+import statsmodels.api as sm
+
+# Load data
+data = pd.read_csv("../data/countries.csv")
+
+# Perform economic research
+# Example analysis:
+# Run a regression model to study the relationship between GDP per capita and education level in Latin American countries
+X = data["education_level"]
+y = data["gdp_per_capita"]
+
+X = sm.add_constant(X)  # adding a constant
+model = sm.OLS(y, X).fit()
+predictions = model.predict(X)
+
+# Print regression results
+print(model.summary())
