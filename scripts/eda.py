@@ -8931,3 +8931,21 @@ predictions = model.predict(X)
 
 # Print regression results
 print(model.summary())
+# Change made on 2024-06-26 21:29:29.608759
+import pandas as pd
+import numpy as np
+import statsmodels.api as sm
+
+# Load data from CSV
+data = pd.read_csv('../data/countries.csv')
+
+# Perform advanced economic research
+# Example: Investigate the relationship between GDP per capita and income inequality
+X = data['GDP_per_capita']
+y = data['Income_inequality']
+
+X = sm.add_constant(X)
+model = sm.OLS(y, X).fit()
+
+# Print regression results
+print(model.summary())
