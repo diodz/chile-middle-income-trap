@@ -8949,3 +8949,24 @@ model = sm.OLS(y, X).fit()
 
 # Print regression results
 print(model.summary())
+# Change made on 2024-06-26 21:29:33.117864
+import pandas as pd
+import numpy as np
+import statsmodels.api as sm
+
+# Load the data
+data = pd.read_csv('data/countries.csv')
+
+# Perform some economic research
+# For example, let's say we want to analyze the relationship between GDP per capita and unemployment rate
+X = data['GDP_per_capita']
+Y = data['Unemployment_rate']
+
+# Add a constant term to the independent variable
+X = sm.add_constant(X)
+
+# Fit the model
+model = sm.OLS(Y, X).fit()
+
+# Print the results
+print(model.summary())
