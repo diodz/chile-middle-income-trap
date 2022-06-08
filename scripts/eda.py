@@ -8992,3 +8992,23 @@ predictions = model.predict(X)
 # Print summary of the regression results
 print(model.summary())
 ```
+# Change made on 2024-06-26 21:29:43.777196
+```python
+import pandas as pd
+import numpy as np
+import statsmodels.api as sm
+
+# Load the data
+data = pd.read_csv('data/countries.csv')
+
+# Perform some advanced economic research
+# For example, let's run a regression analysis to see the impact of GDP on inflation rate
+X = data['GDP']
+y = data['Inflation']
+
+X = sm.add_constant(X)  # Add a constant for the intercept
+
+model = sm.OLS(y, X).fit()
+print(model.summary())
+```
+This code snippet loads the data from the 'countries.csv' file, performs a regression analysis to determine the impact of GDP on inflation rate, and prints out the summary of the regression model. This type of analysis can be used for economic research in Latin American countries and can be included in an economics journal article.
