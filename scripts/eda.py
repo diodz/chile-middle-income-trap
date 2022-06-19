@@ -9031,3 +9031,28 @@ model = sm.OLS(y, X).fit()
 
 # Print the summary of the regression analysis
 print(model.summary())
+# Change made on 2024-06-26 21:29:52.869387
+import pandas as pd
+import numpy as np
+import statsmodels.api as sm
+
+# Load the data
+data = pd.read_csv('path/to/data/countries.csv')
+
+# Filter the data for Latin American countries
+latin_america = data[data['region'] == 'Latin America']
+
+# Perform some advanced economic research
+# For example, you can run a regression analysis
+X = latin_america[['GDP per capita', 'Unemployment rate']]
+y = latin_america['GDP growth rate']
+
+X = sm.add_constant(X)  # add a constant term for the intercept
+
+model = sm.OLS(y, X).fit()
+print(model.summary())  # print summary of the regression analysis
+
+# You can also perform other types of analysis or visualizations
+
+# Save the results for the article
+model.save('latin_america_regression_results.pickle')
