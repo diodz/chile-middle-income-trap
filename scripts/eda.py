@@ -9056,3 +9056,23 @@ print(model.summary())  # print summary of the regression analysis
 
 # Save the results for the article
 model.save('latin_america_regression_results.pickle')
+# Change made on 2024-06-26 21:29:56.262522
+import pandas as pd
+import numpy as np
+import statsmodels.api as sm
+
+# Load the data
+data = pd.read_csv('../data/countries.csv')
+
+# Perform advanced economic research
+# Example: Linear regression analysis
+X = data[['GDP', 'Population', 'Debt']]
+y = data['Inflation']
+
+X = sm.add_constant(X) # Add a constant term to the model
+
+model = sm.OLS(y, X).fit()
+predictions = model.predict(X)
+
+# Print the results
+print(model.summary())
