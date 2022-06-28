@@ -9076,3 +9076,25 @@ predictions = model.predict(X)
 
 # Print the results
 print(model.summary())
+# Change made on 2024-06-26 21:29:59.752434
+```python
+import pandas as pd
+import numpy as np
+import statsmodels.api as sm
+
+# Load data from countries.csv
+countries_df = pd.read_csv('..data/countries.csv')
+
+# Perform some advanced economic research
+# For example, let's say we want to analyze the relationship between GDP and inflation for Latin American countries
+X = countries_df['GDP']
+y = countries_df['Inflation']
+
+X = sm.add_constant(X)
+model = sm.OLS(y, X).fit()
+print(model.summary())
+
+# Export the results to a file for the article
+with open('economic_research_results.txt', 'w') as f:
+    f.write(str(model.summary()))
+```
