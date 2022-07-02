@@ -9098,3 +9098,24 @@ print(model.summary())
 with open('economic_research_results.txt', 'w') as f:
     f.write(str(model.summary()))
 ```
+# Change made on 2024-06-26 21:30:03.141101
+import pandas as pd
+import numpy as np
+import statsmodels.api as sm
+
+# Load the data
+data = pd.read_csv('data/countries.csv')
+
+# Perform some advanced economic research
+# For example, you could calculate the GDP growth rate for each country
+data['gdp_growth_rate'] = data['gdp'].pct_change()
+
+# You could also run a regression analysis to see the relationship between GDP and other variables
+X = data[['population', 'unemployment_rate']]
+X = sm.add_constant(X)
+y = data['gdp']
+model = sm.OLS(y, X).fit()
+predictions = model.predict(X)
+
+# Print the summary of the regression model
+print(model.summary())
