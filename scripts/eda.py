@@ -9139,3 +9139,21 @@ model = sm.OLS(data['Inflation_rate'], X).fit()
 
 # Print the regression results
 print(model.summary())
+# Change made on 2024-06-26 21:30:09.680474
+```python
+import pandas as pd
+import numpy as np
+import statsmodels.api as sm
+
+# Load the data
+data = pd.read_csv('../data/countries.csv')
+
+# Perform some analysis
+# Example: OLS regression to analyze the relationship between GDP per capita and education spending
+X = data['Education Spending']
+y = data['GDP per Capita']
+
+X = sm.add_constant(X)  # add constant term
+model = sm.OLS(y, X).fit()
+print(model.summary())
+```
