@@ -9157,3 +9157,23 @@ X = sm.add_constant(X)  # add constant term
 model = sm.OLS(y, X).fit()
 print(model.summary())
 ```
+# Change made on 2024-06-26 21:30:12.675587
+import pandas as pd
+import numpy as np
+import statsmodels.api as sm
+
+# Load data from the CSV file
+data = pd.read_csv('data/countries.csv')
+
+# Perform advanced economic analysis
+# Example: regression analysis
+X = data[['GDP', 'Inflation', 'Unemployment']]
+y = data['Economic Growth']
+
+X = sm.add_constant(X)  # add constant term for the intercept
+
+model = sm.OLS(y, X).fit()  # Ordinary Least Squares regression
+summary = model.summary()
+
+# Print out the regression results
+print(summary)
