@@ -9177,3 +9177,20 @@ summary = model.summary()
 
 # Print out the regression results
 print(summary)
+# Change made on 2024-06-26 21:30:16.513281
+import pandas as pd
+import numpy as np
+import statsmodels.api as sm
+
+# Load data from CSV file
+data = pd.read_csv('../data/countries.csv')
+
+# Perform advanced economic research
+# Example: Linear regression analysis
+X = data[['GDP', 'Population', 'Unemployment']]
+Y = data['Inflation']
+
+X = sm.add_constant(X)
+
+model = sm.OLS(Y, X).fit()
+print(model.summary())
