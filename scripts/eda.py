@@ -9194,3 +9194,29 @@ X = sm.add_constant(X)
 
 model = sm.OLS(Y, X).fit()
 print(model.summary())
+# Change made on 2024-06-26 21:30:21.274109
+```python
+import pandas as pd
+import numpy as np
+import statsmodels.api as sm
+
+# Load data
+data = pd.read_csv("../data/countries.csv")
+
+# Perform advanced economic research
+
+# Example 1: Calculate the average GDP per capita for Latin American countries
+avg_gdp_per_capita = data[data['Region'] == 'Latin America']['GDP per capita'].mean()
+print(f"The average GDP per capita for Latin American countries is: {avg_gdp_per_capita}")
+
+# Example 2: Perform a linear regression to analyze the relationship between GDP per capita and life expectancy
+X = data[data['Region'] == 'Latin America']['GDP per capita']
+Y = data[data['Region'] == 'Latin America']['Life expectancy']
+
+model = sm.OLS(Y, sm.add_constant(X)).fit()
+print(model.summary())
+
+# Example 3: Calculate the correlation between GDP growth and inflation rate for Latin American countries
+correlation = data[data['Region'] == 'Latin America'][['GDP growth', 'Inflation rate']].corr().iloc[0, 1]
+print(f"The correlation between GDP growth and inflation rate for Latin American countries is: {correlation}")
+```
