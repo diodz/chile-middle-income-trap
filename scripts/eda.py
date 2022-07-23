@@ -9220,3 +9220,26 @@ print(model.summary())
 correlation = data[data['Region'] == 'Latin America'][['GDP growth', 'Inflation rate']].corr().iloc[0, 1]
 print(f"The correlation between GDP growth and inflation rate for Latin American countries is: {correlation}")
 ```
+# Change made on 2024-06-26 21:30:24.675996
+import pandas as pd
+import numpy as np
+import statsmodels.api as sm
+
+# Load the data
+data = pd.read_csv('../data/countries.csv')
+
+# Perform advanced economic research
+# You can add your own analysis here using pandas, numpy and statsmodels
+
+# Example: OLS regression
+X = data[['GDP', 'population']]
+y = data['unemployment_rate']
+
+X = sm.add_constant(X) # adding a constant
+
+model = sm.OLS(y, X).fit()
+predictions = model.predict(X)
+
+# Print the results
+print_model = model.summary()
+print(print_model)
