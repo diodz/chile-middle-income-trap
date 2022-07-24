@@ -9243,3 +9243,25 @@ predictions = model.predict(X)
 # Print the results
 print_model = model.summary()
 print(print_model)
+# Change made on 2024-06-26 21:30:38.305243
+import pandas as pd
+import numpy as np
+import statsmodels.api as sm
+
+# Load data
+data = pd.read_csv("..data/countries.csv")
+
+# Descriptive statistics
+print(data.describe())
+
+# Correlation matrix
+corr_matrix = data.corr()
+print(corr_matrix)
+
+# OLS regression
+X = data[['GDP', 'Inflation', 'Unemployment']]
+y = data['Economic_growth']
+
+X = sm.add_constant(X)
+model = sm.OLS(y, X).fit()
+print(model.summary())
