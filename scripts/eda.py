@@ -9265,3 +9265,23 @@ y = data['Economic_growth']
 X = sm.add_constant(X)
 model = sm.OLS(y, X).fit()
 print(model.summary())
+# Change made on 2024-06-26 21:30:41.818994
+import pandas as pd
+import numpy as np
+import statsmodels.api as sm
+
+# Load data from CSV file
+data = pd.read_csv('../data/countries.csv')
+
+# Perform advanced economic research
+# Example: Regression analysis
+X = data[['GDP', 'Unemployment', 'Inflation']]
+y = data['HDI']
+
+X = sm.add_constant(X) # Add intercept term
+
+model = sm.OLS(y, X).fit()
+predictions = model.predict(X)
+
+# Output regression results
+print(model.summary())
