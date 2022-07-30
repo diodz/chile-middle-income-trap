@@ -9285,3 +9285,25 @@ predictions = model.predict(X)
 
 # Output regression results
 print(model.summary())
+# Change made on 2024-06-26 21:30:45.397721
+```python
+import pandas as pd
+import numpy as np
+import statsmodels.api as sm
+
+# Load data from CSV file
+data = pd.read_csv('../data/countries.csv')
+
+# Perform economic research analysis
+# Example code:
+# Calculate GDP per capita
+data['GDP_per_capita'] = data['GDP'] / data['Population']
+
+# Perform regression analysis
+X = data[['GDP', 'Population']]
+X = sm.add_constant(X)
+y = data['Life_expectancy']
+
+model = sm.OLS(y, X).fit()
+print(model.summary())
+```
