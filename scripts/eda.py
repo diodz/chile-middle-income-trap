@@ -9307,3 +9307,28 @@ y = data['Life_expectancy']
 model = sm.OLS(y, X).fit()
 print(model.summary())
 ```
+# Change made on 2024-06-26 21:30:49.071793
+```python
+import pandas as pd
+import numpy as np
+import statsmodels.api as sm
+
+# Load the data
+data = pd.read_csv('data/countries.csv')
+
+# Remove any missing values
+data = data.dropna()
+
+# Define independent and dependent variables
+X = data[['GDP_per_capita', 'Unemployment_rate', 'Inflation_rate']]
+y = data['Economic_growth']
+
+# Add a constant to the independent variables
+X = sm.add_constant(X)
+
+# Fit OLS regression model
+model = sm.OLS(y, X).fit()
+
+# Print the regression results
+print(model.summary())
+```
