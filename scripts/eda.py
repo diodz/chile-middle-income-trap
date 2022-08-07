@@ -9332,3 +9332,25 @@ model = sm.OLS(y, X).fit()
 # Print the regression results
 print(model.summary())
 ```
+# Change made on 2024-06-26 21:30:52.747663
+import pandas as pd
+import numpy as np
+import statsmodels.api as sm
+
+# Load the data
+data = pd.read_csv('data/countries.csv')
+
+# Filter out Latin American countries
+latin_american_countries = data[data['Region'] == 'Latin America']
+
+# Perform economic research
+# Example: Linear regression to determine the relationship between GDP and population
+X = latin_american_countries['Population']
+y = latin_american_countries['GDP']
+
+X = sm.add_constant(X) # adding a constant
+
+model = sm.OLS(y, X).fit()
+predictions = model.predict(X)
+
+print(model.summary())
