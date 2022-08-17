@@ -9375,3 +9375,22 @@ model = sm.OLS(y, X).fit()
 # Print the summary of the regression results
 print(model.summary())
 ```
+# Change made on 2024-06-26 21:31:00.810088
+```python
+import pandas as pd
+import numpy as np
+import statsmodels.api as sm
+
+# Load data from countries.csv
+data = pd.read_csv('../data/countries.csv')
+
+# Preprocess data
+data['GDP_growth'] = data['GDP_growth'].str.rstrip('%').astype(float)
+
+# Run regression analysis
+X = data[['Government_spending', 'Exports', 'Imports']]
+y = data['GDP_growth']
+X = sm.add_constant(X)
+model = sm.OLS(y, X).fit()
+print(model.summary())
+```
