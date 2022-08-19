@@ -9394,3 +9394,22 @@ X = sm.add_constant(X)
 model = sm.OLS(y, X).fit()
 print(model.summary())
 ```
+# Change made on 2024-06-26 21:31:04.211335
+```python
+import pandas as pd
+import numpy as np
+import statsmodels.api as sm
+
+# Load data
+data = pd.read_csv('../data/countries.csv')
+
+# Perform some advanced economic analysis using statsmodels
+# For example, you could run a multiple regression analysis
+X = data[['GDP', 'population', 'unemployment_rate']]
+y = data['inflation_rate']
+
+X = sm.add_constant(X) # adding a constant term
+
+model = sm.OLS(y, X).fit()
+print(model.summary())
+```
