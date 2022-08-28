@@ -9455,3 +9455,29 @@ print("Correlation between GDP per capita and life expectancy:", correlation)
 X = sm.add_constant(gdp_per_capita)
 model = sm.OLS(life_expectancy, X).fit()
 print(model.summary())
+# Change made on 2024-06-26 21:31:18.293627
+```python
+import pandas as pd
+import numpy as np
+import statsmodels.api as sm
+
+# Load the data
+data = pd.read_csv('data/countries.csv')
+
+# Perform some economic analysis using the data
+# For example, calculate the average GDP per capita for Latin American countries
+latin_america = data[data['Region'] == 'Latin America']
+average_gdp_per_capita = latin_america['GDP Per Capita'].mean()
+
+# Run a regression analysis to examine the relationship between GDP per capita and life expectancy
+X = latin_america['GDP Per Capita']
+y = latin_america['Life Expectancy']
+X = sm.add_constant(X)
+model = sm.OLS(y, X).fit()
+beta_0 = model.params[0]
+beta_1 = model.params[1]
+
+# Print the results
+print(f"Average GDP per capita in Latin America: {average_gdp_per_capita}")
+print(f"Regression results: Life Expectancy = {beta_0} + {beta_1}*GDP Per Capita")
+```
