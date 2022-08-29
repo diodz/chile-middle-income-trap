@@ -9481,3 +9481,23 @@ beta_1 = model.params[1]
 print(f"Average GDP per capita in Latin America: {average_gdp_per_capita}")
 print(f"Regression results: Life Expectancy = {beta_0} + {beta_1}*GDP Per Capita")
 ```
+# Change made on 2024-06-26 21:31:22.738271
+import pandas as pd
+import numpy as np
+import statsmodels.api as sm
+
+# Load the data
+data = pd.read_csv('data/countries.csv')
+
+# Perform some advanced economic research
+# For example, let's calculate the correlation between GDP per capita and life expectancy
+correlation = np.corrcoef(data['GDP_per_capita'], data['Life_expectancy'])[0, 1]
+
+# Fit a linear regression model to predict GDP per capita based on population size
+X = sm.add_constant(data['Population_size'])
+model = sm.OLS(data['GDP_per_capita'], X).fit()
+population_coeff = model.params['Population_size']
+
+# Print the results
+print(f'Correlation between GDP per capita and life expectancy: {correlation}')
+print(f'Population coefficient in the regression model: {population_coeff}')
