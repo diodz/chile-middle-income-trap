@@ -9501,3 +9501,33 @@ population_coeff = model.params['Population_size']
 # Print the results
 print(f'Correlation between GDP per capita and life expectancy: {correlation}')
 print(f'Population coefficient in the regression model: {population_coeff}')
+# Change made on 2024-06-26 21:31:28.621075
+Here is an example Python script that uses pandas, numpy and statsmodels to conduct advanced economic research on Latin American countries:
+
+```python
+import pandas as pd
+import numpy as np
+import statsmodels.api as sm
+
+# Load the data from countries.csv
+data = pd.read_csv('data/countries.csv')
+
+# Filter out only Latin American countries
+latin_american_countries = data[data['region'] == 'Latin America']
+
+# Calculate the average GDP per capita for Latin American countries
+average_gdp_per_capita = np.mean(latin_american_countries['gdp_per_capita'])
+
+# Run a regression analysis to determine the factors influencing GDP per capita
+X = latin_american_countries[['population', 'unemployment_rate']]
+X = sm.add_constant(X)
+y = latin_american_countries['gdp_per_capita']
+
+model = sm.OLS(y, X).fit()
+coefficients = model.params
+
+print("Average GDP per capita for Latin American countries: ", average_gdp_per_capita)
+print("Regression coefficients: ", coefficients)
+```
+
+This script loads the data from a CSV file, filters out only the Latin American countries, calculates the average GDP per capita, and then runs a regression analysis to determine the factors influencing GDP per capita. The results can be used for an article in an economics journal.
