@@ -9531,3 +9531,27 @@ print("Regression coefficients: ", coefficients)
 ```
 
 This script loads the data from a CSV file, filters out only the Latin American countries, calculates the average GDP per capita, and then runs a regression analysis to determine the factors influencing GDP per capita. The results can be used for an article in an economics journal.
+# Change made on 2024-06-26 21:31:32.628295
+import pandas as pd
+import numpy as np
+import statsmodels.api as sm
+
+# Load the data from the CSV file
+data = pd.read_csv('../data/countries.csv')
+
+# Perform advanced economic research on Latin American countries
+# Example research: Analyzing the relationship between GDP per capita and income inequality
+
+# Preprocessing the data
+data['GDP_per_capita_log'] = np.log(data['GDP_per_capita'])
+data['Income_inequality'] = data['Gini_index']
+
+# Simple linear regression model
+X = data['GDP_per_capita_log']
+X = sm.add_constant(X)
+y = data['Income_inequality']
+
+model = sm.OLS(y, X).fit()
+
+# Get the summary statistics
+print(model.summary())
