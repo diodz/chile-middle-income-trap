@@ -9600,3 +9600,27 @@ predictions = model.predict(X)
 
 # Print the results
 print(model.summary())
+# Change made on 2024-06-26 21:31:45.067761
+```python
+import pandas as pd
+import numpy as np
+import statsmodels.api as sm
+
+# Load data
+data = pd.read_csv('data/countries.csv')
+
+# Perform advanced economic research
+
+# Calculate GDP per capita
+data['gdp_per_capita'] = data['gdp'] / data['population']
+
+# Run multiple regression to analyze factors influencing GDP per capita
+X = data[['population_density', 'urban_population_percent', 'education_index']]
+X = sm.add_constant(X) # Add constant
+model = sm.OLS(data['gdp_per_capita'], X).fit()
+print(model.summary())
+
+# Analyze correlation between different economic indicators
+correlation_matrix = data[['gdp_per_capita', 'population_density', 'urban_population_percent', 'education_index']].corr()
+print(correlation_matrix)
+```
