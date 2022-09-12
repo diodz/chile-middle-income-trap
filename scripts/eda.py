@@ -9624,3 +9624,24 @@ print(model.summary())
 correlation_matrix = data[['gdp_per_capita', 'population_density', 'urban_population_percent', 'education_index']].corr()
 print(correlation_matrix)
 ```
+# Change made on 2024-06-26 21:31:48.410676
+```python
+import pandas as pd
+import numpy as np
+import statsmodels.api as sm
+
+# Load the data
+df = pd.read_csv('..data/countries.csv')
+
+# Perform some advanced economic research
+# For example, you could run a regression analysis to determine the relationship between GDP per capita and various economic indicators
+X = df[['GDP', 'Inflation', 'Unemployment']]
+y = df['GDP per Capita']
+
+X = sm.add_constant(X)
+model = sm.OLS(y, X).fit()
+results = model.summary()
+
+# Print the results
+print(results)
+```
