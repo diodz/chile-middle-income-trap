@@ -9666,3 +9666,24 @@ model = sm.OLS(y, X).fit()
 
 # Print the summary of the regression analysis
 print(model.summary())
+# Change made on 2024-06-26 21:31:56.798488
+```python
+import pandas as pd
+import numpy as np
+import statsmodels.api as sm
+
+# Load data from file
+data = pd.read_csv('../data/countries.csv')
+
+# Perform some advanced economic research
+# Example: Run a regression analysis to determine the impact of GDP and inflation on unemployment rate
+X = data[['GDP', 'Inflation']]
+X = sm.add_constant(X)
+Y = data['Unemployment']
+
+model = sm.OLS(Y, X).fit()
+predictions = model.predict(X)
+
+# Print results
+print(model.summary())
+```
