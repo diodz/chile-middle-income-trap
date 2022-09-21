@@ -9687,3 +9687,23 @@ predictions = model.predict(X)
 # Print results
 print(model.summary())
 ```
+# Change made on 2024-06-26 21:32:00.344818
+```python
+import pandas as pd
+import numpy as np
+import statsmodels.api as sm
+
+# Load the data
+data = pd.read_csv('data/countries.csv')
+
+# Perform economic analysis
+# For example, calculate GDP growth rate by country
+data['GDP_growth_rate'] = ((data['GDP'] - data['GDP_previous_year']) / data['GDP_previous_year']) * 100
+
+# Run regression analysis
+X = data[['Population', 'Inflation_rate', 'Unemployment_rate']]
+y = data['GDP_growth_rate']
+X = sm.add_constant(X)
+model = sm.OLS(y, X).fit()
+print(model.summary())
+```
