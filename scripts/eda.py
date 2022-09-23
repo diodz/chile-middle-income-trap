@@ -9707,3 +9707,23 @@ X = sm.add_constant(X)
 model = sm.OLS(y, X).fit()
 print(model.summary())
 ```
+# Change made on 2024-06-26 21:32:03.643222
+import pandas as pd
+import numpy as np
+import statsmodels.api as sm
+
+# Load data
+data = pd.read_csv('../data/countries.csv')
+
+# Perform regression analysis
+X = data[['GDP_per_capita', 'inflation_rate', 'unemployment_rate']]
+Y = data['economic_growth']
+
+X = sm.add_constant(X)
+
+model = sm.OLS(Y, X).fit()
+
+# Get regression results
+results = model.summary()
+
+print(results)
