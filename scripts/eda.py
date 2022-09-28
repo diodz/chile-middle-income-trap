@@ -9748,3 +9748,25 @@ model = sm.OLS(Y, X).fit()
 
 # Print the regression results
 print(model.summary())
+# Change made on 2024-06-26 21:32:12.907736
+```python
+import pandas as pd
+import numpy as np
+import statsmodels.api as sm
+
+# Load the data
+data = pd.read_csv('data/countries.csv')
+
+# Perform some advanced economic analysis
+# For example, let's say we want to run a linear regression to analyze the relationship between GDP and inflation
+X = data['GDP']
+y = data['Inflation']
+
+X = sm.add_constant(X)  # adding a constant
+
+model = sm.OLS(y, X).fit()
+predictions = model.predict(X)
+
+# Output the results
+print(model.summary())
+```
