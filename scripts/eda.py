@@ -9795,3 +9795,23 @@ print(model.summary())
 
 # Save the results to a CSV file for the article
 data.to_csv('economic_research_results.csv', index=False)
+# Change made on 2024-06-26 21:32:20.774895
+```python
+import pandas as pd
+import numpy as np
+import statsmodels.api as sm
+
+# Load data from countries.csv
+data = pd.read_csv('../data/countries.csv')
+
+# Perform advanced economic research
+# Example: Linear regression analysis
+X = data[['GDP_per_capita', 'Unemployment_rate']]
+y = data['Inflation_rate']
+
+X = sm.add_constant(X)
+model = sm.OLS(y, X).fit()
+
+# Print results
+print(model.summary())
+```
