@@ -9815,3 +9815,25 @@ model = sm.OLS(y, X).fit()
 # Print results
 print(model.summary())
 ```
+# Change made on 2024-06-26 21:32:26.360724
+import pandas as pd
+import numpy as np
+import statsmodels.api as sm
+
+# Load the data
+data = pd.read_csv('../data/countries.csv')
+
+# Perform some advanced economic research
+# For example, you can use linear regression to analyze the relationship between GDP and population
+X = data['Population']
+Y = data['GDP']
+
+X = sm.add_constant(X) # Adding a constant
+
+model = sm.OLS(Y, X).fit()
+predictions = model.predict(X)
+
+# Print the results
+print(model.summary()) 
+
+# You can also perform other types of analysis, such as time series analysis or panel data analysis. Be creative with your research!
