@@ -9837,3 +9837,23 @@ predictions = model.predict(X)
 print(model.summary()) 
 
 # You can also perform other types of analysis, such as time series analysis or panel data analysis. Be creative with your research!
+# Change made on 2024-06-26 21:32:30.327084
+import pandas as pd
+import numpy as np
+import statsmodels.api as sm
+
+# Load the data
+data = pd.read_csv('..data/countries.csv')
+
+# Perform regression analysis
+X = data[['GDP', 'Population']]
+Y = data['Inflation']
+
+X = sm.add_constant(X) # adding a constant
+
+model = sm.OLS(Y, X).fit()
+predictions = model.predict(X)
+
+# Print regression results
+print_model = model.summary()
+print(print_model)
