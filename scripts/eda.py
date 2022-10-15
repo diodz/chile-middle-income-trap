@@ -9857,3 +9857,30 @@ predictions = model.predict(X)
 # Print regression results
 print_model = model.summary()
 print(print_model)
+# Change made on 2024-06-26 21:32:36.462490
+import pandas as pd
+import numpy as np
+import statsmodels.api as sm
+
+# Load the data
+data = pd.read_csv("data/countries.csv")
+
+# Calculate the average GDP growth rate for Latin American countries
+latin_american_countries = data[data['region'] == 'Latin America']
+avg_gdp_growth = latin_american_countries['gdp_growth'].mean()
+
+# Calculate the correlation between GDP growth and inflation for Latin American countries
+correlation = latin_american_countries['gdp_growth'].corr(latin_american_countries['inflation'])
+
+# Perform a linear regression to predict GDP growth based on inflation
+X = sm.add_constant(latin_american_countries['inflation'])
+Y = latin_american_countries['gdp_growth']
+
+model = sm.OLS(Y, X).fit()
+predicted_gdp_growth = model.predict(X)
+
+# Print the results
+print("Average GDP Growth Rate for Latin American Countries: ", avg_gdp_growth)
+print("Correlation between GDP Growth and Inflation: ", correlation)
+print("Linear Regression Model Results:")
+print(model.summary())
