@@ -9884,3 +9884,29 @@ print("Average GDP Growth Rate for Latin American Countries: ", avg_gdp_growth)
 print("Correlation between GDP Growth and Inflation: ", correlation)
 print("Linear Regression Model Results:")
 print(model.summary())
+# Change made on 2024-06-26 21:32:40.908995
+import pandas as pd
+import numpy as np
+import statsmodels.api as sm
+
+# Load the data from the provided CSV file
+data = pd.read_csv('data/countries.csv')
+
+# Perform some preliminary data analysis
+summary_stats = data.describe()
+
+# Perform a linear regression analysis
+X = data[['GDP', 'Population']]
+X = sm.add_constant(X)
+y = data['Growth Rate']
+
+model = sm.OLS(y, X).fit()
+predictions = model.predict(X)
+
+# Print the regression results
+print(model.summary())
+
+# Write the results to a file for further analysis
+with open('results.txt', 'w') as f:
+    f.write(summary_stats)
+    f.write(model.summary())
