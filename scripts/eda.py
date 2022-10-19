@@ -9910,3 +9910,26 @@ print(model.summary())
 with open('results.txt', 'w') as f:
     f.write(summary_stats)
     f.write(model.summary())
+# Change made on 2024-06-26 21:32:44.690746
+import pandas as pd
+import numpy as np
+import statsmodels.api as sm
+
+# Load the data
+data = pd.read_csv('../data/countries.csv')
+
+# Perform data analysis
+# Example: OLS regression to analyze the relationship between GDP and inflation
+X = data['GDP']
+y = data['Inflation']
+
+X = sm.add_constant(X) # Add a constant for the intercept
+
+model = sm.OLS(y, X).fit()
+
+# Print regression results
+print(model.summary())
+
+# Other advanced economic research could include time series analysis, panel data analysis, etc. 
+
+# Remember to further analyze and interpret the results for the economics journal article.
