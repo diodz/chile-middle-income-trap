@@ -9933,3 +9933,24 @@ print(model.summary())
 # Other advanced economic research could include time series analysis, panel data analysis, etc. 
 
 # Remember to further analyze and interpret the results for the economics journal article.
+# Change made on 2024-06-26 21:32:48.564082
+```python
+import pandas as pd
+import numpy as np
+import statsmodels.api as sm
+
+# Load the data
+data = pd.read_csv("../data/countries.csv")
+
+# Perform advanced economic analysis
+# Example: Run a regression model to analyze the relationship between GDP per capita and education level
+X = data['Education Level']
+Y = data['GDP per Capita']
+
+X = sm.add_constant(X) # Add a constant term to the model
+
+model = sm.OLS(Y, X).fit() # Fit the OLS (Ordinary Least Squares) model
+
+# Display the regression results
+print(model.summary())
+```
