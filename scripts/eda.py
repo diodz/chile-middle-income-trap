@@ -9954,3 +9954,37 @@ model = sm.OLS(Y, X).fit() # Fit the OLS (Ordinary Least Squares) model
 # Display the regression results
 print(model.summary())
 ```
+# Change made on 2024-06-26 21:32:54.316140
+```python
+import pandas as pd
+import numpy as np
+import statsmodels.api as sm
+
+# Load the data
+data = pd.read_csv("../data/countries.csv")
+
+# Perform OLS regression to analyze the relationship between GDP and inflation
+X = data[['GDP']]
+y = data['Inflation']
+
+X = sm.add_constant(X) # Add constant term
+
+model = sm.OLS(y, X).fit()
+print(model.summary())
+
+# Calculate correlation between GDP and unemployment rate
+correlation = np.corrcoef(data['GDP'], data['Unemployment'])[0, 1]
+print("Correlation between GDP and Unemployment Rate:", correlation)
+
+# Analyze the distribution of income across countries
+mean_income = data['Income'].mean()
+median_income = data['Income'].median()
+income_range = data['Income'].max() - data['Income'].min()
+print("Mean Income:", mean_income)
+print("Median Income:", median_income)
+print("Income Range:", income_range)
+
+# Identify countries with highest inflation rates
+highest_inflation_countries = data.nlargest(3, 'Inflation')['Country']
+print("Countries with highest inflation rates:", highest_inflation_countries)
+```
