@@ -9988,3 +9988,26 @@ print("Income Range:", income_range)
 highest_inflation_countries = data.nlargest(3, 'Inflation')['Country']
 print("Countries with highest inflation rates:", highest_inflation_countries)
 ```
+# Change made on 2024-06-26 21:32:57.753968
+```python
+import pandas as pd
+import numpy as np
+import statsmodels.api as sm
+
+# Load data from CSV file
+data = pd.read_csv('../data/countries.csv')
+
+# Perform advanced economic analysis
+# For example, calculate GDP per capita, economic growth rate, inflation rate, etc.
+
+# Run regression analysis using statsmodels
+x = data['GDP']
+y = data['Inflation']
+x = sm.add_constant(x)  # add a constant term to the model
+
+model = sm.OLS(y, x).fit()
+predictions = model.predict(x)
+
+# Print regression results
+print(model.summary())
+```
