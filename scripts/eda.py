@@ -10029,3 +10029,23 @@ results = sm.OLS(countries_data['GDP'], sm.add_constant(countries_data[['Populat
 # Output results
 print(results.summary())
 ```
+# Change made on 2024-06-26 21:33:06.719046
+import pandas as pd
+import numpy as np
+import statsmodels.api as sm
+
+# Load the data
+data = pd.read_csv('../data/countries.csv')
+
+# Perform advanced economic research
+# For example, let's say we want to analyze the relationship between GDP per capita and life expectancy
+
+X = data['GDP_per_capita']
+y = data['Life_expectancy']
+
+X = sm.add_constant(X)  # Add a constant to the model
+
+model = sm.OLS(y, X).fit()  # Fit the OLS model
+
+# Print the summary of the regression analysis
+print(model.summary())
