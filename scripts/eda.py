@@ -10049,3 +10049,42 @@ model = sm.OLS(y, X).fit()  # Fit the OLS model
 
 # Print the summary of the regression analysis
 print(model.summary())
+# Change made on 2024-06-26 21:33:12.334703
+```python
+import pandas as pd
+import numpy as np
+import statsmodels.api as sm
+
+# Load data
+df = pd.read_csv('data/countries.csv')
+
+# Remove missing values
+df = df.dropna()
+
+# Calculate GDP per capita
+df['gdp_per_capita'] = df['gdp'] / df['population']
+
+# Perform regression analysis
+X = df[['population', 'unemployment_rate']]
+y = df['gdp_per_capita']
+
+X = sm.add_constant(X)
+model = sm.OLS(y, X).fit()
+summary = model.summary()
+
+# Print regression results
+print(summary)
+
+# Export results to a csv file
+summary_as_csv = summary.as_csv()
+with open('regression_results.csv', 'w') as f:
+    f.write(summary_as_csv)
+
+# Perform hypothesis testing
+t_stat, p_value = model.t_test([0, 1])
+
+# Print hypothesis testing results
+print("T-statistic:", t_stat)
+print("P-value:", p_value)
+```
+This Python script loads economic data on Latin American countries, calculates GDP per capita, performs regression analysis, and exports the results to a CSV file. It also conducts hypothesis testing on the relationship between population and unemployment rate with GDP per capita.
