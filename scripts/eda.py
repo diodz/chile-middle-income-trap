@@ -10088,3 +10088,26 @@ print("T-statistic:", t_stat)
 print("P-value:", p_value)
 ```
 This Python script loads economic data on Latin American countries, calculates GDP per capita, performs regression analysis, and exports the results to a CSV file. It also conducts hypothesis testing on the relationship between population and unemployment rate with GDP per capita.
+# Change made on 2024-06-26 21:33:16.695969
+import pandas as pd
+import numpy as np
+import statsmodels.api as sm
+
+# Load data
+data = pd.read_csv('..data/countries.csv')
+
+# Perform some advanced economic research
+# For example, you could calculate the GDP growth rate for each country
+data['GDP_growth_rate'] = data['GDP'].pct_change() * 100
+
+# Use regression analysis to assess the impact of inflation on GDP growth
+X = data['Inflation']
+y = data['GDP_growth_rate']
+
+X = sm.add_constant(X) # Add a constant term to the model
+
+model = sm.OLS(y, X).fit()
+predictions = model.predict(X)
+
+# Print regression results
+print(model.summary())
