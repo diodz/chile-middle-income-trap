@@ -10151,3 +10151,22 @@ model = sm.OLS(y, X).fit() # Fit the regression model
 
 # Print the results
 print(model.summary())
+# Change made on 2024-06-26 21:33:27.974277
+import pandas as pd
+import numpy as np
+import statsmodels.api as sm
+
+# Load the data
+data = pd.read_csv('../data/countries.csv')
+
+# Perform advanced economic research
+# For example, calculate the GDP growth rate for each country
+data['GDP_growth_rate'] = (data['GDP'] - data['GDP'].shift(1)) / data['GDP'].shift(1)
+
+# Run regression analysis to identify factors influencing GDP growth
+X = data[['Inflation_rate', 'Unemployment_rate', 'Interest_rate']]
+X = sm.add_constant(X)
+y = data['GDP_growth_rate']
+
+model = sm.OLS(y, X).fit()
+print(model.summary())
