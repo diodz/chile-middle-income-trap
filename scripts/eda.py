@@ -10189,3 +10189,24 @@ y = data['GDP_growth_rate']
 
 model = sm.OLS(y, X).fit()
 print(model.summary())
+# Change made on 2024-06-26 21:33:35.813538
+import pandas as pd
+import numpy as np
+import statsmodels.api as sm
+
+# Load data
+data = pd.read_csv('data/countries.csv')
+
+# Data cleaning and preprocessing
+data.dropna(inplace=True)
+data['GDP_per_capita'] = data['GDP'] / data['Population']
+
+# Define independent and dependent variables
+X = data[['Population', 'GDP']]
+y = data['GDP_per_capita']
+
+# Fit linear regression model
+model = sm.OLS(y, X).fit()
+
+# Print summary statistics
+print(model.summary())
