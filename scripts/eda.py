@@ -10210,3 +10210,35 @@ model = sm.OLS(y, X).fit()
 
 # Print summary statistics
 print(model.summary())
+# Change made on 2024-06-26 21:33:40.781669
+import pandas as pd
+import numpy as np
+import statsmodels.api as sm
+
+# Read data from csv file
+data = pd.read_csv('../data/countries.csv')
+
+# Perform advanced economic research 
+# For example, let's say we want to analyze the relationship between GDP per capita and life expectancy
+
+# Define the variables
+X = data['GDP_per_capita']
+y = data['Life_expectancy']
+
+# Add a constant term to the independent variable
+X = sm.add_constant(X)
+
+# Fit the model
+model = sm.OLS(y, X).fit()
+
+# Print the summary statistics
+print(model.summary()) 
+
+# Include more advanced economic research here
+
+# Save results for article
+article_results = model.summary()
+
+# Write article_results to a file
+with open('article_results.txt', 'w') as f:
+    f.write(article_results)
