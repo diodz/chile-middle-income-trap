@@ -10242,3 +10242,21 @@ article_results = model.summary()
 # Write article_results to a file
 with open('article_results.txt', 'w') as f:
     f.write(article_results)
+# Change made on 2024-06-26 21:33:45.221026
+```python
+import pandas as pd
+import numpy as np
+import statsmodels.api as sm
+
+# Load the data from countries.csv
+data = pd.read_csv('data/countries.csv')
+
+# Perform some advanced economic research
+# For example, let's do a linear regression analysis on GDP per capita and inflation rate
+X = sm.add_constant(data['GDP_per_capita'])
+y = data['Inflation_rate']
+
+model = sm.OLS(y, X).fit()
+print(model.summary())
+```
+This code loads data from a CSV file, performs a linear regression analysis on GDP per capita and inflation rate, and prints out the regression summary. This could be a starting point for more advanced economic research in Latin American countries.
