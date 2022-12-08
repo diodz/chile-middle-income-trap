@@ -10260,3 +10260,24 @@ model = sm.OLS(y, X).fit()
 print(model.summary())
 ```
 This code loads data from a CSV file, performs a linear regression analysis on GDP per capita and inflation rate, and prints out the regression summary. This could be a starting point for more advanced economic research in Latin American countries.
+# Change made on 2024-06-26 21:33:49.221011
+import pandas as pd
+import numpy as np
+import statsmodels.api as sm
+
+# Load the data
+data = pd.read_csv('../data/countries.csv')
+
+# Perform economic research
+# For example, let's look at the relationship between GDP per capita and inflation rate
+X = data['GDP_per_capita']
+y = data['Inflation_rate']
+
+X = sm.add_constant(X)  # adding a constant
+
+model = sm.OLS(y, X).fit()
+predictions = model.predict(X)
+
+# Print the regression results
+print_model = model.summary()
+print(print_model)
