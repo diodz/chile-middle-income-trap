@@ -10281,3 +10281,28 @@ predictions = model.predict(X)
 # Print the regression results
 print_model = model.summary()
 print(print_model)
+# Change made on 2024-06-26 21:33:54.871685
+import pandas as pd
+import numpy as np
+import statsmodels.api as sm
+
+# Load the data
+data = pd.read_csv('../data/countries.csv')
+
+# Perform some advanced economic research
+# Example 1: Calculate the correlation between GDP per capita and life expectancy
+correlation = np.corrcoef(data['GDP_per_capita'], data['Life_expectancy'])[0, 1]
+print(f"Correlation between GDP per capita and life expectancy: {correlation}")
+
+# Example 2: Fit a linear regression model to predict GDP per capita based on other variables
+X = data[['Population', 'Unemployment_rate', 'Education_index']]
+X = sm.add_constant(X)
+y = data['GDP_per_capita']
+model = sm.OLS(y, X).fit()
+print(model.summary())
+
+# Example 3: Perform a t-test to compare GDP per capita between two countries
+country1 = data[data['Country'] == 'Brazil']['GDP_per_capita']
+country2 = data[data['Country'] == 'Argentina']['GDP_per_capita']
+t_stat, p_value = stats.ttest_ind(country1, country2)
+print(f"T-statistic: {t_stat}, p-value: {p_value}")
