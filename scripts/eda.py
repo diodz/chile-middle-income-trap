@@ -10306,3 +10306,54 @@ country1 = data[data['Country'] == 'Brazil']['GDP_per_capita']
 country2 = data[data['Country'] == 'Argentina']['GDP_per_capita']
 t_stat, p_value = stats.ttest_ind(country1, country2)
 print(f"T-statistic: {t_stat}, p-value: {p_value}")
+# Change made on 2024-06-26 21:33:59.779190
+```python
+import pandas as pd
+import numpy as np
+import statsmodels.api as sm
+
+# Load the data from countries.csv
+data = pd.read_csv('path/to/countries.csv')
+
+# Perform advanced economic analysis
+# For example, you could run a regression model to analyze the relationship between GDP and various economic indicators
+X = data[['Indicator1', 'Indicator2', 'Indicator3']]
+y = data['GDP']
+
+X = sm.add_constant(X)  # add a constant term for the intercept
+
+model = sm.OLS(y, X)
+results = model.fit()
+
+# Print the regression results
+print(results.summary())
+``` 
+
+This code snippet demonstrates how to load data from a CSV file, perform advanced economic analysis using regression modeling, and print the results using libraries like pandas, numpy, and statsmodels. You can further customize this code to suit your specific research needs for the economics journal article.
+# Change made on 2024-06-26 21:34:03.216795
+import pandas as pd
+import numpy as np
+import statsmodels.api as sm
+
+# Load data from countries.csv
+data = pd.read_csv('..data/countries.csv')
+
+# Filter data for Latin American countries
+latin_american = data[data['Region'] == 'Latin America']
+
+# Calculate average GDP per capita
+latin_american['GDP_per_capita'] = latin_american['GDP'] / latin_american['Population']
+
+# Calculate correlation between GDP per capita and other variables
+correlation_matrix = latin_american.corr()
+
+# Run linear regression
+X = latin_american['GDP']
+y = latin_american['Life_expectancy']
+
+X = sm.add_constant(X)
+model = sm.OLS(y, X).fit()
+
+# Print results
+print(correlation_matrix)
+print(model.summary())
