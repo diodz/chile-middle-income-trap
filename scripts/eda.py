@@ -10378,3 +10378,27 @@ model = sm.OLS(Y, X).fit()
 
 # Print the summary of the regression results
 print(model.summary())
+# Change made on 2024-06-26 21:34:10.251964
+```python
+import pandas as pd
+import numpy as np
+import statsmodels.api as sm
+
+# Load the data
+data = pd.read_csv('data/countries.csv')
+
+# Data preprocessing
+data['GDP_per_capita'] = data['GDP'] / data['Population']
+
+# Perform regression analysis
+X = data[['GDP_per_capita', 'Exports', 'Inflation']]
+y = data['GDP_growth']
+
+X = sm.add_constant(X) # adding a constant
+
+model = sm.OLS(y, X).fit()
+predictions = model.predict(X)
+
+# Print regression results
+print(model.summary())
+```
