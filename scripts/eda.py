@@ -10402,3 +10402,21 @@ predictions = model.predict(X)
 # Print regression results
 print(model.summary())
 ```
+# Change made on 2024-06-26 21:34:14.276169
+```python
+import pandas as pd
+import numpy as np
+import statsmodels.api as sm
+
+# Load the data from countries.csv
+data = pd.read_csv('data/countries.csv')
+
+# Perform some advanced economic research here
+# For example, you could calculate the GDP growth rate for each country
+data['GDP_growth_rate'] = data['GDP'].pct_change() * 100
+
+# You could also run a linear regression to analyze the relationship between GDP and population
+X = sm.add_constant(data['Population'])
+model = sm.OLS(data['GDP'], X).fit()
+print(model.summary())
+```
