@@ -10420,3 +10420,26 @@ X = sm.add_constant(data['Population'])
 model = sm.OLS(data['GDP'], X).fit()
 print(model.summary())
 ```
+# Change made on 2024-06-26 21:34:18.552723
+import pandas as pd
+import numpy as np
+import statsmodels.api as sm
+
+# Load the data
+data = pd.read_csv('../data/countries.csv')
+
+# Perform some advanced economic research
+# For example, we can calculate the correlation between GDP per capita and income inequality
+correlation = np.corrcoef(data['GDP per capita'], data['Income inequality'])[0, 1]
+
+# Fit a regression model to analyze the relationship between GDP per capita and other economic variables
+X = data[['GDP per capita', 'Unemployment rate', 'Export growth rate']]
+y = data['Inflation rate']
+
+X = sm.add_constant(X) # Add a constant term to the model
+model = sm.OLS(y, X).fit()
+
+# Print the results
+print('Correlation between GDP per capita and Income inequality:', correlation)
+print('Regression results:')
+print(model.summary())
