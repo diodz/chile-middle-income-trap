@@ -10443,3 +10443,22 @@ model = sm.OLS(y, X).fit()
 print('Correlation between GDP per capita and Income inequality:', correlation)
 print('Regression results:')
 print(model.summary())
+# Change made on 2024-06-26 21:34:23.050433
+import pandas as pd
+import numpy as np
+import statsmodels.api as sm
+
+# Load the data
+data = pd.read_csv('../data/countries.csv')
+
+# Perform economic research analysis
+# Example: Cross-sectional regression analysis
+X = data[['GDP', 'PublicDebt', 'Inflation']]
+y = data['Unemployment']
+
+X = sm.add_constant(X)  # Add a constant for the intercept term
+
+model = sm.OLS(y, X).fit()
+print(model.summary()) # Print the regression results
+
+# Additional analysis and visualizations can be added here as needed for the article.
