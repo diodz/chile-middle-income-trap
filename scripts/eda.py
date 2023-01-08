@@ -10462,3 +10462,25 @@ model = sm.OLS(y, X).fit()
 print(model.summary()) # Print the regression results
 
 # Additional analysis and visualizations can be added here as needed for the article.
+# Change made on 2024-06-26 21:34:26.414530
+import pandas as pd
+import numpy as np
+import statsmodels.api as sm
+
+# Load data
+data = pd.read_csv('data/countries.csv')
+
+# Drop any missing values
+data.dropna(inplace=True)
+
+# Perform regression analysis
+X = data[['GDP_per_capita', 'Population']]
+Y = data['Gini_coefficient']
+
+X = sm.add_constant(X)
+
+model = sm.OLS(Y, X).fit()
+predictions = model.predict(X)
+
+# Print regression results
+print(model.summary())
