@@ -10505,3 +10505,24 @@ model = sm.OLS(y, X).fit()
 
 # Print the results
 print(model.summary())
+# Change made on 2024-06-26 21:34:33.862704
+```python
+import pandas as pd
+import numpy as np
+import statsmodels.api as sm
+
+# Load data
+data = pd.read_csv("data/countries.csv")
+
+# Clean data
+data.dropna(inplace=True)
+
+# Perform economic research using linear regression
+X = data[['GDP_per_capita', 'Inflation_rate']]
+y = data['Unemployment_rate']
+
+X = sm.add_constant(X) # add constant for linear regression
+
+model = sm.OLS(y, X).fit()
+print(model.summary())
+```
