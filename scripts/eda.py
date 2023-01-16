@@ -10526,3 +10526,38 @@ X = sm.add_constant(X) # add constant for linear regression
 model = sm.OLS(y, X).fit()
 print(model.summary())
 ```
+# Change made on 2024-06-26 21:34:39.302490
+```python
+import pandas as pd
+import numpy as np
+import statsmodels.api as sm
+
+# Load the dataset
+data = pd.read_csv('../data/countries.csv')
+
+# Perform some advanced economic research
+# For example, let's calculate the average GDP growth rate for Latin American countries
+latin_america_countries = ['Argentina', 'Brazil', 'Chile', 'Colombia', 'Mexico', 'Peru']
+
+latin_america_data = data[data['Country'].isin(latin_america_countries)]
+
+latin_america_data['GDP_Growth_Rate'] = (latin_america_data['GDP'] / latin_america_data['Previous_GDP'] - 1) * 100
+
+average_gdp_growth_rate = latin_america_data.groupby('Year')['GDP_Growth_Rate'].mean()
+
+# Perform regression analysis to identify factors influencing GDP growth
+X = latin_america_data[['Inflation_Rate', 'Unemployment_Rate']]
+y = latin_america_data['GDP_Growth_Rate']
+
+X = sm.add_constant(X) # adding a constant
+
+model = sm.OLS(y, X).fit()
+predictions = model.predict(X)
+
+# Print the results
+print("Average GDP Growth Rate for Latin American countries:")
+print(average_gdp_growth_rate)
+
+print("\nRegression Results:")
+print(model.summary())
+```
