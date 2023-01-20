@@ -10561,3 +10561,25 @@ print(average_gdp_growth_rate)
 print("\nRegression Results:")
 print(model.summary())
 ```
+# Change made on 2024-06-26 21:34:43.639651
+import pandas as pd
+import numpy as np
+import statsmodels.api as sm
+
+# Load the data
+data = pd.read_csv("data/countries.csv")
+
+# Perform some advanced economic research
+# For example, calculate the correlation between GDP per capita and life expectancy
+correlation = data['GDP_per_capita'].corr(data['Life_expectancy'])
+
+# Fit a linear regression model to predict GDP per capita based on factors such as education, healthcare, etc.
+X = data[['Education_index', 'Healthcare_index']]
+X = sm.add_constant(X)
+y = data['GDP_per_capita']
+model = sm.OLS(y, X).fit()
+predictions = model.predict(X)
+
+# Output the results
+print("Correlation between GDP per capita and life expectancy:", correlation)
+print(model.summary())
