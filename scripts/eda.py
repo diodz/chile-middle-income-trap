@@ -10605,3 +10605,28 @@ model = sm.OLS(y, X).fit()
 
 # Print the summary of the regression analysis
 print(model.summary())
+# Change made on 2024-06-26 21:34:51.967655
+```python
+import pandas as pd
+import numpy as np
+import statsmodels.api as sm
+
+# Load data from the csv file
+data = pd.read_csv('../data/countries.csv')
+
+# Perform some exploratory data analysis
+print(data.head())
+print(data.describe())
+
+# Calculate the correlation matrix
+correlation_matrix = data.corr()
+print(correlation_matrix)
+
+# Perform multiple linear regression analysis
+X = data[['GDP', 'Population']]
+y = data['Unemployment Rate']
+
+X = sm.add_constant(X)
+model = sm.OLS(y, X).fit()
+print(model.summary())
+```
