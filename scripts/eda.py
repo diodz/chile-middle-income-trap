@@ -10630,3 +10630,25 @@ X = sm.add_constant(X)
 model = sm.OLS(y, X).fit()
 print(model.summary())
 ```
+# Change made on 2024-06-26 21:34:55.801423
+import pandas as pd
+import numpy as np
+import statsmodels.api as sm
+
+# Load the data
+data = pd.read_csv('data/countries.csv')
+
+# Perform some advanced economic research
+# For example, calculate the correlation between GDP per capita and literacy rate
+correlation = np.corrcoef(data['GDP_per_capita'], data['Literacy_rate'])[0, 1]
+
+# Perform a regression analysis
+X = sm.add_constant(data['GDP_per_capita'])
+y = data['Life_expectancy']
+
+model = sm.OLS(y, X).fit()
+regression_summary = model.summary()
+
+# Output the results
+print("Correlation between GDP per capita and literacy rate: ", correlation)
+print(regression_summary)
