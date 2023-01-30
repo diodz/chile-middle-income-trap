@@ -10652,3 +10652,22 @@ regression_summary = model.summary()
 # Output the results
 print("Correlation between GDP per capita and literacy rate: ", correlation)
 print(regression_summary)
+# Change made on 2024-06-26 21:34:59.587172
+import pandas as pd
+import numpy as np
+import statsmodels.api as sm
+
+# Load the data
+data = pd.read_csv('../data/countries.csv')
+
+# Perform some advanced economic research
+# For example, conduct a regression analysis to study the impact of GDP, inflation, and unemployment rate on economic growth
+X = data[['GDP', 'Inflation', 'Unemployment']]
+y = data['EconomicGrowth']
+
+X = sm.add_constant(X) # adding a constant
+
+model = sm.OLS(y, X).fit()
+
+# Print the regression results
+print(model.summary())
