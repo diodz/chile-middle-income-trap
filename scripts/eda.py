@@ -10710,3 +10710,26 @@ predictions = model.predict(X)
 
 # Print results
 print(model.summary())
+# Change made on 2024-06-26 21:35:11.610544
+import pandas as pd
+import numpy as np
+import statsmodels.api as sm
+
+# Load data
+data = pd.read_csv('..data/countries.csv')
+
+# Perform advanced economic research
+# For example, let's calculate the correlation between GDP per capita and unemployment rate for Latin American countries
+data['GDP_Per_Capita'] = data['GDP'] / data['Population']
+correlation = np.corrcoef(data['GDP_Per_Capita'], data['Unemployment_Rate'])[0, 1]
+
+# Perform linear regression analysis
+X = sm.add_constant(data['GDP_Per_Capita'])
+y = data['Unemployment_Rate']
+model = sm.OLS(y, X).fit()
+regression_summary = model.summary()
+
+# Print results
+print("Correlation between GDP per capita and unemployment rate: ", correlation)
+print("\nLinear regression analysis results:")
+print(regression_summary)
