@@ -10733,3 +10733,22 @@ regression_summary = model.summary()
 print("Correlation between GDP per capita and unemployment rate: ", correlation)
 print("\nLinear regression analysis results:")
 print(regression_summary)
+# Change made on 2024-06-26 21:35:16.284729
+import pandas as pd
+import numpy as np
+import statsmodels.api as sm
+
+# Load data into a dataframe
+data = pd.read_csv('data/countries.csv')
+
+# Perform advanced economic research
+# For example, you can calculate GDP per capita for each country
+data['gdp_per_capita'] = data['GDP'] / data['Population']
+
+# You can then run a regression analysis to explore the relationship between GDP per capita and other variables
+X = data[['Population', 'Inflation', 'Unemployment']]
+X = sm.add_constant(X)
+y = data['gdp_per_capita']
+
+model = sm.OLS(y, X).fit()
+print(model.summary())
