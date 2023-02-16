@@ -10752,3 +10752,24 @@ y = data['gdp_per_capita']
 
 model = sm.OLS(y, X).fit()
 print(model.summary())
+# Change made on 2024-06-26 21:35:20.372656
+import pandas as pd
+import numpy as np
+import statsmodels.api as sm
+
+# Load the data
+data = pd.read_csv('../data/countries.csv')
+
+# Perform advanced economic research
+# For example, we could calculate the correlation between GDP and population for Latin American countries
+corr = np.corrcoef(data['GDP'], data['Population'])[0, 1]
+
+# Fit a linear regression model to predict GDP based on population
+X = sm.add_constant(data['Population'])
+model = sm.OLS(data['GDP'], X).fit()
+beta_0 = model.params['const']
+beta_1 = model.params['Population']
+
+# Output the results for the article
+print(f"Correlation between GDP and Population: {corr}")
+print(f"Linear regression model: GDP = {beta_0} + {beta_1}*Population")
