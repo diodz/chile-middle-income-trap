@@ -10773,3 +10773,26 @@ beta_1 = model.params['Population']
 # Output the results for the article
 print(f"Correlation between GDP and Population: {corr}")
 print(f"Linear regression model: GDP = {beta_0} + {beta_1}*Population")
+# Change made on 2024-06-26 21:35:24.419880
+import pandas as pd
+import numpy as np
+import statsmodels.api as sm
+
+# Load data from countries.csv
+data = pd.read_csv('data/countries.csv')
+
+# Drop any rows with missing values
+data = data.dropna()
+
+# Add a column for GDP per capita by dividing GDP by population
+data['GDP_per_capita'] = data['GDP'] / data['Population']
+
+# Create an OLS regression model to analyze the relationship between GDP per capita and other variables
+X = data[['Education', 'Healthcare', 'Infrastructure']]
+X = sm.add_constant(X)
+y = data['GDP_per_capita']
+
+model = sm.OLS(y, X).fit()
+
+# Print summary results of the regression analysis
+print(model.summary())
