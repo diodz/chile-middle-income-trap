@@ -77,7 +77,7 @@ get_western_offshoots <- function(){
 }
 
 get_e12 <- function(){
-    #This functino obtains the relative income of chile and the western
+    #This function obtains the relative income of chile and the western
     #offshoots countries
     cgdppc <- load_maddison_gdppc()
     population <- load_maddison_pop()

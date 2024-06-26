@@ -3,3 +3,6 @@
 .RData
 .Ruserdata
 data/~$mpd2018.xlsx
+.env
+.history/
+scripts/playground.py
